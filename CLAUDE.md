@@ -131,22 +131,28 @@ echo '{"step1": "complete", "role": "[выбранная роль]", "timestamp"
 
 ### Step 5: Submit
 
+помоги кандидату отправить результаты. предложи **самый простой вариант** для его ситуации:
+
+**вариант A (рекомендуемый):** fork + PR
 ```
-готово! осталось отправить результаты.
+1. на GitHub нажми Fork на github.com/ai-mindset-org/aim-apply
+2. добавь свой форк как remote:
+   git remote set-url origin https://github.com/ТВОЙ-USERNAME/aim-apply.git
+3. git add outputs/ tracking/
+4. git commit -m "Apply: [Имя] – [Роль]"
+5. git push origin main
+6. создай Pull Request → в ai-mindset-org/aim-apply
+```
 
-1. добавь файлы:
-   git add outputs/ tracking/
+**вариант B (если git сложно):** создай Issue
+```
+1. зайди на github.com/ai-mindset-org/aim-apply/issues/new
+2. заголовок: "Apply: [Имя] – [Роль]"
+3. приложи zip файл с папками outputs/ и tracking/
+```
 
-2. закоммить:
-   git commit -m "Apply: [Имя] – [Роль]"
-
-3. запуш:
-   git push origin main
-
-4. создай Pull Request в оригинальный репо
-
-спасибо за время. мы посмотрим на результаты
-и tracking данные в течение 2–3 дней.
+```
+спасибо за время. мы посмотрим результаты в течение 2–3 дней.
 ```
 
 ## важные правила
