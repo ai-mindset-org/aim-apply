@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply AI Native — AI Mindset</title>
+
+    <meta property="og:title" content="Apply AI Native — AI Mindset">
+    <meta property="og:description" content="No resume. No cover letter. Just a terminal session. 20-minute AI-native assessment.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #161620;
+            --bg-surface: #1a1a2e;
+            --accent: #4dc9d4;
+            --accent-dim: rgba(77, 201, 212, 0.15);
+            --accent-glow: rgba(77, 201, 212, 0.3);
+            --blue: #3b82f6;
+            --text: #e8e8ef;
+            --text-dim: rgba(232, 232, 239, 0.5);
+            --text-label: rgba(232, 232, 239, 0.45);
+            --border: rgba(232, 232, 239, 0.08);
+            --grid: rgba(77, 201, 212, 0.04);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Mono', monospace;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 60px 60px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 0%, var(--accent-dim) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .logo-line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .logo-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-label);
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(42px, 8vw, 64px);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text);
+            opacity: 0.8;
+            margin-bottom: 48px;
+            max-width: 560px;
+        }
+
+        /* CTA */
+        .cta-wrapper {
+            margin-bottom: 64px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 36px;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            color: var(--bg);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .cta-button .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .cta-meta {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--text-label);
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+
+        .section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            gap: 1px;
+            background: var(--border);
+        }
+
+        .card {
+            background: var(--bg-surface);
+            padding: 20px 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .card-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.4;
+            line-height: 1;
+            min-width: 40px;
+        }
+
+        .card-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text);
+            opacity: 0.7;
+        }
+
+        /* What we look for */
+        .traits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 500px) {
+            .traits { grid-template-columns: 1fr; }
+        }
+
+        .trait {
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
+        }
+
+        .trait-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .trait-desc {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        /* Terminal block */
+        .terminal {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin-top: 24px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .terminal .prompt {
+            color: var(--accent);
+        }
+
+        .terminal .cmd {
+            color: #e8e8ef;
+        }
+
+        .terminal .comment {
+            color: var(--text-label);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 80px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-label);
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+            opacity: 0.6;
+        }
+
+        .footer a:hover {
+            opacity: 1;
+        }
+
+        /* Noise overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="logo-line">
+            <div class="logo-dot"></div>
+            <span class="logo-text">AI Mindset</span>
+        </div>
+
+        <h1>Apply<br><span>AI Native</span></h1>
+
+        <p class="subtitle">
+            no resume. no cover letter. just a terminal session.<br>
+            20 minutes. 4 tasks. your tools, your workflow, your proof.
+        </p>
+
+        <!-- CTA -->
+        <div class="cta-wrapper">
+            <a href="https://github.com/aimindset/aim-apply" class="cta-button">
+                Start in Terminal <span class="arrow">&rarr;</span>
+            </a>
+            <p class="cta-meta">fork the repo &middot; open claude code &middot; show how you work</p>
+        </div>
+
+        <!-- How it works -->
+        <div class="section">
+            <div class="section-label">How it works</div>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-num">01</div>
+                    <div class="card-content">
+                        <h3>Fork & Clone</h3>
+                        <p>Fork the repo to your GitHub. Clone it locally. This is already part of the test.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-num">02</div>
+                    <div class="card-content">
+                        <h3>Open Claude Code</h3>
+                        <p>Run <code>claude</code> in the repo directory. The AI guide will walk you through 4 tasks.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-num">03</div>
+                    <div class="card-content">
+                        <h3>Create & Ship</h3>
+                        <p>Research us, create an artifact, reflect on your process. Use any AI tools you want.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-num">04</div>
+                    <div class="card-content">
+                        <h3>Submit PR</h3>
+                        <p>Commit your outputs and tracking data. Create a pull request. We review within 3 days.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What we look for -->
+        <div class="section">
+            <div class="section-label">What we look for</div>
+            <div class="traits">
+                <div class="trait">
+                    <div class="trait-name">AI Fluency</div>
+                    <div class="trait-desc">parallel agents, tool diversity, efficient workflows</div>
+                </div>
+                <div class="trait">
+                    <div class="trait-name">Initiative</div>
+                    <div class="trait-desc">going beyond the brief, proposing ideas</div>
+                </div>
+                <div class="trait">
+                    <div class="trait-name">Quality</div>
+                    <div class="trait-desc">writing, code, visuals &mdash; whatever you create</div>
+                </div>
+                <div class="trait">
+                    <div class="trait-name">Taste</div>
+                    <div class="trait-desc">knowing what good looks like, shipping it fast</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminal preview -->
+        <div class="section">
+            <div class="section-label">Preview</div>
+            <div class="terminal">
+                <span class="prompt">$</span> <span class="cmd">git clone https://github.com/YOU/aim-apply.git</span><br>
+                <span class="prompt">$</span> <span class="cmd">cd aim-apply</span><br>
+                <span class="prompt">$</span> <span class="cmd">claude</span><br>
+                <br>
+                <span class="comment"># Claude guides you through 4 tasks</span><br>
+                <span class="comment"># Your tool usage is tracked automatically</span><br>
+                <span class="comment"># ~20 minutes from start to PR</span><br>
+                <br>
+                <span class="prompt">$</span> <span class="cmd">git add outputs/ tracking/</span><br>
+                <span class="prompt">$</span> <span class="cmd">git commit -m "Apply: Your Name &ndash; Area"</span><br>
+                <span class="prompt">$</span> <span class="cmd">git push origin main</span><br>
+            </div>
+        </div>
+
+        <!-- About -->
+        <div class="section">
+            <div class="section-label">Who we are</div>
+            <h2>AI Mindset</h2>
+            <p style="font-size: 14px; line-height: 1.7; color: var(--text); opacity: 0.75; margin-bottom: 16px;">
+                we're a team of 8 building AI transformation products &ndash; Labs, Sprints, Space community (5K+), B2B consulting. fully remote, async-first, agent-powered.
+            </p>
+            <p style="font-size: 14px; line-height: 1.7; color: var(--text); opacity: 0.75;">
+                we don't hire for job titles. we hire for how you work. if you live in AI tools, think in systems, and ship fast &ndash; we want to talk.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <span>built by agents, for agents</span>
+            <a href="https://github.com/aimindset/aim-apply">github</a>
+        </div>
+    </div>
+</body>
+</html>

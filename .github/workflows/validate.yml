@@ -1,0 +1,126 @@
+name: Validate Application
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required files
+        id: check
+        run: |
+          SCORE=0
+          TOTAL=5
+          REPORT=""
+
+          # Check profile.md
+          if [ -f "outputs/profile.md" ] && [ -s "outputs/profile.md" ]; then
+            SCORE=$((SCORE + 1))
+            REPORT="$REPORT\n- ✅ profile.md — present"
+          else
+            REPORT="$REPORT\n- ❌ profile.md — missing or empty"
+          fi
+
+          # Check research.md
+          if [ -f "outputs/research.md" ] && [ -s "outputs/research.md" ]; then
+            BULLET_COUNT=$(grep -c "^[0-9]\.\|^-\|^*" outputs/research.md || true)
+            if [ "$BULLET_COUNT" -ge 5 ]; then
+              SCORE=$((SCORE + 1))
+              REPORT="$REPORT\n- ✅ research.md — present ($BULLET_COUNT bullet points)"
+            else
+              REPORT="$REPORT\n- ⚠️ research.md — present but only $BULLET_COUNT bullet points (need 5+)"
+            fi
+          else
+            REPORT="$REPORT\n- ❌ research.md — missing or empty"
+          fi
+
+          # Check artifact (any file in outputs/ besides profile, research, reflection, progress)
+          ARTIFACT_COUNT=$(find outputs/ -type f ! -name ".gitkeep" ! -name "profile.md" ! -name "research.md" ! -name "reflection.md" ! -name "progress.json" | wc -l | tr -d ' ')
+          if [ "$ARTIFACT_COUNT" -ge 1 ]; then
+            SCORE=$((SCORE + 1))
+            REPORT="$REPORT\n- ✅ artifact — $ARTIFACT_COUNT file(s) created"
+          else
+            REPORT="$REPORT\n- ❌ artifact — no creative artifact found"
+          fi
+
+          # Check reflection.md
+          if [ -f "outputs/reflection.md" ] && [ -s "outputs/reflection.md" ]; then
+            SCORE=$((SCORE + 1))
+            REPORT="$REPORT\n- ✅ reflection.md — present"
+          else
+            REPORT="$REPORT\n- ❌ reflection.md — missing or empty"
+          fi
+
+          # Check tracking data
+          if [ -f "tracking/session.jsonl" ] && [ -s "tracking/session.jsonl" ]; then
+            TOOL_EVENTS=$(grep -c "tool_use" tracking/session.jsonl || true)
+            SCORE=$((SCORE + 1))
+            REPORT="$REPORT\n- ✅ tracking — $TOOL_EVENTS tool events logged"
+          else
+            REPORT="$REPORT\n- ⚠️ tracking — no session data (hooks may not have been active)"
+          fi
+
+          # Tool usage analysis
+          TOOL_SUMMARY=""
+          if [ -f "tracking/profile.json" ]; then
+            TOOL_SUMMARY=$(cat tracking/profile.json | python3 -c "
+          import json, sys
+          data = json.load(sys.stdin)
+          tools = data.get('tools', {})
+          total = data.get('total', 0)
+          top = sorted(tools.items(), key=lambda x: -x[1])[:5]
+          print(f'Total: {total} tool calls')
+          for t, c in top:
+              print(f'  {t}: {c}')
+          agent = tools.get('Agent', 0)
+          if agent >= 3:
+              print('🟢 Agent usage: strong (3+)')
+          elif agent >= 1:
+              print('🟡 Agent usage: some')
+          else:
+              print('🔴 Agent usage: none')
+          " 2>/dev/null || echo "Could not parse profile.json")
+          fi
+
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
+          echo "total=$TOTAL" >> $GITHUB_OUTPUT
+
+          # Write report to file for comment step
+          printf "$REPORT" > /tmp/report.txt
+          echo "$TOOL_SUMMARY" > /tmp/tools.txt
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('/tmp/report.txt', 'utf8');
+            const tools = fs.readFileSync('/tmp/tools.txt', 'utf8');
+            const score = '${{ steps.check.outputs.score }}';
+            const total = '${{ steps.check.outputs.total }}';
+
+            const body = `## Apply AI Native — Auto-Validation
+
+            **Score: ${score}/${total}**
+
+            ### File Checks
+            ${report}
+
+            ### Tool Usage
+            \`\`\`
+            ${tools}
+            \`\`\`
+
+            ---
+            <sub>This is an automated check. A human review will follow within 2-3 days.</sub>`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
