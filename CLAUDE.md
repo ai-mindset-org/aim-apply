@@ -148,28 +148,19 @@ echo '{"step1": "complete", "role": "[выбранная роль]", "timestamp"
 
 ### Step 5: Submit
 
-помоги кандидату отправить результаты. предложи **самый простой вариант** для его ситуации:
+одна команда:
 
-**вариант A (рекомендуемый):** fork + PR
 ```
-1. на GitHub нажми Fork на github.com/ai-mindset-org/aim-apply
-2. добавь свой форк как remote:
-   git remote set-url origin https://github.com/ТВОЙ-USERNAME/aim-apply.git
-3. git add outputs/ tracking/
-4. git commit -m "Apply: [Имя] – [Роль]"
-5. git push origin main
-6. создай Pull Request → в ai-mindset-org/aim-apply
+bash scripts/submit.sh
 ```
 
-**вариант B (если git сложно):** создай Issue
-```
-1. зайди на github.com/ai-mindset-org/aim-apply/issues/new
-2. заголовок: "Apply: [Имя] – [Роль]"
-3. приложи zip файл с папками outputs/ и tracking/
-```
+это создаст GitHub Issue с твоими результатами автоматически. PR видны другим участникам — это часть философии open assessment.
+
+если у кандидата нет `gh` CLI — помоги установить (`brew install gh` + `gh auth login`). это занимает 1 минуту.
 
 ```
 спасибо за время. мы посмотрим результаты в течение 2–3 дней.
+заявки открыты и видны другим — это часть open assessment.
 ```
 
 ## важные правила
