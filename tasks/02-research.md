@@ -1,42 +1,108 @@
-# Task 2: Research AI Mindset
+# задание 2: research + knowledge wiki
 
-**Time:** ~7 minutes
-**Output:** `outputs/research.md`
+**время:** ~7 минут
+**output:** `outputs/wiki/` (index.md + entity-страницы)
 
-## Brief
+## scoring dimensions
 
-Use AI tools to learn about AI Mindset. Read the context files, search the web if you can, synthesize what you find.
+| dimension | tested? |
+|-----------|---------|
+| Technical Skill | tested – работа с файловой системой, создание структуры директорий |
+| Thinking/Logic | tested – синтез информации из разных источников, структурирование |
+| Taste/Design | tested – качество markdown, читаемость, навигация |
+| Initiative | tested – доп. источники, неожиданные связи, идеи |
 
-## Steps
+## бриф
 
-1. Read `context/about-aim.md` — who we are, what we believe
-2. Read `context/products.md` — our product ecosystem
-3. (Optional) Search the web for more about AI Mindset — Telegram channel, website, social media
-4. Write your findings
+знания не равны информации. информация – это сырые фрагменты. знание – это когда фрагменты связаны, структурированы и навигируемы.
 
-## Output
+твоя задача – превратить сырые фрагменты об AI Mindset в structured wiki. не summary, а knowledge system.
 
-Save as `outputs/research.md`:
+## контекст
 
+1. прочитай `context/about-aim.md` – кто мы
+2. прочитай `context/products.md` – продуктовая экосистема
+3. прочитай `context/raw-snippets.md` – **4 сырых фрагмента** из разных источников
+4. (опционально) поищи в интернете дополнительную информацию про AI Mindset
+
+## задание
+
+организуй всё в structured wiki:
+
+### 1. создай `outputs/wiki/index.md`
+
+каталог содержания wiki. каждая страница – one-liner описание. категории по смыслу.
+
+пример формата:
 ```markdown
-# AI Mindset — Research
+# AI Mindset Wiki – Index
 
-## 5 Key Takeaways
-1. ...
-2. ...
-3. ...
-4. ...
-5. ...
+## entities
+- [[founder]] – Alexander Povaliaev, основатель AI Mindset
+- [[pos]] – Personal Operating System, ключевая концепция
 
-## One Idea You Didn't Ask For
-...
+## products
+- [[space]] – подписочное сообщество, 5000+ участников
+- [[labs]] – 4-недельные интенсивы для фаундеров
+
+## concepts
+- [[ai-native]] – что значит быть AI-native организацией
 ```
 
-The unsolicited idea is important — show us how you think.
+### 2. создай entity-страницы в `outputs/wiki/`
 
-## Tips
+каждая страница – отдельный markdown-файл. минимум 3 страницы.
 
-- Use search tools if available (WebSearch, Exa, etc.)
-- Use Agent tool for parallel research if you know how
-- Quality of synthesis matters more than quantity of information
-- The idea doesn't have to be brilliant — it has to be specific
+требования к каждой странице:
+- **frontmatter** с source и date
+- **cross-references** на другие страницы wiki (`[[ссылка]]` или `[ссылка](файл.md)`)
+- **факты**, а не пересказ – конкретные числа, цитаты, детали
+- **связи** – как эта сущность связана с остальными
+
+пример страницы:
+```markdown
+---
+source: interview, tg-channel, docs
+date: 2026-04-07
+---
+
+# Personal Operating System (POS)
+
+ключевая концепция AI Mindset – персональная операционная система
+на базе [[claude-code]] + [[obsidian]] + [[linear]].
+
+## что входит
+- 100+ кастомных скиллов
+- MCP интеграции (Telegram, Calendar, Notion, Sheets)
+- GEPA – система самоулучшения скиллов
+
+## метрики
+- adoption, quality, efficiency (не количество задач)
+
+## связи
+- основа программы [[labs]]
+- практикуется на [[founder-os]] сессиях
+- создана [[founder]]
+```
+
+### 3. качество cross-references
+
+wiki без ссылок – это просто файлы. нам важно:
+- каждая страница ссылается минимум на 2 другие
+- index.md ссылается на все страницы
+- нет orphan-страниц (без входящих ссылок)
+
+## что мы оцениваем
+
+- **структура** – логичные категории, понятная навигация
+- **синтез** – объединил информацию из разных snippets в одну entity
+- **cross-references** – связи между страницами, не изолированные файлы
+- **полнота** – покрыл ключевые entities и concepts
+- **инициатива** – добавил что-то от себя (свои наблюдения, доп. источники, идеи)
+
+## tips
+
+- используй AI tools для поиска доп. информации
+- качество структуры важнее количества страниц
+- если видишь паттерн, которого нет в snippets – запиши его
+- wiki – живая система, не отчёт. пиши так, будто кто-то будет дополнять

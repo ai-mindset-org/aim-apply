@@ -1,42 +1,76 @@
-# Task 4: Reflect
+# задание 4: рефлексия
 
-**Time:** ~5 minutes
-**Output:** `outputs/reflection.md`
+**время:** ~5 минут
+**output:** `outputs/reflection.md`
 
-## Brief
+## scoring dimensions
 
-Let's talk about how you work and where you see yourself.
+| dimension | tested? |
+|-----------|---------|
+| Technical Skill | – |
+| Thinking/Logic | tested – self-awareness, способность к рефлексии |
+| Taste/Design | tested – качество формулировок, структура ответа |
+| Initiative | tested – предлагает следующие шаги? видит дальше задания? |
 
-## Questions
+## бриф
 
-1. **Tools & Process:** which tools did you use during this assessment and why? What would you use differently with more time?
+поговорим о том, как ты работаешь и как мыслишь.
 
-2. **If You Had 2 Hours:** what would you build or improve for AI Mindset?
+## вопросы
 
-3. **Ideal Work Week:** describe your perfect work week in this role — what does Monday look like? Friday?
+1. **инструменты и процесс:** какие инструменты использовал во время assessment и почему? что бы использовал иначе с большим количеством времени?
 
-4. **One Sentence:** why should you be on this team?
+2. **если бы было 2 часа:** что бы построил или улучшил для AI Mindset?
 
-## Output
+3. **идеальная рабочая неделя:** опиши свой идеальный понедельник и пятницу на этой роли.
 
-Save as `outputs/reflection.md`:
+4. **одно предложение:** почему тебе стоит быть в команде?
+
+## output
+
+сохрани как `outputs/reflection.md`:
 
 ```markdown
-# Reflection
+# reflection
 
-## Tools & Process
+## инструменты и процесс
 ...
 
-## If I Had 2 Hours
+## если бы было 2 часа
 ...
 
-## My Ideal Work Week
+## идеальная рабочая неделя
 ...
 
-## Why Me
+## почему я
 ...
 ```
 
-## Note
+## scoring transparency
 
-Be honest. We value self-awareness over self-promotion. "I don't know X yet but I want to learn" is a better answer than pretending.
+после завершения рефлексии – вот полная матрица того, что тестировалось:
+
+```
+                    Technical  Thinking  Taste  Initiative
+                    Skill      Logic     Design
+─────────────────────────────────────────────────────────
+01 introduce        –          –         –      tested
+02 research+wiki    tested     tested    tested  tested
+03 create           tested     tested    tested  tested
+04 reflect          –          tested    tested  tested
+─────────────────────────────────────────────────────────
+```
+
+**Technical Skill** – терминал, git, файловая система, агенты, инструменты. тестируется действиями в заданиях 2 и 3.
+
+**Thinking/Logic** – синтез информации, структурирование, приоритизация. тестируется wiki-заданием и рефлексией.
+
+**Taste/Design** – эстетика output, структура markdown, читаемость. тестируется во всём, что ты создаёшь.
+
+**Initiative** – делаешь больше, чем попросили. тестируется везде – но особенно ценится в заданиях 2 и 3.
+
+каждое измерение оценивается binary: pass/fail. точные веса не раскрываем – но все четыре dimension одинаково важны.
+
+## note
+
+будь честным. мы ценим self-awareness больше, чем self-promotion. "я пока не умею X, но хочу разобраться" – лучше, чем притворяться.

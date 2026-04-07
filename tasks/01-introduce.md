@@ -1,39 +1,65 @@
-# Task 1: Introduce Yourself
+# задание 1: представься + выбери направление
 
-**Time:** ~3 minutes
-**Output:** `outputs/profile.md`
+**время:** ~3 минуты
+**output:** `outputs/profile.md`
 
-## Brief
+## scoring dimensions
 
-We want to know who you are — not your CV, but your working self.
+| dimension | tested? |
+|-----------|---------|
+| Technical Skill | – |
+| Thinking/Logic | – |
+| Taste/Design | – |
+| Initiative | tested – что расскажешь сверх вопросов? |
 
-## Questions
+## бриф
 
-1. **Name & Location** — where are you based?
-2. **Background** — 2–3 sentences about what you do and where you come from
-3. **AI Tool Stack** — which AI tools do you use every day? Be specific.
-4. **Links** (optional) — blog, vlog, GitHub, LinkedIn, portfolio, anything that shows your work
-5. **Why AI Mindset?** — what caught your attention?
+мы хотим понять, кто ты – не резюме, а рабочий ты. и в каком направлении тебе интересно работать.
 
-## Output Format
+## вопросы
 
-Save as `outputs/profile.md`:
+1. **имя и локация** – откуда работаешь?
+2. **бэкграунд** – 2–3 предложения о том, чем занимаешься и откуда пришёл
+3. **AI tool stack** – какие AI-инструменты используешь каждый день? конкретно.
+4. **ссылки** (опционально) – GitHub, LinkedIn, портфолио, блог, влог, что угодно
+5. **почему AI Mindset?** – что зацепило?
+
+## выбор направления
+
+выбери одно или несколько направлений, в которых хочешь работать:
+
+| направление | что это |
+|-------------|---------|
+| **marketing** | контент-стратегия, копирайтинг, TG-канал, рекламные кампании, аналитика |
+| **dev** | Claude Code skills, скрипты, dashboards, MCP серверы, автоматизации |
+| **design** | визуальный контент, карусели, баннеры, HTML/SVG артефакты, видео |
+| **ops** | процессы, Linear, координация команды, документация, отчёты |
+| **mix** | любое сочетание – опиши свой микс |
+
+**нет правильного ответа.** мы ищем AI Native Operator – роль намеренно широкая. выбери то, где ты сильнее всего, или то, что тебе интереснее.
+
+выбранное направление определит задание в Step 3.
+
+## формат output
+
+сохрани как `outputs/profile.md`:
 
 ```markdown
-# Profile
+# profile
 
-**Name:** ...
-**Location:** ...
+**имя:** ...
+**локация:** ...
+**направление:** marketing / dev / design / ops / mix (...)
 
-## Background
+## бэкграунд
 ...
 
-## AI Tools I Use Daily
+## AI-инструменты каждый день
 - ...
 
-## Links
+## ссылки
 - ...
 
-## Why AI Mindset
+## почему AI Mindset
 ...
 ```

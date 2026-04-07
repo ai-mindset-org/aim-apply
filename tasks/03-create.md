@@ -1,52 +1,111 @@
-# Task 3: Create Something
+# задание 3: создай что-то
 
-**Time:** ~10 minutes
-**Output:** `outputs/` (see options below)
+**время:** ~10 минут
+**output:** `outputs/` (зависит от выбранного направления)
 
-## Brief
+## scoring dimensions
 
-Create one artifact for AI Mindset. Choose the path that fits your skills — or invent your own.
+| dimension | tested? |
+|-----------|---------|
+| Technical Skill | tested – реализация, инструменты, delivery |
+| Thinking/Logic | tested – выбор задачи, приоритизация, scope |
+| Taste/Design | tested – эстетика, структура, quality output |
+| Initiative | tested – пошёл дальше брифа? придумал своё? |
 
-## Option A: Content Creator
+## бриф
 
-Write a Telegram channel post (200–300 words) on one of these topics:
-- "Why AI-native organizations win"
-- "What changes when agents become teammates"
-- "The terminal is the new office"
+создай один артефакт для AI Mindset. задание зависит от направления, которое ты выбрал в Step 1.
 
-Save as `outputs/content.md`.
+---
 
-**Style guide:** lowercase start, EN DASH (–), no emoji, no corporate speak, direct and specific. See `context/about-aim.md` for tone.
+## marketing
 
-## Option B: Builder
+### основное задание
+напиши пост для Telegram-канала AI Mindset (200–300 слов) на одну из тем:
+- "почему маленькая команда с агентами побеждает большую без"
+- "терминал – это новый офис"
+- "что меняется, когда агенты становятся тиммейтами"
 
-Create a script, skill, or automation that solves a real problem for AI Mindset. Examples:
-- A bash script that summarizes today's tasks from a markdown file
-- A Claude Code skill that generates content ideas
-- A simple dashboard (single HTML file)
-- An automation that processes data
+**стиль:** строчная буква в начале блоков, EN DASH (–), без эмоджи, без корпоративщины, конкретно. см. `context/about-aim.md` для тона.
 
-Save in `outputs/artifact/`.
+### бонус (initiative)
+составь контент-план на неделю: 5–7 постов/форматов с темами и каналами.
 
-## Option C: Designer
+сохрани как `outputs/content.md` (пост) и `outputs/content-plan.md` (план).
 
-Create a visual artifact:
-- HTML banner (1500×500 or 1080×1350)
-- SVG illustration
-- Landing page mockup
-- Social media card
+---
 
-Save in `outputs/visual/`.
+## dev
 
-## Option D: Your Own
+### основное задание
+создай скрипт, скилл или автоматизацию, которая решает реальную задачу для AI Mindset:
 
-Build whatever you want. Surprise us.
+идеи (или придумай своё):
+- bash-скрипт, который парсит markdown файл с задачами и показывает summary
+- Claude Code skill, который генерирует контент-идеи
+- простой dashboard (single HTML file) с данными о команде/продуктах
+- автоматизация, которая обрабатывает данные из wiki (задание 2)
 
-Save in `outputs/`.
+### бонус (initiative)
+добавь README с инструкцией, как запустить.
 
-## What We're Looking For
+сохрани в `outputs/artifact/`.
 
-- **Process > Result** — how you use AI tools matters as much as what you create
-- **Initiative** — going beyond the brief is a strong signal
-- **Speed** — can you ship something real in 10 minutes?
-- **Taste** — does it look/read/work well?
+---
+
+## design
+
+### основное задание
+создай визуальный артефакт:
+- HTML-баннер (1500x500 или 1080x1350)
+- SVG-иллюстрация
+- карточка для соцсетей
+- mockup лендинга
+
+стиль AI Mindset: terminal chrome, dark theme, monospace fonts (JetBrains Mono / SF Mono), teal accent (#4dc9d4), без градиентов ради градиентов.
+
+### бонус (initiative)
+сделай responsive или добавь animation.
+
+сохрани в `outputs/visual/`.
+
+---
+
+## ops
+
+### основное задание
+создай один из:
+- **процесс:** опиши workflow для конкретной задачи (например: onboarding нового члена команды, review контента, запуск когорты) – в формате checklist + ответственные + timing
+- **dashboard:** HTML-файл с визуализацией (метрики команды, pipeline задач, calendar view)
+- **шаблон:** template для повторяющейся задачи (weekly sync, monthly report, sprint planning)
+
+### бонус (initiative)
+привяжи процесс к конкретным инструментам (Linear, Obsidian, Telegram).
+
+сохрани в `outputs/ops/`.
+
+---
+
+## mix
+
+выбери задание из любой категории выше – или придумай своё, которое сочетает несколько направлений.
+
+сохрани в `outputs/`.
+
+---
+
+## freestyle (для всех ролей)
+
+**option D: своё** – построй что хочешь. удиви.
+
+сохрани в `outputs/`.
+
+---
+
+## что мы оцениваем
+
+- **process > result** – как используешь AI-инструменты важнее финального артефакта
+- **initiative** – вышел за рамки брифа? сильный сигнал
+- **speed** – можешь shipped something real за 10 минут?
+- **taste** – выглядит/читается/работает хорошо?
+- **scope judgment** – выбрал адекватный scope, а не гигантский план без execution
