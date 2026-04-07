@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 html, body {
     width: 1200px; height: 630px;
@@ -15,70 +15,189 @@ html, body {
     overflow: hidden;
     position: relative;
 }
+
+/* Teal grid */
 body::before {
     content: '';
     position: absolute; inset: 0;
     background-image:
-        linear-gradient(rgba(77,201,212,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(77,201,212,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(77,201,212,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77,201,212,0.05) 1px, transparent 1px);
     background-size: 60px 60px;
+    z-index: 0;
 }
+
+/* Center glow */
 body::after {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, rgba(77,201,212,0.1) 0%, transparent 50%);
+    background: radial-gradient(ellipse 700px 500px at 50% 45%, rgba(77,201,212,0.12) 0%, transparent 70%);
+    z-index: 0;
 }
+
+/* Noise texture */
+.noise {
+    position: absolute; inset: 0;
+    z-index: 1;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+}
+
+/* Vignette */
+.vignette {
+    position: absolute; inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(10,10,18,0.6) 100%);
+}
+
+/* Corner accents */
+.corner-tl, .corner-br {
+    position: absolute;
+    width: 80px; height: 80px;
+    z-index: 2;
+}
+.corner-tl {
+    top: 32px; left: 32px;
+    border-top: 2px solid rgba(77,201,212,0.2);
+    border-left: 2px solid rgba(77,201,212,0.2);
+}
+.corner-br {
+    bottom: 32px; right: 32px;
+    border-bottom: 2px solid rgba(77,201,212,0.2);
+    border-right: 2px solid rgba(77,201,212,0.2);
+}
+
 .content {
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: 10;
+    padding: 0 60px;
 }
-.logo {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
+
+/* Logo row */
+.logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.logo-img {
+    width: 36px;
+    height: 36px;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(77,201,212,0.3));
+}
+
+.logo-text {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(232,232,239,0.35);
-    margin-bottom: 24px;
+    color: rgba(232,232,239,0.45);
 }
-.logo::before {
-    content: '';
-    display: inline-block;
-    width: 8px; height: 8px;
-    background: #4dc9d4;
-    border-radius: 50%;
-    margin-right: 10px;
-    vertical-align: middle;
-    box-shadow: 0 0 12px rgba(77,201,212,0.4);
-}
+
+/* Main heading */
 h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 96px;
-    font-weight: 700;
+    font-size: 160px;
+    font-weight: 800;
     color: #fff;
-    margin: 0 0 12px 0;
-    line-height: 1;
+    margin: 0 0 20px 0;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    text-shadow: 0 0 60px rgba(77,201,212,0.15);
 }
-h1 span { color: #4dc9d4; }
+h1 .slash {
+    color: #4dc9d4;
+    text-shadow: 0 0 40px rgba(77,201,212,0.4);
+}
+
+/* Role */
 .role {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 700;
     color: #4dc9d4;
-    letter-spacing: 0.08em;
-    opacity: 0.7;
-    margin-bottom: 16px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(77,201,212,0.25);
 }
+
+/* Tagline */
 .tagline {
-    font-size: 14px;
-    color: rgba(232,232,239,0.4);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(232,232,239,0.5);
+    letter-spacing: 0.02em;
+}
+
+/* Glow dots */
+.dot {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 2;
+}
+.dot-1 {
+    width: 6px; height: 6px;
+    background: #4dc9d4;
+    top: 40px; right: 40px;
+    box-shadow: 0 0 16px 4px rgba(77,201,212,0.4);
+}
+.dot-2 {
+    width: 4px; height: 4px;
+    background: rgba(77,201,212,0.6);
+    bottom: 40px; left: 40px;
+    box-shadow: 0 0 12px 3px rgba(77,201,212,0.3);
+}
+.dot-3 {
+    width: 3px; height: 3px;
+    background: rgba(77,201,212,0.4);
+    top: 120px; left: 100px;
+    box-shadow: 0 0 10px 2px rgba(77,201,212,0.2);
+}
+
+/* Horizontal accent lines */
+.line-left, .line-right {
+    position: absolute;
+    height: 1px;
+    z-index: 2;
+}
+.line-left {
+    width: 120px;
+    left: 32px;
+    top: 50%;
+    background: linear-gradient(90deg, rgba(77,201,212,0.15), transparent);
+}
+.line-right {
+    width: 120px;
+    right: 32px;
+    top: 50%;
+    background: linear-gradient(-90deg, rgba(77,201,212,0.15), transparent);
 }
 </style>
 </head>
 <body>
+<div class="noise"></div>
+<div class="vignette"></div>
+<div class="corner-tl"></div>
+<div class="corner-br"></div>
+<div class="dot dot-1"></div>
+<div class="dot dot-2"></div>
+<div class="dot dot-3"></div>
+<div class="line-left"></div>
+<div class="line-right"></div>
+
 <div class="content">
-    <div class="logo">AI Mindset</div>
-    <h1><span>/</span>apply</h1>
+    <div class="logo-row">
+        <img class="logo-img" src="data:image/png;base64,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" alt="AI Mindset" />
+        <span class="logo-text">AI Mindset</span>
+    </div>
+    <h1><span class="slash">/</span>apply</h1>
     <div class="role">ai native operator</div>
     <div class="tagline">последняя вакансия, на которую ты подашься</div>
 </div>
