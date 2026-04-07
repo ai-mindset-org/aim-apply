@@ -25,17 +25,17 @@ jobs:
             REPORT="$REPORT\n- ❌ profile.md — missing or empty"
           fi
 
-          # Check research.md
-          if [ -f "outputs/research.md" ] && [ -s "outputs/research.md" ]; then
-            BULLET_COUNT=$(grep -c "^[0-9]\.\|^-\|^*" outputs/research.md || true)
-            if [ "$BULLET_COUNT" -ge 5 ]; then
+          # Check wiki (outputs/wiki/index.md + entity pages)
+          if [ -f "outputs/wiki/index.md" ] && [ -s "outputs/wiki/index.md" ]; then
+            WIKI_PAGES=$(find outputs/wiki/ -name "*.md" ! -name "index.md" -type f | wc -l | tr -d ' ')
+            if [ "$WIKI_PAGES" -ge 3 ]; then
               SCORE=$((SCORE + 1))
-              REPORT="$REPORT\n- ✅ research.md — present ($BULLET_COUNT bullet points)"
+              REPORT="$REPORT\n- ✅ wiki — index.md + $WIKI_PAGES entity pages"
             else
-              REPORT="$REPORT\n- ⚠️ research.md — present but only $BULLET_COUNT bullet points (need 5+)"
+              REPORT="$REPORT\n- ⚠️ wiki — index.md present but only $WIKI_PAGES entity pages (need 3+)"
             fi
           else
-            REPORT="$REPORT\n- ❌ research.md — missing or empty"
+            REPORT="$REPORT\n- ❌ wiki — outputs/wiki/index.md missing"
           fi
 
           # Check artifact (any file in outputs/ besides profile, research, reflection, progress)

@@ -7,7 +7,7 @@
 ### Checklist
 
 - [ ] `outputs/profile.md` — completed
-- [ ] `outputs/research.md` — completed with 5 takeaways + 1 idea
+- [ ] `outputs/wiki/index.md` — wiki с entity-страницами и cross-references
 - [ ] `outputs/` — contains at least one artifact (content/code/visual)
 - [ ] `outputs/reflection.md` — completed
 - [ ] `tracking/session.jsonl` — present (auto-generated)
