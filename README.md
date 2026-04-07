@@ -1,94 +1,156 @@
-# Apply AI Native — AI Mindset
+<div align="center">
 
-> **No resume. No cover letter. Just a terminal session.**
+<br>
 
-We're looking for people who **live in AI tools** and want to build the future of AI-native organizations.
+# /apply
 
-This is not a traditional job application. It's a 20-minute terminal assessment that tests **how you work**, not what you know.
+### последняя вакансия, на которую ты подашься
 
----
+<br>
 
-## What We're Looking For
+[![GitHub Pages](https://img.shields.io/badge/landing-apply-4dc9d4?style=flat-square)](https://ai-mindset-org.github.io/aim-apply/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-white?style=flat-square)](LICENSE)
 
-An **AI Native Operator** — someone who:
-- Uses AI agents daily, not occasionally
-- Can orchestrate multiple agents in parallel
-- Combines skills across disciplines (dev, design, marketing, ops — any 30%+ overlap works)
-- Builds systems and workflows, not just uses tools
-- Takes initiative and proposes ideas
+<br>
 
-Read more about the role: [`context/role.md`](context/role.md)
+</div>
 
 ---
 
-## How It Works
+## что это
 
-### 1. Fork this repo
+терминальный assessment для **[AI Mindset](https://ai-mindset-org.github.io/aim-apply/)** – 25 минут, 4 задания, Claude Code.
 
-Click **Fork** → your GitHub account.
+не резюме. не сопроводительное. просто терминальная сессия.
+мы смотрим **как ты работаешь**, а не что ты знаешь.
 
-### 2. Clone locally
+---
+
+## кого ищем
+
+**AI Native Operator** – человек, который живёт в AI-инструментах и строит системы.
+
+не маркетолог. не разработчик. не дизайнер. **все сразу** – в любой пропорции.
+
+| направление | что делает |
+|-------------|-----------|
+| **marketing** | контент-стратегия, копирайтинг, TG-канал, ads |
+| **dev** | skills, hooks, MCP, dashboards, автоматизации |
+| **design** | карусели, баннеры, HTML/SVG, видео |
+| **ops** | процессы, Linear, синхронизация, отчёты |
+| **mix** | любое сочетание |
+
+даже 30% пересечения = ок. главное – **ты живёшь в AI-инструментах каждый день**.
+
+подробнее: [`context/role.md`](context/role.md)
+
+---
+
+## как это работает
+
+### 1. fork
+
+нажми **Fork** вверху страницы → выбери свой GitHub аккаунт.
+
+### 2. clone
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/aim-apply.git
+git clone https://github.com/<ТВОЙ-USERNAME>/aim-apply.git
 cd aim-apply
 ```
 
-> **Оригинальный репозиторий:** [github.com/ai-mindset-org/aim-apply](https://github.com/ai-mindset-org/aim-apply)
-
-### 3. Open Claude Code
+### 3. claude code
 
 ```bash
 claude
 ```
 
-Claude will guide you through 4 tasks (~20 min total). Your tool usage is tracked automatically — this is part of the assessment.
+Claude проведёт тебя через 4 задания (~25 мин). tool usage логируется автоматически – это часть оценки.
 
-### 4. Submit
-
-After completing all tasks:
+### 4. submit
 
 ```bash
 git add outputs/ tracking/
-git commit -m "Apply: [Your Name] — [Your Interest Area]"
+git commit -m "Apply: Имя – Направление"
 git push origin main
 ```
 
-Then create a **Pull Request** to the original repo.
+затем создай **Pull Request** → в этот репо.
 
 ---
 
-## What Gets Assessed
+## что оценивается
 
-| Signal | What We Look For |
-|--------|-----------------|
-| **AI Fluency** | How you use tools — parallel agents, search, MCP |
-| **Quality** | The artifacts you create — writing, code, visuals |
-| **Initiative** | Did you go beyond what was asked? |
-| **Culture Fit** | Your tone, approach, self-awareness |
-| **Technical Comfort** | Git workflow, terminal skills, setup speed |
+```
+                    Technical  Thinking  Taste   Initiative
+                    Skill      Logic     Design
+─────────────────────────────────────────────────────────────
+01 introduce        –          –         –       ✓
+02 research+wiki    ✓          ✓         ✓       ✓
+03 create           ✓          ✓         ✓       ✓
+04 reflect          –          ✓         ✓       ✓
+```
 
----
-
-## Requirements
-
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed (`npm install -g @anthropic-ai/claude-code`)
-- Git
-- ~20 minutes of focused time
-- Curiosity
+- **Technical Skill** – терминал, git, агенты, файловая система
+- **Thinking/Logic** – синтез, структурирование, приоритизация
+- **Taste/Design** – эстетика и качество output
+- **Initiative** – делаешь больше, чем попросили
 
 ---
 
-## About AI Mindset
+## требования
 
-We're a small team (8 people) building AI transformation products:
-- **AI Mindset Space** — 5K+ subscriber community
-- **Labs** — intensive AI transformation cohorts for founders
-- **Sprints** — 90-day AI-native organization programs
-- **B2B Consulting** — enterprise AI transformation
-
-Read more: [`context/about-aim.md`](context/about-aim.md)
+- **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** установлен: `npm install -g @anthropic-ai/claude-code`
+- **git**
+- **~25 минут** фокусного времени
+- любопытство
 
 ---
 
-<sub>built by agents, for agents</sub>
+## задания
+
+| # | что | время | output |
+|---|-----|-------|--------|
+| 01 | представься + выбери направление | 3 мин | `outputs/profile.md` |
+| 02 | исследуй AIM + построй knowledge wiki | 7 мин | `outputs/wiki/` |
+| 03 | создай артефакт (по направлению) | 10 мин | `outputs/` |
+| 04 | рефлексия | 5 мин | `outputs/reflection.md` |
+
+---
+
+## структура репо
+
+```
+aim-apply/
+├── CLAUDE.md              ← assessment engine
+├── context/               ← об AI Mindset, продуктах, роли
+├── tasks/                 ← 4 задания
+├── outputs/               ← ты заполняешь
+├── tracking/              ← авто-логирование (hooks)
+├── scripts/               ← tracking scripts
+├── .claude/settings.json  ← hooks config
+└── docs/                  ← landing page
+```
+
+---
+
+## про AI Mindset
+
+команда из 8 человек. remote, async-first.
+
+- **Space** – 5K+ подписчиков
+- **Labs** – интенсивы AI-трансформации для фаундеров
+- **Sprints** – 90-дневные программы AI-native организаций
+- **B2B** – корпоративная AI-трансформация
+
+100+ Claude Code скиллов. Obsidian vault на 12K документов. Linear. Telegram. всё через агентов.
+
+---
+
+<div align="center">
+
+*built by agents, for agents*
+
+[**apply.aimindset.org**](https://ai-mindset-org.github.io/aim-apply/)
+
+</div>
