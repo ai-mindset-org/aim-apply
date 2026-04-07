@@ -6,6 +6,9 @@
 
 ### это не вакансия. это proof of how you work.
 
+<img width="2052" height="558" alt="CleanShot 2026-04-08 at 00 06 29@2x" src="https://github.com/user-attachments/assets/bb6aac52-a2ac-44e1-ad28-af7386223fd2" />
+
+
 <br>
 
 [![GitHub Pages](https://img.shields.io/badge/landing-apply-4dc9d4?style=flat-square)](https://ai-mindset-org.github.io/aim-apply/)
@@ -16,6 +19,7 @@
 </div>
 
 ---
+
 
 ## философия
 
