@@ -115,10 +115,11 @@ echo '{"step1": "complete", "role": "[выбранная роль]", "timestamp"
 прочитай `tasks/03-create.md` для полного брифа.
 
 **задание адаптируется к выбранной роли** в Step 1:
-- marketing – пост для TG-канала + контент-план на неделю
-- dev – скрипт/скилл/автоматизация для AIM
-- design – визуальный артефакт (HTML-баннер, карточка, лендинг)
-- ops – процесс или dashboard
+- content & growth – пост для TG-канала + контент-план на неделю
+- automation & systems – скрипт/скилл/автоматизация для AIM
+- visual & creative – визуальный артефакт (HTML-баннер, карточка, лендинг)
+- management & operations – процесс или dashboard
+- community & support – welcome message, FAQ, event plan
 - mix – выбери из любой категории
 
 поддерживай процесс. поощряй использование AI-инструментов.
