@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply Review Dashboard</title>
+<style>
+:root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2333;
+    --accent: #4dc9d4;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+    --text: #e6edf3;
+    --dim: rgba(230,237,243,0.4);
+    --border: rgba(230,237,243,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'SF Mono', 'JetBrains Mono', 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    padding: 32px;
+}
+h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.sub { color: var(--dim); font-size: 12px; margin-bottom: 32px; }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+@media(max-width:800px) { .grid { grid-template-columns: 1fr; } }
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+}
+.card-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 12px;
+    opacity: 0.7;
+}
+
+/* Journey Timeline */
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+}
+.tl-event {
+    position: relative;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+}
+.tl-event::before {
+    content: '';
+    position: absolute;
+    left: -21px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+.tl-event.session::before { background: var(--green); width: 9px; height: 9px; left: -22px; }
+.tl-time { color: var(--dim); min-width: 60px; font-size: 11px; }
+.tl-tool { font-weight: 500; }
+.tl-tool.Agent { color: var(--green); }
+.tl-tool.Bash { color: #8b949e; }
+.tl-tool.Write, .tl-tool.Edit { color: #d2a8ff; }
+.tl-tool.Read, .tl-tool.Grep, .tl-tool.Glob { color: #79c0ff; }
+.tl-tool.WebSearch, .tl-tool.WebFetch { color: var(--yellow); }
+
+/* Tool bars */
+.tool-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+.tool-bar-name { min-width: 90px; color: var(--dim); }
+.tool-bar {
+    height: 16px;
+    background: var(--accent);
+    opacity: 0.7;
+    min-width: 2px;
+    transition: width 0.3s;
+}
+.tool-bar-count { color: var(--dim); font-size: 11px; min-width: 24px; text-align: right; }
+
+/* Scoring */
+.score-grid {
+    display: grid;
+    grid-template-columns: auto repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    font-size: 12px;
+}
+.score-cell {
+    background: var(--surface);
+    padding: 8px 12px;
+    text-align: center;
+}
+.score-cell.header { color: var(--accent); font-weight: 600; font-size: 11px; text-transform: uppercase; }
+.score-cell.label { text-align: left; font-weight: 500; }
+.score-cell.pass { background: rgba(63,185,80,0.12); color: var(--green); }
+.score-cell.fail { background: rgba(248,81,73,0.08); color: var(--red); }
+.score-cell.na { color: var(--dim); }
+
+/* Signals */
+.signal {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+.signal-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+}
+.signal-dot.green { background: var(--green); }
+.signal-dot.yellow { background: var(--yellow); }
+.signal-dot.red { background: var(--red); }
+
+/* Upload */
+.upload-zone {
+    border: 2px dashed var(--border);
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 24px;
+    transition: border-color 0.2s;
+}
+.upload-zone:hover { border-color: var(--accent); }
+.upload-zone.active { border-color: var(--green); background: rgba(63,185,80,0.05); }
+.upload-hint { color: var(--dim); font-size: 12px; margin-top: 8px; }
+
+#dashboard { display: none; }
+
+/* Fullwidth */
+.full { grid-column: 1 / -1; }
+
+/* Journey graph */
+.journey {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 16px 0;
+}
+.journey-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+.journey-step::after {
+    content: '';
+    position: absolute;
+    top: 16px; right: -50%; left: 50%;
+    height: 2px;
+    background: var(--border);
+}
+.journey-step:last-child::after { display: none; }
+.journey-step.done::after { background: var(--green); }
+.journey-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+    background: var(--bg);
+}
+.journey-step.done .journey-num {
+    border-color: var(--green);
+    color: var(--green);
+}
+.journey-step.current .journey-num {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 12px rgba(77,201,212,0.3);
+}
+.journey-label { font-size: 11px; color: var(--dim); }
+.journey-step.done .journey-label { color: var(--green); }
+
+/* Stats row */
+.stats { display: flex; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
+.stat-item { }
+.stat-val { font-size: 24px; font-weight: 700; color: #fff; }
+.stat-label { font-size: 11px; color: var(--dim); }
+</style>
+</head>
+<body>
+
+<h1>/apply review dashboard</h1>
+<p class="sub">загрузи session.jsonl и profile.json из PR кандидата</p>
+
+<!-- Upload -->
+<div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+    <div style="font-size:16px;color:var(--accent);">drop tracking files here</div>
+    <div class="upload-hint">session.jsonl + profile.json</div>
+    <input type="file" id="fileInput" multiple accept=".jsonl,.json" style="display:none" onchange="handleFiles(this.files)">
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard">
+    <!-- Journey Graph -->
+    <div class="card full" style="margin-bottom:16px">
+        <div class="card-title">candidate journey</div>
+        <div class="journey" id="journeyGraph">
+            <div class="journey-step" id="j-clone"><div class="journey-num">0</div><div class="journey-label">clone</div></div>
+            <div class="journey-step" id="j-intro"><div class="journey-num">1</div><div class="journey-label">introduce</div></div>
+            <div class="journey-step" id="j-wiki"><div class="journey-num">2</div><div class="journey-label">wiki</div></div>
+            <div class="journey-step" id="j-create"><div class="journey-num">3</div><div class="journey-label">create</div></div>
+            <div class="journey-step" id="j-reflect"><div class="journey-num">4</div><div class="journey-label">reflect</div></div>
+            <div class="journey-step" id="j-submit"><div class="journey-num">5</div><div class="journey-label">submit</div></div>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="card full" style="margin-bottom:16px">
+        <div class="stats" id="stats"></div>
+    </div>
+
+    <div class="grid">
+        <!-- Tool Usage -->
+        <div class="card">
+            <div class="card-title">tool usage</div>
+            <div id="toolBars"></div>
+        </div>
+
+        <!-- Signals -->
+        <div class="card">
+            <div class="card-title">behavioral signals</div>
+            <div id="signals"></div>
+        </div>
+
+        <!-- Scoring Matrix -->
+        <div class="card full">
+            <div class="card-title">scoring matrix</div>
+            <div class="score-grid" id="scoreGrid"></div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="card full">
+            <div class="card-title">event timeline</div>
+            <div class="timeline" id="timeline"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+let sessionData = [];
+let profileData = null;
+
+// Drag & drop
+const zone = document.getElementById('uploadZone');
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('active'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('active'));
+zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('active');
+    handleFiles(e.dataTransfer.files);
+});
+
+function handleFiles(files) {
+    const promises = [];
+    for (const f of files) {
+        promises.push(f.text().then(text => {
+            if (f.name.endsWith('.jsonl')) {
+                sessionData = text.trim().split('\n').map(l => {
+                    try { return JSON.parse(l); } catch { return null; }
+                }).filter(Boolean);
+            } else if (f.name.endsWith('.json')) {
+                try { profileData = JSON.parse(text); } catch {}
+            }
+        }));
+    }
+    Promise.all(promises).then(render);
+}
+
+function render() {
+    document.getElementById('uploadZone').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+
+    const tools = profileData?.tools || {};
+    const total = profileData?.total || 0;
+    const events = sessionData.filter(e => e.event === 'tool_use');
+    const sessionStart = sessionData.find(e => e.event === 'session_start');
+
+    // Stats
+    const startTime = sessionStart ? new Date(sessionStart.timestamp) : null;
+    const lastEvent = events.length ? new Date(events[events.length-1].ts || events[events.length-1].timestamp) : null;
+    const duration = startTime && lastEvent ? Math.round((lastEvent - startTime) / 60000) : '?';
+    const uniqueTools = Object.keys(tools).length;
+    const agentCount = tools.Agent || 0;
+
+    document.getElementById('stats').innerHTML = `
+        <div class="stat-item"><div class="stat-val">${total}</div><div class="stat-label">tool calls</div></div>
+        <div class="stat-item"><div class="stat-val">${uniqueTools}</div><div class="stat-label">unique tools</div></div>
+        <div class="stat-item"><div class="stat-val">${agentCount}</div><div class="stat-label">agent launches</div></div>
+        <div class="stat-item"><div class="stat-val">${duration} min</div><div class="stat-label">session duration</div></div>
+    `;
+
+    // Journey — mark all as done (if we have data, they submitted)
+    ['j-clone','j-intro','j-wiki','j-create','j-reflect','j-submit'].forEach(id => {
+        document.getElementById(id).classList.add('done');
+    });
+
+    // Tool bars
+    const maxCount = Math.max(...Object.values(tools), 1);
+    const toolsEl = document.getElementById('toolBars');
+    const sorted = Object.entries(tools).sort((a,b) => b[1] - a[1]);
+    toolsEl.innerHTML = sorted.map(([name, count]) => `
+        <div class="tool-bar-row">
+            <span class="tool-bar-name">${name}</span>
+            <div class="tool-bar" style="width:${Math.max(count/maxCount*200, 2)}px"></div>
+            <span class="tool-bar-count">${count}</span>
+        </div>
+    `).join('');
+
+    // Signals
+    const sigEl = document.getElementById('signals');
+    const sigs = [];
+
+    // Agent usage
+    if (agentCount >= 3) sigs.push({c:'green', t:`Agent x${agentCount} — strong parallel usage`});
+    else if (agentCount >= 1) sigs.push({c:'yellow', t:`Agent x${agentCount} — some usage`});
+    else sigs.push({c:'red', t:'Agent x0 — no agent usage'});
+
+    // Tool diversity
+    if (uniqueTools >= 5) sigs.push({c:'green', t:`${uniqueTools} unique tools — diverse`});
+    else if (uniqueTools >= 3) sigs.push({c:'yellow', t:`${uniqueTools} unique tools — moderate`});
+    else sigs.push({c:'red', t:`${uniqueTools} unique tools — limited`});
+
+    // Web research
+    const webTools = (tools.WebSearch||0) + (tools.WebFetch||0);
+    if (webTools > 0) sigs.push({c:'green', t:`Web research: ${webTools} calls`});
+    else sigs.push({c:'yellow', t:'No web research detected'});
+
+    // Duration
+    if (typeof duration === 'number') {
+        if (duration >= 15 && duration <= 40) sigs.push({c:'green', t:`Duration: ${duration} min — optimal`});
+        else if (duration < 10) sigs.push({c:'red', t:`Duration: ${duration} min — too fast`});
+        else if (duration > 60) sigs.push({c:'yellow', t:`Duration: ${duration} min — long`});
+        else sigs.push({c:'green', t:`Duration: ${duration} min`});
+    }
+
+    // Write/Edit ratio (creating vs reading)
+    const writes = (tools.Write||0) + (tools.Edit||0);
+    const reads = (tools.Read||0) + (tools.Grep||0) + (tools.Glob||0);
+    if (writes > 0 && reads > 0) sigs.push({c:'green', t:`Create/Read ratio: ${writes}/${reads}`});
+
+    // Bash usage
+    const bashCount = tools.Bash || 0;
+    if (bashCount > 20 && uniqueTools < 4) sigs.push({c:'yellow', t:`Heavy Bash (${bashCount}) — prefers shell over CC tools`});
+
+    sigEl.innerHTML = sigs.map(s =>
+        `<div class="signal"><div class="signal-dot ${s.c}"></div>${s.t}</div>`
+    ).join('');
+
+    // Scoring Matrix
+    const grid = document.getElementById('scoreGrid');
+    grid.innerHTML = `
+        <div class="score-cell header"></div>
+        <div class="score-cell header">Technical</div>
+        <div class="score-cell header">Thinking</div>
+        <div class="score-cell header">Taste</div>
+        <div class="score-cell header">Initiative</div>
+
+        <div class="score-cell label">01 introduce</div>
+        <div class="score-cell na">–</div>
+        <div class="score-cell na">–</div>
+        <div class="score-cell na">–</div>
+        <div class="score-cell pass">&#10003;</div>
+
+        <div class="score-cell label">02 wiki</div>
+        <div class="score-cell pass">&#10003;</div>
+        <div class="score-cell pass">&#10003;</div>
+        <div class="score-cell pass">&#10003;</div>
+        <div class="score-cell pass">&#10003;</div>
+
+        <div class="score-cell label">03 create</div>
+        <div class="score-cell pass">&#10003;</div>
+        <div class="score-cell pass">&#10003;</div>
+        <div class="score-cell pass">&#10003;</div>
+        <div class="score-cell pass">&#10003;</div>
+
+        <div class="score-cell label">04 reflect</div>
+        <div class="score-cell na">–</div>
+        <div class="score-cell pass">&#10003;</div>
+        <div class="score-cell pass">&#10003;</div>
+        <div class="score-cell pass">&#10003;</div>
+    `;
+
+    // Timeline
+    const tlEl = document.getElementById('timeline');
+    const allEvents = sessionData.slice(0, 100); // limit to 100
+    tlEl.innerHTML = allEvents.map(ev => {
+        const time = ev.timestamp || ev.ts || '';
+        const shortTime = time ? new Date(time).toLocaleTimeString('ru', {hour:'2-digit',minute:'2-digit',second:'2-digit'}) : '';
+        const tool = ev.tool || ev.tool_name || ev.event || '?';
+        const isSession = ev.event === 'session_start' || ev.event === 'session_end';
+        return `<div class="tl-event ${isSession ? 'session' : ''}">
+            <span class="tl-time">${shortTime}</span>
+            <span class="tl-tool ${tool}">${tool}</span>
+        </div>`;
+    }).join('');
+}
+
+// Demo mode — load sample data if ?demo
+if (location.search.includes('demo')) {
+    sessionData = [
+        {event:'session_start', timestamp:'2026-04-07T14:00:00Z', session_id:'demo'},
+        {event:'tool_use', ts:'2026-04-07T14:01:00Z', tool:'Read'},
+        {event:'tool_use', ts:'2026-04-07T14:01:30Z', tool:'Read'},
+        {event:'tool_use', ts:'2026-04-07T14:02:00Z', tool:'Write'},
+        {event:'tool_use', ts:'2026-04-07T14:03:00Z', tool:'Agent'},
+        {event:'tool_use', ts:'2026-04-07T14:03:05Z', tool:'Agent'},
+        {event:'tool_use', ts:'2026-04-07T14:04:00Z', tool:'WebSearch'},
+        {event:'tool_use', ts:'2026-04-07T14:05:00Z', tool:'Write'},
+        {event:'tool_use', ts:'2026-04-07T14:06:00Z', tool:'Grep'},
+        {event:'tool_use', ts:'2026-04-07T14:07:00Z', tool:'Bash'},
+        {event:'tool_use', ts:'2026-04-07T14:08:00Z', tool:'Write'},
+        {event:'tool_use', ts:'2026-04-07T14:09:00Z', tool:'Agent'},
+        {event:'tool_use', ts:'2026-04-07T14:10:00Z', tool:'Edit'},
+        {event:'tool_use', ts:'2026-04-07T14:12:00Z', tool:'Write'},
+        {event:'tool_use', ts:'2026-04-07T14:15:00Z', tool:'Read'},
+        {event:'tool_use', ts:'2026-04-07T14:18:00Z', tool:'Write'},
+        {event:'tool_use', ts:'2026-04-07T14:20:00Z', tool:'Bash'},
+        {event:'tool_use', ts:'2026-04-07T14:22:00Z', tool:'Bash'},
+    ];
+    profileData = {tools:{Read:3,Write:4,Agent:3,WebSearch:1,Grep:1,Bash:3,Edit:1,Glob:0}, total:16};
+    render();
+}
+</script>
+</body>
+</html>

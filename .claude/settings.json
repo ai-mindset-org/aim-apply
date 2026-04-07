@@ -2,18 +2,26 @@
   "hooks": {
     "SessionStart": [
       {
-        "type": "command",
-        "command": "bash scripts/start.sh",
-        "timeout": 5
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/start.sh",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "PostToolUse": [
       {
-        "type": "command",
-        "command": "bash scripts/tracker.sh",
         "matcher": "Bash|Edit|Write|Read|Grep|Glob|Agent|WebSearch|WebFetch",
-        "timeout": 3,
-        "async": true
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/tracker.sh",
+            "timeout": 3
+          }
+        ]
       }
     ]
   }
