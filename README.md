@@ -48,18 +48,14 @@
 
 ## как это работает
 
-### 1. fork
-
-нажми **Fork** вверху страницы → выбери свой GitHub аккаунт.
-
-### 2. clone
+### 1. clone
 
 ```bash
-git clone https://github.com/<ТВОЙ-USERNAME>/aim-apply.git
+git clone https://github.com/ai-mindset-org/aim-apply.git
 cd aim-apply
 ```
 
-### 3. claude code
+### 2. claude code
 
 ```bash
 claude
@@ -67,15 +63,12 @@ claude
 
 Claude проведёт тебя через 4 задания (~25 мин). tool usage логируется автоматически – это часть оценки.
 
-### 4. submit
+### 3. submit
 
-```bash
-git add outputs/ tracking/
-git commit -m "Apply: Имя – Направление"
-git push origin main
-```
-
-затем создай **Pull Request** → в этот репо.
+когда закончишь – GitHub подскажет, как отправить результат. варианты:
+- **fork + PR** – классический flow
+- **Use this template** – создать свой репо из шаблона
+- **zip outputs/** – если не хочешь возиться с git
 
 ---
 
