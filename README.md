@@ -34,6 +34,8 @@ git clone https://github.com/YOUR-USERNAME/aim-apply.git
 cd aim-apply
 ```
 
+> **Оригинальный репозиторий:** [github.com/ai-mindset-org/aim-apply](https://github.com/ai-mindset-org/aim-apply)
+
 ### 3. Open Claude Code
 
 ```bash
