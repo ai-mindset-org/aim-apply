@@ -4,807 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>/apply — AI Mindset</title>
-
     <meta property="og:title" content="/apply — AI Mindset">
     <meta property="og:description" content="последняя вакансия, на которую ты подашься">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --bg: #161620;
-            --bg-card: #1a1a2a;
             --accent: #4dc9d4;
-            --accent-blue: #3b82f6;
-            --accent-dim: rgba(77, 201, 212, 0.12);
-            --accent-glow: rgba(77, 201, 212, 0.25);
-            --accent-glow-strong: rgba(77, 201, 212, 0.4);
+            --accent-glow: rgba(77,201,212,0.25);
             --text: #e8e8ef;
-            --text-dim: rgba(232, 232, 239, 0.5);
-            --text-muted: rgba(232, 232, 239, 0.35);
-            --border: rgba(232, 232, 239, 0.06);
-            --border-accent: rgba(77, 201, 212, 0.15);
+            --dim: rgba(232,232,239,0.4);
+            --muted: rgba(232,232,239,0.25);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            width: 100%;
-            min-height: 100vh;
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html, body {
+            width:100%; height:100%;
             background: var(--bg);
             color: var(--text);
             font-family: 'IBM Plex Mono', monospace;
-            line-height: 1.7;
-            overflow-x: hidden;
+            overflow: hidden;
         }
-
-        /* Grid background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image:
-                linear-gradient(rgba(77,201,212,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(77,201,212,0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Noise overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* Layout */
-        .wrapper {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
-        /* ── Hero ── */
-        .hero {
-            min-height: 100vh;
+        body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            position: relative;
+            background-image:
+                linear-gradient(rgba(77,201,212,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(77,201,212,0.025) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        body::before {
+            content:'';
+            position:fixed; inset:0;
+            background: radial-gradient(ellipse at 50% 40%, rgba(77,201,212,0.08) 0%, transparent 50%);
+            pointer-events:none;
+        }
+        body::after {
+            content:'';
+            position:fixed; inset:0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events:none; z-index:9999;
         }
 
-        /* Hero glow */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(ellipse, var(--accent-dim) 0%, transparent 60%);
-            pointer-events: none;
+        .page {
+            position:relative; z-index:1;
+            text-align:center;
+            padding: 0 24px;
+            max-width: 520px;
         }
 
-        /* Logo */
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 48px;
-            position: relative;
-            z-index: 2;
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 32px;
+            opacity: 0.9;
         }
 
-        .logo-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow:
-                0 0 12px var(--accent-glow),
-                0 0 40px var(--accent-dim),
-                0 0 80px rgba(77, 201, 212, 0.08);
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 12px var(--accent-glow), 0 0 40px var(--accent-dim); }
-            50% { box-shadow: 0 0 20px var(--accent-glow-strong), 0 0 60px var(--accent-glow); }
-        }
-
-        .logo-name {
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-        }
-
-        /* Title */
         h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(56px, 12vw, 96px);
+            font-size: clamp(52px, 12vw, 80px);
             font-weight: 700;
             line-height: 1;
             color: #fff;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 12px;
         }
-
         h1 span { color: var(--accent); }
 
-        .tagline {
-            font-size: 15px;
-            color: var(--text);
-            opacity: 0.55;
-            margin-bottom: 48px;
-            line-height: 1.5;
-            position: relative;
-            z-index: 2;
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-            animation: fade-bounce 2.5s ease-in-out infinite;
-        }
-
-        @keyframes fade-bounce {
-            0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
-            50% { opacity: 0.6; transform: translateX(-50%) translateY(6px); }
-        }
-
-        /* ── Section headers ── */
-        .section-label {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            opacity: 0.6;
-            margin-bottom: 12px;
-        }
-
-        h2 {
+        .role {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(24px, 4vw, 32px);
-            font-weight: 600;
-            color: #fff;
-            line-height: 1.3;
-            margin-bottom: 24px;
-        }
-
-        .section-text {
             font-size: 14px;
-            color: var(--text);
-            opacity: 0.75;
-            line-height: 1.8;
-            max-width: 600px;
-        }
-
-        /* ── Philosophy ── */
-        .philosophy {
-            border-top: 1px solid var(--border);
-            position: relative;
-        }
-
-        .philosophy-quote {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(20px, 3.5vw, 28px);
             font-weight: 500;
-            color: #fff;
-            line-height: 1.5;
-            max-width: 640px;
-            position: relative;
-            padding-left: 24px;
-            border-left: 2px solid var(--accent);
-        }
-
-        .philosophy-sub {
-            margin-top: 32px;
-            font-size: 14px;
-            color: var(--text);
-            opacity: 0.6;
-            line-height: 1.8;
-            max-width: 560px;
-        }
-
-        /* ── About / Stats ── */
-        .about {
-            border-top: 1px solid var(--border);
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-
-        .stat {
-            padding: 20px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            position: relative;
-        }
-
-        .stat::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            opacity: 0.3;
-        }
-
-        .stat-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
             color: var(--accent);
-            line-height: 1;
-            margin-bottom: 6px;
-        }
-
-        .stat-label {
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-        }
-
-        .stack-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .stack-tag {
-            font-size: 11px;
-            padding: 4px 10px;
-            border: 1px solid var(--border-accent);
-            color: var(--accent);
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
             opacity: 0.7;
-            letter-spacing: 0.03em;
         }
 
-        /* ── Directions ── */
-        .directions {
-            border-top: 1px solid var(--border);
-        }
-
-        .dir-grid {
-            display: grid;
-            gap: 1px;
-            margin-top: 40px;
-            background: var(--border);
-        }
-
-        .dir-card {
-            background: var(--bg);
-            padding: 28px 24px;
-            position: relative;
-            transition: background 0.3s ease;
-        }
-
-        .dir-card:hover {
-            background: var(--bg-card);
-        }
-
-        .dir-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--accent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .dir-card:hover::before {
-            opacity: 0.6;
-        }
-
-        .dir-idx {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--accent);
-            opacity: 0.4;
-            letter-spacing: 0.1em;
-            margin-bottom: 8px;
-        }
-
-        .dir-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 17px;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .dir-desc {
-            font-size: 12px;
-            color: var(--text-dim);
+        .tagline {
+            font-size: 14px;
+            color: var(--dim);
+            margin-bottom: 40px;
             line-height: 1.6;
-        }
-
-        /* ── How it works ── */
-        .how {
-            border-top: 1px solid var(--border);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-            margin-bottom: 48px;
-        }
-
-        .step {
-            padding: 24px;
-            border: 1px solid var(--border);
-            position: relative;
-        }
-
-        .step-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--accent);
-            opacity: 0.25;
-            line-height: 1;
-            margin-bottom: 12px;
-        }
-
-        .step-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-
-        .step-desc {
-            font-size: 12px;
-            color: var(--text-dim);
-            line-height: 1.6;
-        }
-
-        /* Terminal preview */
-        .terminal {
-            background: #0d1117;
-            border: 1px solid rgba(232, 232, 239, 0.08);
-            padding: 0;
-            margin-top: 16px;
-            overflow: hidden;
-        }
-
-        .terminal-bar {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 14px;
-            background: rgba(255,255,255, 0.03);
-            border-bottom: 1px solid rgba(232, 232, 239, 0.06);
-        }
-
-        .terminal-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .terminal-dot.r { background: #ff5f57; opacity: 0.7; }
-        .terminal-dot.y { background: #febc2e; opacity: 0.7; }
-        .terminal-dot.g { background: #28c840; opacity: 0.7; }
-
-        .terminal-title {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-left: 8px;
-        }
-
-        .terminal-body {
-            padding: 16px 20px;
-            font-size: 13px;
-            line-height: 1.8;
-            color: var(--text);
-            opacity: 0.8;
-        }
-
-        .terminal-body .prompt {
-            color: var(--accent);
-            opacity: 0.6;
-        }
-
-        .terminal-body .cmd {
-            color: #fff;
-        }
-
-        .terminal-body .comment {
-            color: var(--text-muted);
-        }
-
-        .terminal-body .output {
-            color: var(--text-dim);
-        }
-
-        /* ── CTA section ── */
-        .cta-section {
-            border-top: 1px solid var(--border);
-            text-align: center;
-            position: relative;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 500px;
-            height: 400px;
-            background: radial-gradient(ellipse, var(--accent-dim) 0%, transparent 60%);
-            pointer-events: none;
         }
 
         .cta {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 18px 48px;
+            padding: 14px 40px;
             background: transparent;
             border: 1.5px solid var(--accent);
             color: var(--accent);
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.25s ease;
-            letter-spacing: 0.02em;
-            position: relative;
-            z-index: 2;
         }
-
         .cta:hover {
             background: var(--accent);
             color: var(--bg);
-            box-shadow: 0 0 40px var(--accent-glow), 0 0 80px var(--accent-dim);
+            box-shadow: 0 0 40px var(--accent-glow);
         }
-
-        .cta .arr { transition: transform 0.25s ease; }
+        .cta .arr { transition: transform 0.25s; }
         .cta:hover .arr { transform: translateX(4px); }
 
-        .cta-sub {
-            margin-top: 20px;
+        .how {
+            margin-top: 32px;
             font-size: 12px;
-            color: var(--text-muted);
-            position: relative;
-            z-index: 2;
+            color: var(--muted);
+            line-height: 2;
+        }
+        .how code {
+            color: var(--dim);
+            background: rgba(255,255,255,0.04);
+            padding: 2px 6px;
         }
 
-        /* ── Footer ── */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 40px 0;
-            text-align: center;
+        .foot {
+            margin-top: 40px;
+            font-size: 11px;
+            color: var(--muted);
         }
-
-        .foot-line {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .foot-line a {
-            color: var(--accent);
-            text-decoration: none;
-            opacity: 0.6;
-            transition: opacity 0.2s;
-        }
-
-        .foot-line a:hover { opacity: 1; }
-
-        .foot-sep {
-            display: inline-block;
-            margin: 0 10px;
-            color: var(--border);
-        }
-
-        /* ── SVG decorations ── */
-        .deco-circuit {
-            position: absolute;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .deco-dots {
-            position: absolute;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 600px) {
-            section { padding: 60px 0; }
-            .wrapper { padding: 0 20px; }
-            .stats-row { grid-template-columns: 1fr 1fr; gap: 12px; }
-            .steps-grid { grid-template-columns: 1fr; }
-            .philosophy-quote { font-size: 20px; padding-left: 16px; }
-        }
+        .foot a { color: var(--accent); text-decoration:none; opacity:0.5; }
+        .foot a:hover { opacity:1; }
     </style>
 </head>
 <body>
-
-    <!-- ═══ SVG decorative elements ═══ -->
-    <svg class="deco-circuit" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <!-- Circuit lines -->
-        <line x1="120" y1="0" x2="120" y2="180" stroke="rgba(77,201,212,0.06)" stroke-width="1"/>
-        <line x1="120" y1="180" x2="240" y2="180" stroke="rgba(77,201,212,0.06)" stroke-width="1"/>
-        <circle cx="240" cy="180" r="3" fill="rgba(77,201,212,0.1)"/>
-        <circle cx="120" cy="180" r="2" fill="rgba(77,201,212,0.08)"/>
-
-        <line x1="1320" y1="0" x2="1320" y2="120" stroke="rgba(77,201,212,0.05)" stroke-width="1"/>
-        <line x1="1320" y1="120" x2="1200" y2="120" stroke="rgba(77,201,212,0.05)" stroke-width="1"/>
-        <line x1="1200" y1="120" x2="1200" y2="300" stroke="rgba(77,201,212,0.05)" stroke-width="1"/>
-        <circle cx="1200" cy="300" r="3" fill="rgba(77,201,212,0.08)"/>
-        <circle cx="1320" cy="120" r="2" fill="rgba(77,201,212,0.06)"/>
-
-        <line x1="60" y1="500" x2="60" y2="700" stroke="rgba(77,201,212,0.04)" stroke-width="1"/>
-        <line x1="60" y1="700" x2="180" y2="700" stroke="rgba(77,201,212,0.04)" stroke-width="1"/>
-        <circle cx="180" cy="700" r="2.5" fill="rgba(77,201,212,0.06)"/>
-
-        <line x1="1380" y1="450" x2="1380" y2="600" stroke="rgba(77,201,212,0.04)" stroke-width="1"/>
-        <line x1="1380" y1="600" x2="1260" y2="600" stroke="rgba(77,201,212,0.04)" stroke-width="1"/>
-        <line x1="1260" y1="600" x2="1260" y2="750" stroke="rgba(77,201,212,0.04)" stroke-width="1"/>
-        <circle cx="1260" cy="750" r="2" fill="rgba(77,201,212,0.06)"/>
-
-        <!-- Scattered dots -->
-        <circle cx="300" cy="50" r="1.5" fill="rgba(77,201,212,0.08)"/>
-        <circle cx="450" cy="400" r="1" fill="rgba(77,201,212,0.06)"/>
-        <circle cx="900" cy="100" r="1.5" fill="rgba(77,201,212,0.07)"/>
-        <circle cx="1100" cy="500" r="1" fill="rgba(77,201,212,0.05)"/>
-        <circle cx="200" cy="850" r="1.5" fill="rgba(77,201,212,0.06)"/>
-        <circle cx="700" cy="780" r="1" fill="rgba(77,201,212,0.05)"/>
-        <circle cx="1050" cy="820" r="1.5" fill="rgba(77,201,212,0.07)"/>
-
-        <!-- Dashed connectors -->
-        <line x1="300" y1="50" x2="450" y2="50" stroke="rgba(77,201,212,0.04)" stroke-width="1" stroke-dasharray="4 8"/>
-        <line x1="900" y1="100" x2="900" y2="250" stroke="rgba(77,201,212,0.03)" stroke-width="1" stroke-dasharray="4 8"/>
-    </svg>
-
-
-    <!-- ═══ Hero ═══ -->
-    <section class="hero">
-        <div class="logo">
-            <div class="logo-dot"></div>
-            <span class="logo-name">AI Mindset</span>
-        </div>
+    <div class="page">
+        <img src="logo.png" alt="AI Mindset" class="logo-img">
 
         <h1><span>/</span>apply</h1>
 
+        <div class="role">AI Native Operator</div>
+
         <p class="tagline">последняя вакансия, на которую ты подашься</p>
 
-        <span class="scroll-hint">&darr;</span>
-    </section>
+        <a href="https://github.com/ai-mindset-org/aim-apply" class="cta">
+            Apply <span class="arr">&rarr;</span>
+        </a>
 
-
-    <!-- ═══ Philosophy ═══ -->
-    <section class="philosophy">
-        <div class="wrapper">
-            <div class="section-label">// philosophy</div>
-
-            <p class="philosophy-quote">
-                нам не важно, кто ты был до этого.<br>
-                важно, что ты хочешь делать сейчас.
-            </p>
-
-            <p class="philosophy-sub">
-                мы не ищем резюме. мы ищем человека, который умеет думать,
-                разбираться и делать &mdash; с помощью инструментов, которые
-                ещё вчера не существовали. у нас нет HR-отдела. вместо
-                собеседования &mdash; pull request.
-            </p>
+        <div class="how">
+            <code>git clone</code> &middot; <code>claude</code> &middot; <code>submit</code>
         </div>
-    </section>
 
-
-    <!-- ═══ About / What we do ═══ -->
-    <section class="about">
-        <div class="wrapper">
-            <div class="section-label">// about</div>
-
-            <h2>ai-образование и трансформация</h2>
-
-            <p class="section-text">
-                AI Mindset &mdash; образовательная компания, которая учит людей и организации
-                работать с AI как с инструментом мышления. лаборатории, community,
-                продукты &mdash; всё строим сами, на собственном стеке.
-            </p>
-
-            <div class="stats-row">
-                <div class="stat">
-                    <div class="stat-num">~1000</div>
-                    <div class="stat-label">выпускников</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num">~10K</div>
-                    <div class="stat-label">подписчиков</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num">8</div>
-                    <div class="stat-label">человек в команде</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num">100%</div>
-                    <div class="stat-label">remote</div>
-                </div>
-            </div>
-
-            <div class="section-label" style="margin-top: 8px;">stack</div>
-            <div class="stack-list">
-                <span class="stack-tag">Claude Code</span>
-                <span class="stack-tag">Obsidian</span>
-                <span class="stack-tag">Linear</span>
-                <span class="stack-tag">MCP</span>
-                <span class="stack-tag">Telegram</span>
-                <span class="stack-tag">Notion</span>
-                <span class="stack-tag">GitHub</span>
-                <span class="stack-tag">Netlify</span>
-            </div>
+        <div class="foot">
+            built by agents, for agents &middot; <a href="https://github.com/ai-mindset-org/aim-apply">github</a>
         </div>
-    </section>
-
-
-    <!-- ═══ Directions ═══ -->
-    <section class="directions">
-        <div class="wrapper">
-            <div class="section-label">// directions</div>
-
-            <h2>куда можно прийти</h2>
-
-            <p class="section-text" style="margin-bottom: 0;">
-                не фиксированные роли, а зоны ответственности.
-                одна заявка &mdash; можно указать несколько.
-            </p>
-
-            <div class="dir-grid">
-                <div class="dir-card">
-                    <div class="dir-idx">01</div>
-                    <div class="dir-name">content & growth</div>
-                    <div class="dir-desc">стратегия, копирайтинг, каналы, аналитика, воронки, email-маркетинг</div>
-                </div>
-                <div class="dir-card">
-                    <div class="dir-idx">02</div>
-                    <div class="dir-name">automation & systems</div>
-                    <div class="dir-desc">skills, hooks, MCP-серверы, dashboards, скрипты, интеграции</div>
-                </div>
-                <div class="dir-card">
-                    <div class="dir-idx">03</div>
-                    <div class="dir-name">visual & creative</div>
-                    <div class="dir-desc">карусели, баннеры, видео, HTML/SVG, brand identity, motion</div>
-                </div>
-                <div class="dir-card">
-                    <div class="dir-idx">04</div>
-                    <div class="dir-name">management & operations</div>
-                    <div class="dir-desc">процессы, Linear, координация, отчёты, документация</div>
-                </div>
-                <div class="dir-card">
-                    <div class="dir-idx">05</div>
-                    <div class="dir-name">community & support</div>
-                    <div class="dir-desc">чаты, онбординг, фидбэк, events, модерация, забота об участниках</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ═══ How it works ═══ -->
-    <section class="how">
-        <div class="wrapper">
-            <div class="section-label">// how it works</div>
-
-            <h2>три шага вместо собеседования</h2>
-
-            <div class="steps-grid">
-                <div class="step">
-                    <div class="step-num">01</div>
-                    <div class="step-title">fork & clone</div>
-                    <div class="step-desc">форкни репозиторий, склонируй к себе, изучи структуру</div>
-                </div>
-                <div class="step">
-                    <div class="step-num">02</div>
-                    <div class="step-title">create</div>
-                    <div class="step-desc">открой Claude Code и создай свою заявку по инструкции в README</div>
-                </div>
-                <div class="step">
-                    <div class="step-num">03</div>
-                    <div class="step-title">submit PR</div>
-                    <div class="step-desc">отправь pull request &mdash; это и есть твоя заявка</div>
-                </div>
-            </div>
-
-            <div class="terminal">
-                <div class="terminal-bar">
-                    <span class="terminal-dot r"></span>
-                    <span class="terminal-dot y"></span>
-                    <span class="terminal-dot g"></span>
-                    <span class="terminal-title">~/aim-apply</span>
-                </div>
-                <div class="terminal-body">
-                    <span class="prompt">$</span> <span class="cmd">git clone https://github.com/ai-mindset-org/aim-apply.git</span><br>
-                    <span class="prompt">$</span> <span class="cmd">cd aim-apply</span><br>
-                    <span class="prompt">$</span> <span class="cmd">claude</span><br>
-                    <span class="output">&gt; reading AGENTS.md...</span><br>
-                    <span class="output">&gt; generating application...</span><br>
-                    <span class="prompt">$</span> <span class="cmd">git push origin my-application</span><br>
-                    <span class="comment"># open PR &rarr; done</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ═══ CTA ═══ -->
-    <section class="cta-section">
-        <div class="wrapper" style="display:flex;flex-direction:column;align-items:center;">
-            <div class="section-label">// ready?</div>
-
-            <h2 style="text-align:center;">твоя заявка &mdash; это то, что ты создашь</h2>
-
-            <a href="https://github.com/ai-mindset-org/aim-apply" class="cta">
-                Apply <span class="arr">&rarr;</span>
-            </a>
-
-            <p class="cta-sub">github.com/ai-mindset-org/aim-apply</p>
-        </div>
-    </section>
-
-
-    <!-- ═══ Footer ═══ -->
-    <footer>
-        <div class="wrapper">
-            <div class="foot-line">
-                built by agents, for agents
-                <span class="foot-sep">/</span>
-                <a href="https://github.com/ai-mindset-org/aim-apply">github</a>
-                <span class="foot-sep">/</span>
-                <a href="https://aimindset.org">aimindset.org</a>
-            </div>
-        </div>
-    </footer>
-
+    </div>
 </body>
 </html>
