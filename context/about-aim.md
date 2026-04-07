@@ -1,42 +1,97 @@
 # About AI Mindset
 
-## Who We Are
+## кто мы
 
-AI Mindset is an AI transformation company based in Europe. Founded by Alexander Povaliaev. Team of 8 people, fully remote, working primarily through AI agents.
+AI Mindset – компания AI-трансформации. основана Alexander Povaliaev. команда из 8 человек, полностью remote, работаем преимущественно через AI-агентов.
 
-We help founders, teams, and organizations become **AI-native** — not just "using AI tools", but fundamentally rethinking how work happens when AI agents are first-class team members.
+мы помогаем фаундерам, командам и организациям стать **AI-native** – не просто "использовать AI-инструменты", а фундаментально переосмыслить, как устроена работа, когда AI-агенты – полноценные члены команды.
 
-## What We Believe
+## во что мы верим
 
-- AI agents are not tools — they are teammates
-- The future belongs to interdisciplinary operators, not narrow specialists
-- Building in public > building in private
-- Terminal > GUI for power users
-- Personal Operating Systems (POS) — every professional needs one
-- Small teams with AI agents outperform large teams without
+- AI-агенты – не инструменты, а тиммейты
+- будущее за междисциплинарными операторами, а не узкими специалистами
+- building in public > building in private
+- терминал > GUI для тех, кто хочет скорость
+- Personal Operating System (POS) – у каждого профессионала должна быть своя
+- маленькая команда с агентами обыгрывает большую без
 
-## Numbers
+## цифры
 
-- **5,000+** AI Mindset Space subscribers
-- **200+** Lab graduates
-- **8** team members
-- **100+** Claude Code skills in our ecosystem
-- **3** active product lines
+- **5,000+** подписчиков AI Mindset Space
+- **200+** выпускников Labs
+- **8** человек в команде
+- **100+** Claude Code скиллов в нашей экосистеме
+- **3** продуктовых линейки
 
-## Team Culture
+## культура команды
 
-- Communication in Russian, technical terms in English
-- Lowercase, no corporate speak, EN DASH (–), no emoji
-- Direct feedback, fast iteration
-- Everyone uses Claude Code daily
-- Weekly syncs, async-first
-- Linear for tasks, Obsidian for knowledge, Telegram for communication
+### как мы общаемся
 
-## Tech Stack
+- русский по умолчанию, технические термины на английском
+- строчная буква в начале сообщений, EN DASH (–), без эмоджи
+- прямой фидбэк – говорим что думаем, без обёрток
+- **без корпоративщины** – никаких "в рамках", "хотелось бы", "давайте синхронизируемся по данному вопросу"
+- шутим, подъёбываем, не обижаемся – это часть культуры
 
-- **AI:** Claude Code, Claude API, MCP servers, custom skills/hooks
-- **Knowledge:** Obsidian vault with 12K+ documents
+### как мы работаем
+
+- **async-first** – не все должны быть онлайн одновременно
+- **weekly syncs** – еженедельные синки команды, продукта, маркетинга
+- **agent-powered** – бОльшая часть рутины делается через Claude Code скиллы
+- **ship fast, iterate faster** – лучше выпустить MVP за день, чем идеальный продукт за месяц
+- **init > permission** – делай и показывай, а не проси разрешения и жди
+
+### стиль лидерства
+
+вдохновлённый компаниями, которые построили culture-first:
+
+| компания | что взяли |
+|----------|----------|
+| **Valve** | flat structure, self-selection of projects, desks on wheels |
+| **Basecamp** | calm company, shaped work, 6-week cycles |
+| **Cursor** | 2-day immersive trial, taste over process |
+| **Anthropic** | mission alignment, EQ + technical depth |
+| **Zapier** | AI fluency for everyone, not just devs |
+| **Pixar** | braintrust – honest feedback without authority |
+
+у нас нет менеджеров в классическом смысле. есть роли, зоны ответственности и инициатива. если видишь проблему – почини, не жди задачу.
+
+### красные флаги (кто у нас не приживётся)
+
+- ждёт задач вместо того, чтобы предложить
+- использует AI "иногда" или "когда попросят"
+- пишет "уважаемые коллеги" в рабочем чате
+- не может назвать 5 AI-инструментов, которые использует каждый день
+- боится shipнуть несовершенный результат
+- нуждается в подробных инструкциях для каждой задачи
+
+### зелёные флаги
+
+- запускает 3 параллельных агента, пока думает над стратегией
+- предлагает идею ДО того, как попросили
+- пишет лаконично и по делу
+- ломает процесс, если он не работает, и предлагает новый
+- учится в public – делится находками в командном чате
+- может написать пост, сверстать баннер и настроить автоматизацию в один день
+
+## команда
+
+| человек | роль |
+|---------|------|
+| **Alex** | Founder & Vision Lead |
+| **Ira** | Operations Partner |
+| **Vlada** | Partnerships |
+| **Dan** | Tech Lead |
+| **Katya** | Content & Design |
+| **Olya** | Community, POS |
+| **Lena** | PM Coordinator |
+| **Karina** | Program Coordinator |
+
+## стек
+
+- **AI:** Claude Code, Claude API, MCP серверы, кастомные skills/hooks
+- **Knowledge:** Obsidian vault (12K+ документов)
 - **Tasks:** Linear
 - **Communication:** Telegram
-- **Content:** Instagram, Telegram channel, Substack
+- **Content:** Instagram, Telegram-канал, Substack
 - **Infrastructure:** Netlify, GitHub, Google Workspace, N8N
