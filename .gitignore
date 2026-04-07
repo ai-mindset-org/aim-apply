@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Claude Code local data (not the settings — those are tracked)
+.claude/local/
+
+# Node
+node_modules/
