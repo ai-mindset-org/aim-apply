@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+html, body {
+    width: 1080px; height: 1920px;
+    margin: 0; padding: 0;
+    background: #161620;
+    font-family: 'IBM Plex Mono', monospace;
+    overflow: hidden;
+    position: relative;
+}
+
+/* noise */
+body::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* grid */
+.grid {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(77,201,212,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77,201,212,0.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+}
+
+/* glows */
+.glow-top {
+    position: absolute;
+    width: 800px; height: 600px;
+    top: 15%; left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(77,201,212,0.1) 0%, transparent 55%);
+    z-index: 0;
+}
+
+.glow-bottom {
+    position: absolute;
+    width: 600px; height: 400px;
+    bottom: 15%; left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(77,201,212,0.05) 0%, transparent 55%);
+    z-index: 0;
+}
+
+/* scanlines */
+.scanline {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(77,201,212,0.006) 2px,
+        rgba(77,201,212,0.006) 4px
+    );
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* vignette */
+.vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, transparent 35%, rgba(10,10,16,0.6) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* terminal chrome */
+.terminal-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 48px;
+    background: rgba(22,22,32,0.95);
+    border-bottom: 1px solid rgba(77,201,212,0.08);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    z-index: 10;
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+}
+
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green { background: #28c840; }
+
+.terminal-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    color: rgba(232,232,239,0.2);
+}
+
+/* main content */
+.content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 130px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.logo-dot {
+    width: 10px; height: 10px;
+    background: #4dc9d4;
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgba(77,201,212,0.5);
+}
+
+.logo-text {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(232,232,239,0.3);
+}
+
+/* command */
+.command {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 180px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -4px;
+}
+
+.command .slash {
+    color: #4dc9d4;
+}
+
+/* philosophy */
+.philosophy {
+    margin-top: 40px;
+    text-align: center;
+    max-width: 720px;
+}
+
+.philosophy-text {
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(232,232,239,0.6);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+}
+
+/* separator */
+.sep {
+    width: 60px;
+    height: 1px;
+    background: rgba(77,201,212,0.3);
+    margin: 70px 0;
+}
+
+/* directions */
+.directions {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
+}
+
+.direction {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dir-marker {
+    width: 8px; height: 8px;
+    border: 1.5px solid rgba(77,201,212,0.4);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dir-label {
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(232,232,239,0.5);
+    letter-spacing: 0.04em;
+}
+
+.direction:nth-child(1) .dir-marker { background: rgba(77,201,212,0.3); }
+
+/* bottom CTA */
+.bottom-area {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 100px;
+}
+
+.cta-box {
+    border: 1px solid rgba(77,201,212,0.25);
+    border-radius: 8px;
+    padding: 18px 48px;
+    margin-bottom: 30px;
+}
+
+.cta-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #4dc9d4;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.cta-sub {
+    font-size: 13px;
+    color: rgba(232,232,239,0.2);
+    letter-spacing: 0.05em;
+}
+
+/* role badge */
+.role-badge {
+    position: absolute;
+    top: 345px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #4dc9d4;
+    letter-spacing: 0.08em;
+    opacity: 0.55;
+    text-transform: lowercase;
+}
+
+/* left border accent */
+.left-accent {
+    position: absolute;
+    top: 48px; left: 0;
+    width: 2px; height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(77,201,212,0.2) 20%, rgba(77,201,212,0.2) 80%, transparent 100%);
+    z-index: 10;
+}
+
+/* prompt line */
+.prompt {
+    font-size: 14px;
+    color: rgba(232,232,239,0.15);
+    margin-top: 60px;
+}
+
+.prompt span {
+    color: rgba(77,201,212,0.3);
+}
+</style>
+</head>
+<body>
+
+<div class="grid"></div>
+<div class="glow-top"></div>
+<div class="glow-bottom"></div>
+<div class="scanline"></div>
+<div class="vignette"></div>
+<div class="left-accent"></div>
+
+<div class="terminal-bar">
+    <div class="dots">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+    </div>
+    <div class="terminal-title">aim-apply</div>
+</div>
+
+<div class="content">
+    <div class="logo">
+        <div class="logo-dot"></div>
+        <div class="logo-text">AI Mindset</div>
+    </div>
+
+    <div class="command"><span class="slash">/</span>apply</div>
+    <div class="role-badge">ai native operator</div>
+
+    <div class="philosophy">
+        <div class="philosophy-text">
+            нам не важно, кто ты был до этого
+        </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="directions">
+        <div class="direction">
+            <div class="dir-marker"></div>
+            <div class="dir-label">content & growth</div>
+        </div>
+        <div class="direction">
+            <div class="dir-marker"></div>
+            <div class="dir-label">automation & systems</div>
+        </div>
+        <div class="direction">
+            <div class="dir-marker"></div>
+            <div class="dir-label">visual & creative</div>
+        </div>
+        <div class="direction">
+            <div class="dir-marker"></div>
+            <div class="dir-label">management & ops</div>
+        </div>
+        <div class="direction">
+            <div class="dir-marker"></div>
+            <div class="dir-label">community & support</div>
+        </div>
+    </div>
+
+    <div class="prompt"><span>$</span> claude /apply --direction mix</div>
+</div>
+
+<div class="bottom-area">
+    <div class="cta-box">
+        <div class="cta-text">link in bio</div>
+    </div>
+    <div class="cta-sub">aimindset.org/apply</div>
+</div>
+
+</body>
+</html>

@@ -1,76 +1,72 @@
-# Role: AI Native Operator
+# AI Native Operator
 
-## The Philosophy
+## философия
 
-We don't hire for job titles. We hire for **how you work**.
+мы не ищем маркетолога. не ищем разработчика. не ищем дизайнера.
 
-An AI Native Operator is someone who has made AI agents a fundamental part of their workflow — not as occasional helpers, but as persistent collaborators. You direct agents with taste, judgment, and speed.
+мы ищем человека, который думает агентами. который не пишет код руками, а оркестрирует системы, генерирующие результат. для которого AI – не инструмент в арсенале, а сам арсенал. ты не "используешь AI в работе" – ты работаешь через AI, и без него уже не представляешь как.
 
-## What "AI Native" Means to Us
+AI Native Operator – это роль, которой два года назад не существовало. человек на пересечении стратегии, автоматизации и вкуса. ты понимаешь, что нужно бизнесу, и умеешь объяснить это агентам – точно, быстро, с контролем качества. ты не ждёшь задач – ты видишь проблему, строишь pipeline и закрываешь её до того, как кто-то попросил.
 
-**Level 0 — Unaware:** doesn't use AI tools
-**Level 1 — User:** ChatGPT for occasional text generation
-**Level 2 — Power User:** 3+ tools, prompt engineering, daily usage
-**Level 3 — Builder:** creates prompts, GPTs, automations, system design
-**Level 4 — Architect:** designs AI systems, evaluation criteria, agent orchestration
+у нас нет жёстких должностей. есть направления, и ты собираешь свой микс.
 
-We're looking for **Level 3+**. You don't just use tools — you build workflows.
+## 6 направлений
 
-## Functions (Pick Any Mix)
+### content & growth
+стратегия, копирайтинг (RU + EN), каналы, ads, аналитика, воронки
 
-This is not a single-function role. Pick your mix — even 30% overlap with any area is valuable:
+### automation & systems
+skills, hooks, MCP, dashboards, скрипты, API, N8N workflows
 
-### Support & Community
-- Online community management
-- Responding to participants in Lab chats
-- Curating discussions, digesting feedback
-- Building chatbot flows
+### visual & creative
+карусели, баннеры, HTML/SVG артефакты, видео, brand content
 
-### Development & Systems
-- Claude Code skills, hooks, MCP servers
-- Dashboards (HTML/JS, data visualization)
-- Automation scripts (bash, Python, Node)
-- N8N workflows, API integrations
+### management & operations
+процессы, Linear, координация, синки, отчёты, документация
 
-### Design & Visual
-- AI-generated carousels, covers, banners
-- HTML/SVG visual artifacts
-- Video content (Reels, stories)
-- Brand-consistent content creation
+### community & support
+чаты, онбординг, фидбэк, events, support участников
 
-### Marketing & Content
-- Content strategy and copywriting (RU + EN)
-- Telegram channel management
-- Ad campaigns (TG Ads, Meta)
-- Market intelligence and competitor tracking
+### mix
+любое сочетание из списка выше. опиши свой микс – даже 30% overlap с любым направлением ценен.
 
-### Operations & Process
-- Linear task management
-- Process documentation
-- Weekly syncs and reports
-- Team coordination
+## уровни AI fluency
 
-## Format
+```
+0  unaware    не использует AI
+1  user       ChatGPT для текстов, иногда
+2  power      3+ инструмента, промпт-инженерия, ежедневно
+3  builder    создаёт промпты, GPT, автоматизации, проектирует системы
+4  architect  оркестрация агентов, eval-системы, AI-first архитектура
+```
 
-- **Remote**, async-first
-- **Full-time** preferred (part-time possible for exceptional candidates)
-- **Trial month** — we work together for a month before committing
-- **Tools provided:** Claude Code, Linear, Obsidian vault access
+ищем **level 3+**. ты не просто пользуешься – ты строишь.
 
-## What We Value
+## что мы ценим
 
-1. **Initiative** — you propose, not just execute
-2. **Speed** — you ship fast, iterate faster
-3. **AI-first thinking** — AI is your default, not your fallback
-4. **Taste** — you know what good looks like
-5. **Curiosity** — you explore, experiment, share findings
-6. **Directness** — no corporate speak, say what you mean
+- **initiative** – предлагаешь, а не ждёшь
+- **speed** – отгружаешь быстро, итерируешь быстрее
+- **AI-first** – AI по умолчанию, не как запасной вариант
+- **taste** – знаешь как выглядит хорошо
+- **curiosity** – исследуешь, экспериментируешь, делишься
+- **directness** – говоришь как есть, без корпоративщины
 
-## Anti-Patterns (Who We Don't Hire)
+## anti-patterns
 
-- Waits for tasks instead of proposing
-- Uses AI only when asked to
-- Can't name 5 AI tools they use weekly
-- Writes in corporate language ("в рамках", "хотелось бы")
-- Afraid to ship imperfect work
-- Needs detailed instructions for every task
+- ждёт задач вместо того чтобы предлагать
+- использует AI только когда попросят
+- не может назвать 5 AI-инструментов, которые юзает каждую неделю
+- пишет "в рамках", "хотелось бы", "в контексте"
+- боится отгружать неидеальное
+- для каждого шага нужна подробная инструкция
+
+## формат
+
+- remote, async-first
+- full-time (part-time возможен для сильных кандидатов)
+- пробный месяц – работаем вместе перед финальным решением
+- инструменты предоставляем
+
+## стек
+
+`Obsidian` `Linear` `Claude Code` `Telegram` `MCP` `N8N` `Netlify`

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+html, body {
+    width: 1080px; height: 1080px;
+    margin: 0; padding: 0;
+    background: #161620;
+    font-family: 'IBM Plex Mono', monospace;
+    overflow: hidden;
+    position: relative;
+}
+
+/* noise */
+body::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* grid */
+.grid {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(77,201,212,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77,201,212,0.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+}
+
+/* glow */
+.glow-center {
+    position: absolute;
+    width: 700px; height: 700px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(77,201,212,0.08) 0%, transparent 55%);
+    z-index: 0;
+}
+
+/* scanlines */
+.scanline {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(77,201,212,0.006) 2px,
+        rgba(77,201,212,0.006) 4px
+    );
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* vignette */
+.vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(10,10,16,0.55) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* content */
+.content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 80px 80px 60px 80px;
+    box-sizing: border-box;
+}
+
+/* top section */
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 36px;
+}
+
+.logo-dot {
+    width: 10px; height: 10px;
+    background: #4dc9d4;
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgba(77,201,212,0.5);
+}
+
+.logo-text {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(232,232,239,0.3);
+}
+
+.command {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 120px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -3px;
+}
+
+.command .slash {
+    color: #4dc9d4;
+}
+
+.role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #4dc9d4;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+    margin-top: 16px;
+    text-transform: lowercase;
+}
+
+/* scoring matrix */
+.matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin: 20px 0;
+}
+
+.dimension {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.ring-container {
+    position: relative;
+    width: 130px; height: 130px;
+}
+
+.ring-svg {
+    width: 130px; height: 130px;
+    transform: rotate(-90deg);
+}
+
+.ring-bg {
+    fill: none;
+    stroke: rgba(77,201,212,0.08);
+    stroke-width: 3;
+}
+
+.ring-fill {
+    fill: none;
+    stroke: #4dc9d4;
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.ring-value {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.dim-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(232,232,239,0.5);
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+}
+
+/* dimension-specific colors */
+.dimension:nth-child(1) .ring-fill { stroke: #4dc9d4; opacity: 0.9; }
+.dimension:nth-child(2) .ring-fill { stroke: #3b82f6; opacity: 0.85; }
+.dimension:nth-child(3) .ring-fill { stroke: #a78bfa; opacity: 0.8; }
+.dimension:nth-child(4) .ring-fill { stroke: #4dc9d4; opacity: 0.75; }
+
+.dimension:nth-child(1) .ring-value { color: rgba(77,201,212,0.9); }
+.dimension:nth-child(2) .ring-value { color: rgba(59,130,246,0.85); }
+.dimension:nth-child(3) .ring-value { color: rgba(167,139,250,0.8); }
+.dimension:nth-child(4) .ring-value { color: rgba(77,201,212,0.75); }
+
+/* matrix label */
+.matrix-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(232,232,239,0.18);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+/* bottom */
+.bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.url {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(232,232,239,0.3);
+    letter-spacing: 0.08em;
+}
+
+.prompt {
+    font-size: 12px;
+    color: rgba(232,232,239,0.12);
+}
+
+.prompt span {
+    color: rgba(77,201,212,0.25);
+}
+
+/* corner accents */
+.corner {
+    position: absolute;
+    width: 20px; height: 20px;
+    z-index: 10;
+}
+
+.corner-tl {
+    top: 24px; left: 24px;
+    border-top: 1.5px solid rgba(77,201,212,0.15);
+    border-left: 1.5px solid rgba(77,201,212,0.15);
+}
+
+.corner-tr {
+    top: 24px; right: 24px;
+    border-top: 1.5px solid rgba(77,201,212,0.15);
+    border-right: 1.5px solid rgba(77,201,212,0.15);
+}
+
+.corner-bl {
+    bottom: 24px; left: 24px;
+    border-bottom: 1.5px solid rgba(77,201,212,0.15);
+    border-left: 1.5px solid rgba(77,201,212,0.15);
+}
+
+.corner-br {
+    bottom: 24px; right: 24px;
+    border-bottom: 1.5px solid rgba(77,201,212,0.15);
+    border-right: 1.5px solid rgba(77,201,212,0.15);
+}
+</style>
+</head>
+<body>
+
+<div class="grid"></div>
+<div class="glow-center"></div>
+<div class="scanline"></div>
+<div class="vignette"></div>
+
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+
+<div class="content">
+
+    <div class="top">
+        <div class="logo">
+            <div class="logo-dot"></div>
+            <div class="logo-text">AI Mindset</div>
+        </div>
+        <div class="command"><span class="slash">/</span>apply</div>
+        <div class="role">ai native operator</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <div class="matrix-label">scoring dimensions</div>
+        <div class="matrix">
+            <!-- Technical Skill — 75% -->
+            <div class="dimension">
+                <div class="ring-container">
+                    <svg class="ring-svg" viewBox="0 0 130 130">
+                        <circle class="ring-bg" cx="65" cy="65" r="56" />
+                        <circle class="ring-fill" cx="65" cy="65" r="56"
+                            stroke-dasharray="352"
+                            stroke-dashoffset="88" />
+                    </svg>
+                    <div class="ring-value">T</div>
+                </div>
+                <div class="dim-label">technical</div>
+            </div>
+            <!-- Thinking — 85% -->
+            <div class="dimension">
+                <div class="ring-container">
+                    <svg class="ring-svg" viewBox="0 0 130 130">
+                        <circle class="ring-bg" cx="65" cy="65" r="56" />
+                        <circle class="ring-fill" cx="65" cy="65" r="56"
+                            stroke-dasharray="352"
+                            stroke-dashoffset="53" />
+                    </svg>
+                    <div class="ring-value">L</div>
+                </div>
+                <div class="dim-label">thinking</div>
+            </div>
+            <!-- Taste — 65% -->
+            <div class="dimension">
+                <div class="ring-container">
+                    <svg class="ring-svg" viewBox="0 0 130 130">
+                        <circle class="ring-bg" cx="65" cy="65" r="56" />
+                        <circle class="ring-fill" cx="65" cy="65" r="56"
+                            stroke-dasharray="352"
+                            stroke-dashoffset="123" />
+                    </svg>
+                    <div class="ring-value">D</div>
+                </div>
+                <div class="dim-label">taste</div>
+            </div>
+            <!-- Initiative — 90% -->
+            <div class="dimension">
+                <div class="ring-container">
+                    <svg class="ring-svg" viewBox="0 0 130 130">
+                        <circle class="ring-bg" cx="65" cy="65" r="56" />
+                        <circle class="ring-fill" cx="65" cy="65" r="56"
+                            stroke-dasharray="352"
+                            stroke-dashoffset="35" />
+                    </svg>
+                    <div class="ring-value">I</div>
+                </div>
+                <div class="dim-label">initiative</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <div class="url">aimindset.org</div>
+        <div class="prompt"><span>4 tasks</span> -- <span>25 min</span> -- <span>open assessment</span></div>
+    </div>
+
+</div>
+
+</body>
+</html>

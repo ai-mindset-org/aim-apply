@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+html, body {
+    width: 1500px; height: 500px;
+    margin: 0; padding: 0;
+    background: #161620;
+    font-family: 'IBM Plex Mono', monospace;
+    overflow: hidden;
+    position: relative;
+}
+
+/* noise texture */
+body::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* grid */
+.grid {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(77,201,212,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77,201,212,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+}
+
+/* glow */
+.glow {
+    position: absolute;
+    width: 600px; height: 400px;
+    top: 50%; left: 25%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(77,201,212,0.08) 0%, transparent 60%);
+    z-index: 0;
+}
+
+.glow-right {
+    position: absolute;
+    width: 500px; height: 300px;
+    top: 50%; right: 5%;
+    transform: translateY(-50%);
+    background: radial-gradient(ellipse, rgba(77,201,212,0.04) 0%, transparent 60%);
+    z-index: 0;
+}
+
+/* terminal chrome */
+.terminal-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 36px;
+    background: rgba(22,22,32,0.95);
+    border-bottom: 1px solid rgba(77,201,212,0.08);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 10;
+}
+
+.dots {
+    display: flex;
+    gap: 7px;
+}
+
+.dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+}
+
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green { background: #28c840; }
+
+.terminal-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(232,232,239,0.25);
+    letter-spacing: 0.05em;
+}
+
+/* vignette */
+.vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(10,10,16,0.5) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* layout */
+.container {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 36px 80px 0 80px;
+    box-sizing: border-box;
+}
+
+/* left side — logo + command */
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.logo-dot {
+    width: 10px; height: 10px;
+    background: #4dc9d4;
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgba(77,201,212,0.5);
+}
+
+.logo-text {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(232,232,239,0.35);
+}
+
+.command {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 140px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -3px;
+}
+
+.command .slash {
+    color: #4dc9d4;
+}
+
+.role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #4dc9d4;
+    letter-spacing: 0.06em;
+    opacity: 0.65;
+    margin-top: 16px;
+    text-transform: lowercase;
+}
+
+/* right side — tagline */
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    max-width: 420px;
+}
+
+.tagline {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(232,232,239,0.55);
+    text-align: right;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+}
+
+.cursor-blink {
+    display: inline-block;
+    width: 2px;
+    height: 18px;
+    background: #4dc9d4;
+    margin-left: 6px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+    opacity: 0.7;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.prompt-line {
+    font-size: 13px;
+    color: rgba(232,232,239,0.2);
+    margin-top: 20px;
+    text-align: right;
+}
+
+.prompt-line span {
+    color: rgba(77,201,212,0.35);
+}
+
+/* scan line effect */
+.scanline {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(77,201,212,0.008) 2px,
+        rgba(77,201,212,0.008) 4px
+    );
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* bottom border accent */
+.bottom-accent {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #4dc9d4 30%, #4dc9d4 70%, transparent 100%);
+    opacity: 0.3;
+    z-index: 10;
+}
+</style>
+</head>
+<body>
+
+<div class="grid"></div>
+<div class="glow"></div>
+<div class="glow-right"></div>
+<div class="scanline"></div>
+<div class="vignette"></div>
+
+<div class="terminal-bar">
+    <div class="dots">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+    </div>
+    <div class="terminal-title">aim-apply -- assessment</div>
+</div>
+
+<div class="container">
+    <div class="left">
+        <div class="logo-area">
+            <div class="logo-dot"></div>
+            <div class="logo-text">AI Mindset</div>
+        </div>
+        <div class="command"><span class="slash">/</span>apply</div>
+        <div class="role">ai native operator</div>
+    </div>
+
+    <div class="right">
+        <div class="tagline">
+            последняя вакансия,<br>
+            на которую ты подашься<span class="cursor-blink"></span>
+        </div>
+        <div class="prompt-line"><span>$</span> claude /apply --start</div>
+    </div>
+</div>
+
+<div class="bottom-accent"></div>
+
+</body>
+</html>
