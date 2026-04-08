@@ -18,7 +18,7 @@ fi
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 # Append tool_use event
-jq -n \
+jq -cn \
   --arg event "tool_use" \
   --arg ts "$TIMESTAMP" \
   --arg tool "$TOOL_NAME" \

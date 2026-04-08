@@ -82,7 +82,7 @@ bash scripts/submit.sh
 3. какие AI-инструменты используешь каждый день?
 4. ссылки (опционально): GitHub, LinkedIn, портфолио, блог
 5. что привлекло в AI Mindset?
-6. **выбери направление:** marketing, dev, design, ops, или mix (можно несколько)
+6. **выбери направление:** content & growth, automation & systems, visual & creative, management & operations, community & support, или mix
 
 сохрани ответы как `outputs/profile.md`.
 

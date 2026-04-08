@@ -13,7 +13,7 @@ SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // "unknown"')
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 # Log session start
-jq -n \
+jq -cn \
   --arg event "session_start" \
   --arg ts "$TIMESTAMP" \
   --arg sid "$SESSION_ID" \

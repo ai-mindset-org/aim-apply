@@ -1,73 +1,58 @@
-# AI Mindset Products
+# продукты AI Mindset
 
-## 1. AI Mindset Space
+## Space
 
-**Community for AI-curious professionals**
+подписочное сообщество для фаундеров и профессионалов.
 
-- 5,000+ subscribers
-- Weekly Founder OS sessions (live workshops)
-- Content: posts, videos, interviews about AI in work
+- 5,000+ подписчиков
+- еженедельные Founder OS сессии (live workshops)
+- контент: посты, видео, интервью про AI в работе
 - Telegram-based community
-- Subscription model
+- подписочная модель
 
-## 2. Labs (Intensive Cohorts)
+## Labs (когорты)
 
-**AI transformation training for founders**
+интенсивы AI-трансформации для фаундеров.
 
-- 4-week intensive programs
-- Past cohorts: Fall 2025, Winter 2026
-- Upcoming: Spring Lab X26 (AI-Native Organizations Sprint)
-- Topics: AI workflow design, agent orchestration, Personal OS
-- €990 per participant
-- 15-20 people per cohort
+- 4-недельные программы
+- прошлые когорты: Fall 2025, Winter 2026
+- текущая: Spring Lab X26 (AI-Native Organizations Sprint)
+- темы: AI workflow design, agent orchestration, Personal OS
+- 15–20 человек на когорту
+- ~1000 выпускников суммарно
 
-## 3. Sprints
+## Sprints
 
-**90-day AI-native organization programs**
+90-дневные программы AI-native организаций.
 
-- For companies wanting to become AI-native
-- Structured: 3 weekly sessions over 12 weeks
-- Diagnostics → worksheets → dashboard
-- Focus: adoption, quality, efficiency, risk, price metrics
+- для компаний, которые хотят стать AI-native
+- структура: 3 сессии в неделю, 12 недель
+- диагностика → worksheets → dashboard
+- метрики: adoption, quality, efficiency, risk, price
 
-## 4. B2B Consulting
+## B2B Consulting
 
-**Enterprise AI transformation**
+корпоративная AI-трансформация.
 
-- AI Champion program for companies
-- Partnership model with industry experts
-- FMCG, fintech, healthtech verticals
-- Custom AI infrastructure setup
+- AI Champion программа для компаний
+- партнёрская модель с отраслевыми экспертами
+- вертикали: FMCG, fintech, healthtech
 
-## 5. Content & Media
+## контент и медиа
 
-- **Telegram channel** — daily AI insights, tools, frameworks
-- **Instagram** — carousels, Reels, educational content
-- **Substack** — deep-dive newsletters
-- **YouTube** — demos, interviews, workshops
+- **Telegram-канал** – AI insights, инструменты, frameworks
+- **Instagram** – карусели, Reels, образовательный контент
+- **Substack** – глубокие рассылки
+- **YouTube** – демо, интервью, workshops
 
-## Ecosystem Tools (Internal)
+## внутренняя экосистема
 
-These are the AI-native tools we've built:
-
-| Tool | What It Does |
-|------|-------------|
-| **60+ Claude Code skills** | Custom slash commands for every workflow |
-| **MCP integrations** | Linear, Calendar, Telegram, Notion, Sheets |
-| **Content Calendar Dashboard** | Linear-integrated content planning |
-| **CRM Dashboard** | Partner relationship management |
-| **Nastavnik** | Ambient learning analytics system |
-| **CTRL Dashboard** | Personal Operating System command center |
-| **Brand Generator** | AI-powered brand content creation |
-
-## Key Challenge Right Now
-
-We're growing fast but our marketing function is understaffed. We need someone who can:
-- Build and execute content strategy
-- Run ad campaigns (Telegram Ads, Meta)
-- Track market trends in AI/edtech
-- Create content using AI tools
-- Help with community management
-- Contribute to product development workflows
-
-**The role is intentionally broad.** We value initiative and adaptability over narrow expertise.
+| инструмент | что делает |
+|-----------|-----------|
+| **100+ Claude Code skills** | slash-команды для каждого workflow |
+| **MCP интеграции** | Linear, Calendar, Telegram, Notion, Sheets |
+| **Content Calendar** | Linear-integrated планирование контента |
+| **CRM Dashboard** | управление партнёрами |
+| **Nastavnik** | ambient learning analytics |
+| **CTRL Dashboard** | Personal OS command center |
+| **Brand Generator** | AI-powered создание brand content |

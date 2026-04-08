@@ -2,7 +2,7 @@
 
 **Name:** 
 **Location:** 
-**Interest Area:** (content / dev / design / ops / mix)
+**Interest Area:** (content & growth / automation & systems / visual & creative / management & operations / community & support / mix)
 
 ### Checklist
 
