@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>performance marketing lead — AI Mindset</title>
-    <meta name="description" content="ищем AI-native маркетолога, который считает в деньгах, а не в лайках. 5+ лет в performance, edtech/e-com/B2C SaaS. €1,400–3,000/мес, remote, старт asap.">
+    <meta name="description" content="ищем AI-native маркетолога, который считает в деньгах, а не в лайках. 5+ лет в performance, edtech/e-com/B2C SaaS. €1,500–3,000/мес, remote, старт asap.">
     <meta property="og:title" content="performance marketing lead — AI Mindset">
-    <meta property="og:description" content="AI-native маркетолог. деньги, а не лайки. €1,400–3,000/мес, remote.">
+    <meta property="og:description" content="AI-native маркетолог. деньги, а не лайки. €1,500–3,000/мес, remote.">
     <meta property="og:image" content="https://ai-mindset-org.github.io/aim-apply/og.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-mindset-org.github.io/aim-apply/jd-marketing.html">
@@ -15,6 +15,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- analytics: GoatCounter (open source, no cookies, GDPR-friendly)
+         to activate: register "aim-apply" on https://www.goatcounter.com
+         docs: https://www.goatcounter.com/help -->
+    <script data-goatcounter="https://aim-apply.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <style>
         :root {
             --bg: #161620;
@@ -508,6 +513,45 @@
             font-size: 13.5px;
         }
 
+        /* --- stack grid --- */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+        .stack-card {
+            background: rgba(13,13,23,0.4);
+            padding: 22px 24px;
+            transition: background 0.2s ease;
+        }
+        .stack-card:hover {
+            background: rgba(77,201,212,0.04);
+        }
+        .stack-card-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .stack-card-name .role-label {
+            color: var(--accent);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-left: 6px;
+        }
+        .stack-card-desc {
+            font-size: 12.5px;
+            line-height: 1.6;
+            color: var(--dim);
+            margin: 0;
+        }
+
         /* --- KPI cards --- */
         .kpi-grid {
             display: grid;
@@ -597,63 +641,110 @@
             max-width: 600px;
         }
 
+        /* --- collapsible template --- */
+        .template-details {
+            margin-bottom: 24px;
+        }
+        .template-summary {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            background: rgba(13,13,23,0.6);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            list-style: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            color: var(--dim);
+            letter-spacing: 0.02em;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .template-summary::-webkit-details-marker { display: none; }
+        .template-summary::before {
+            content: '\25B8';
+            color: var(--accent-dim);
+            font-size: 12px;
+            transition: transform 0.2s;
+            display: inline-block;
+            width: 14px;
+            text-align: center;
+        }
+        .template-details[open] > .template-summary::before {
+            transform: rotate(90deg);
+        }
+        .template-summary:hover {
+            background: rgba(77,201,212,0.05);
+            color: var(--accent);
+            border-color: var(--accent-dim);
+        }
+        .template-summary .tag {
+            margin-left: auto;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
         .template-box {
             background: var(--bg-deep);
             border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 20px 22px;
+            border-top: none;
+            padding: 22px 24px;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
+            font-size: 12.5px;
             line-height: 1.75;
             color: var(--dim);
             white-space: pre-wrap;
-            margin-bottom: 20px;
-            position: relative;
+            margin: 0;
         }
-        .template-box::before {
-            content: 'шаблон';
-            position: absolute;
-            top: -9px;
-            left: 16px;
-            background: var(--bg);
-            padding: 0 10px;
+        .template-box .block-label {
+            display: block;
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 10px;
             letter-spacing: 0.1em;
-            color: var(--muted);
             text-transform: uppercase;
+            margin: 14px 0 4px;
+            font-weight: 600;
+        }
+        .template-box .block-label:first-child {
+            margin-top: 0;
         }
         .template-box .placeholder {
             color: var(--accent);
-            opacity: 0.75;
+            opacity: 0.7;
         }
 
         .apply-actions {
             display: flex;
             gap: 14px;
             flex-wrap: wrap;
-            margin-top: 24px;
+            margin-top: 8px;
+            align-items: center;
         }
 
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 17px 40px;
+            gap: 12px;
+            padding: 20px 48px;
             background: var(--accent);
             border: 1.5px solid var(--accent);
             color: var(--bg);
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.25s ease;
-            box-shadow: 0 0 40px var(--accent-glow);
+            box-shadow: 0 0 60px var(--accent-glow), 0 0 120px rgba(77,201,212,0.12);
             letter-spacing: 0.02em;
         }
         .btn-primary:hover {
             background: #5fd4de;
-            box-shadow: 0 0 60px rgba(77,201,212,0.45), 0 0 120px rgba(77,201,212,0.15);
+            box-shadow: 0 0 80px rgba(77,201,212,0.5), 0 0 160px rgba(77,201,212,0.2);
             transform: translateY(-1px);
         }
         .btn-primary:active {
@@ -663,27 +754,7 @@
             background: var(--green);
             border-color: var(--green);
             color: #fff;
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 17px 30px;
-            background: transparent;
-            border: 1px solid var(--accent-dim);
-            color: var(--accent);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            letter-spacing: 0.02em;
-        }
-        .btn-secondary:hover {
-            background: var(--accent-subtle);
-            border-color: var(--accent);
+            box-shadow: 0 0 60px rgba(16,185,129,0.4);
         }
 
         .apply-note {
@@ -807,12 +878,14 @@
             <polyline points="900,410 820,410 780,450"/>
         </svg>
 
-        <div class="hero-top">
+        <a href="https://ai-mindset-org.github.io/aim-apply/" class="hero-top" style="text-decoration:none;">
             <img src="logo.png" alt="AI Mindset">
-            <span>AI Mindset</span>
+            <span>ai mindset</span>
             <span class="divider">/</span>
-            <span>hiring · 2026</span>
-        </div>
+            <span>apply</span>
+            <span class="divider">/</span>
+            <span>2026</span>
+        </a>
 
         <div class="role-tag">role open · apply now</div>
 
@@ -831,7 +904,7 @@
             </div>
             <div class="hero-stat">
                 <span class="label">компенсация</span>
-                <span class="value accent">€1,4–3K</span>
+                <span class="value accent">€1,5–3K</span>
             </div>
             <div class="hero-stat">
                 <span class="label">старт</span>
@@ -966,6 +1039,48 @@
             </ul>
         </div>
 
+        <!-- ========== СТЕК КОМАНДЫ ========== -->
+        <div class="section-label">стек команды</div>
+        <h2>инструменты, с которыми ты будешь работать</h2>
+        <p>мы не ищем "знание конкретных инструментов". мы ищем <strong>способ мышления</strong>. но если тебе интересно, на чём мы строим операционку — вот наш стек. всё, что можно, написано <em>нами же</em>.</p>
+
+        <div class="stack-grid">
+            <div class="stack-card">
+                <div class="stack-card-name">Claude Code <span class="role-label">основной</span></div>
+                <p class="stack-card-desc">главный инструмент всей команды. 100+ собственных skills, MCP-интеграции с Linear, Calendar, Telegram, Notion, Sheets. у каждого — свои workflows для аналитики, контента, автоматизации.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Obsidian <span class="role-label">knowledge</span></div>
+                <p class="stack-card-desc">vault на ~12K файлов — research, meeting notes, транскрипты, контент, стратегия. общий контекст шарится между агентами через Dropbox Sync.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Cursor <span class="role-label">AI IDE</span></div>
+                <p class="stack-card-desc">для кода, лендингов, длинных документов. multi-file editing и быстрый inline-AI там, где Claude Code избыточен.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">ChatGPT <span class="role-label">быстрые задачи</span></div>
+                <p class="stack-card-desc">отдельный инструмент, не "запасной Claude". используем, когда задача точно сформулирована и нужен быстрый артефакт — копирайт, формулировка, brainstorm.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Linear <span class="role-label">tasks</span></div>
+                <p class="stack-card-desc">все проекты, циклы, milestones. single source of truth для работы команды — интегрирован с Claude Code через MCP.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Telegram <span class="role-label">comms</span></div>
+                <p class="stack-card-desc">внутренняя коммуникация, каналы, боты. собственные MCP-скрипты для автоматизации постов, рассылок, аналитики аудитории.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">N8N <span class="role-label">automation</span></div>
+                <p class="stack-card-desc">визуальные пайплайны между сервисами. когда нужен scheduled workflow или webhook trigger, который работает без участия человека.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Meta / TG Ads / Google <span class="role-label">performance</span></div>
+                <p class="stack-card-desc">активные рекламные кабинеты. аналитика когорт и воронок — через собственные Claude Code скиллы, не dashboards из коробки.</p>
+            </div>
+        </div>
+
+        <p>ты не обязан(а) знать весь стек на старте. но должен(а) быть готов(а) освоить его — потому что команда работает <em>через</em> эти инструменты, а не параллельно им.</p>
+
         <!-- ========== БУДЕТ ПЛЮСОМ ========== -->
         <div class="section-label">будет плюсом</div>
         <ul>
@@ -1041,33 +1156,46 @@
             <div class="apply-label">apply</div>
             <h2 class="apply-title">как откликнуться</h2>
             <p class="apply-subtitle">
-                нажми <strong>«скопировать шаблон»</strong> — он ляжет в буфер обмена. потом «открыть чат команды» — заполнишь плейсхолдеры и отправишь. мы ответим в течение 3 дней.
+                одна кнопка — <strong>«написать в команду»</strong>. она копирует готовый шаблон в буфер обмена и открывает наш чат. вставляешь, заполняешь плейсхолдеры, отправляешь. мы ответим в течение 3 дней.
             </p>
 
-            <div class="template-box" id="template"><span class="placeholder">привет!</span>
+            <details class="template-details">
+                <summary class="template-summary">
+                    <span>посмотреть шаблон сообщения</span>
+                    <span class="tag">уже в кнопке</span>
+                </summary>
+                <div class="template-box" id="template"><span class="placeholder">привет!</span>
 
 хочу откликнуться на вакансию performance marketing lead.
 
-коротко про себя:
-– <span class="placeholder">[опыт: где работал, сколько лет, специализация]</span>
-– <span class="placeholder">[лучший кейс: канал / бюджет / CPL / ROAS / конверсия]</span>
-– <span class="placeholder">[почему именно performance, а не контент — одним предложением]</span>
+<span class="block-label">про себя</span>– <span class="placeholder">[имя, откуда, сколько лет в performance marketing]</span>
+– <span class="placeholder">[где работал(а), какие продукты, почему ушёл(ла)]</span>
+– <span class="placeholder">[что умеешь делать сам(а), без ТЗ]</span>
 
-готов(а) обсудить детали и показать артефакты. удобное время на короткий созвон?</div>
+<span class="block-label">про performance-кейсы</span>– <span class="placeholder">[лучший кейс: канал / бюджет / CPL / ROAS / конверсия]</span>
+– <span class="placeholder">[что сейчас работает в твоей нише — 1-2 инсайта]</span>
+– <span class="placeholder">[самый неожиданный channel discovery за последний год]</span>
+
+<span class="block-label">про AI в работе</span>– <span class="placeholder">[один конкретный workflow, который используешь каждый день — не список tool'ов, а цепочка]</span>
+– <span class="placeholder">[что ты сам(а) собрал(а) с AI: скрипт, бот, анализ, автоматизация]</span>
+– <span class="placeholder">[как используешь AI в аналитике кампаний — конкретно, не "для отчётов"]</span>
+
+<span class="block-label">формат ответа</span>– готов(а) записать короткий video-кружок в Telegram или Loom, если удобнее голосом
+– удобное время на созвон 20-30 минут?
+
+спасибо.</div>
+            </details>
 
             <div class="apply-actions">
-                <button class="btn-primary" id="copy-btn" onclick="copyTemplate()">
-                    <span id="copy-text">скопировать шаблон</span>
-                    <span class="arr">⌘</span>
+                <button class="btn-primary" id="apply-btn" onclick="applyNow()">
+                    <span id="apply-text">написать в команду</span>
+                    <span class="arr">→</span>
                 </button>
-                <a href="https://t.me/ai_mind_set_team" target="_blank" rel="noopener" class="btn-secondary">
-                    открыть чат команды →
-                </a>
             </div>
 
             <p class="apply-note">
                 чат команды: <code>t.me/ai_mind_set_team</code> — сюда приходят все отклики.<br>
-                без CV, без сопроводительных. три строки с цифрами — этого достаточно для первого касания.
+                без CV, без сопроводительных. структурированный шаблон выше — это всё, что нужно для первого касания.
             </p>
         </div>
     </section>
@@ -1101,10 +1229,10 @@
                 <span class="resource-url">ai-native.aimindset.org</span>
                 <span class="resource-desc">4-недельный корпоративный спринт</span>
             </a>
-            <a href="https://t.me/aimindset_bot" target="_blank" rel="noopener" class="resource">
-                <span class="resource-label">telegram-бот продуктов</span>
-                <span class="resource-url">@aimindset_bot</span>
-                <span class="resource-desc">лендинги программ и подписки</span>
+            <a href="https://aimindset.org/ai-mindset-community" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">community</span>
+                <span class="resource-url">aimindset.org/community</span>
+                <span class="resource-desc">подписочное сообщество AI-practitioners</span>
             </a>
         </div>
         <p style="margin-top: 18px; font-size: 12px; color: var(--muted); text-align: center;">
@@ -1121,34 +1249,78 @@
     </footer>
 
     <script>
-        function copyTemplate() {
-            const template = `привет!
+        const APPLY_TEMPLATE = `привет!
 
 хочу откликнуться на вакансию performance marketing lead.
 
-коротко про себя:
-– [опыт: где работал, сколько лет, специализация]
+про себя
+– [имя, откуда, сколько лет в performance marketing]
+– [где работал(а), какие продукты, почему ушёл(ла)]
+– [что умеешь делать сам(а), без ТЗ]
+
+про performance-кейсы
 – [лучший кейс: канал / бюджет / CPL / ROAS / конверсия]
-– [почему именно performance, а не контент — одним предложением]
+– [что сейчас работает в твоей нише — 1-2 инсайта]
+– [самый неожиданный channel discovery за последний год]
 
-готов(а) обсудить детали и показать артефакты. удобное время на короткий созвон?`;
+про AI в работе
+– [один конкретный workflow, который используешь каждый день — не список tool'ов, а цепочка]
+– [что ты сам(а) собрал(а) с AI: скрипт, бот, анализ, автоматизация]
+– [как используешь AI в аналитике кампаний — конкретно, не "для отчётов"]
 
-            navigator.clipboard.writeText(template).then(() => {
-                const btn = document.getElementById('copy-btn');
-                const text = document.getElementById('copy-text');
-                const originalText = text.textContent;
-                btn.classList.add('copied');
-                text.textContent = 'скопировано · открываю чат';
-                setTimeout(() => {
-                    window.open('https://t.me/ai_mind_set_team', '_blank');
-                }, 600);
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    text.textContent = originalText;
-                }, 3000);
-            }).catch(() => {
-                alert('не удалось скопировать. вот текст:\n\n' + template);
-            });
+формат ответа
+– готов(а) записать короткий video-кружок в Telegram или Loom, если удобнее голосом
+– удобное время на созвон 20-30 минут?
+
+спасибо.`;
+
+        function applyNow() {
+            const btn = document.getElementById('apply-btn');
+            const text = document.getElementById('apply-text');
+            const originalText = text.textContent;
+            const chatUrl = 'https://t.me/ai_mind_set_team';
+
+            // open chat immediately — must be in same user gesture as the click
+            // otherwise popup blocker intercepts it
+            const chatWin = window.open(chatUrl, '_blank');
+
+            // then copy in parallel
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(APPLY_TEMPLATE).then(() => {
+                    btn.classList.add('copied');
+                    text.textContent = 'шаблон скопирован · чат открыт';
+                    setTimeout(() => {
+                        btn.classList.remove('copied');
+                        text.textContent = originalText;
+                    }, 3500);
+                }).catch(() => {
+                    fallbackCopy();
+                });
+            } else {
+                fallbackCopy();
+            }
+
+            function fallbackCopy() {
+                // fallback: textarea selection
+                const ta = document.createElement('textarea');
+                ta.value = APPLY_TEMPLATE;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                try {
+                    document.execCommand('copy');
+                    btn.classList.add('copied');
+                    text.textContent = 'шаблон скопирован · чат открыт';
+                    setTimeout(() => {
+                        btn.classList.remove('copied');
+                        text.textContent = originalText;
+                    }, 3500);
+                } catch (e) {
+                    alert('не удалось автоматически скопировать. шаблон:\n\n' + APPLY_TEMPLATE);
+                }
+                document.body.removeChild(ta);
+            }
         }
     </script>
 </body>
