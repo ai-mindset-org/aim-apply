@@ -836,6 +836,315 @@
             font-variant-numeric: tabular-nums;
         }
 
+        /* ===== DYNAMICS (period over period) ===== */
+        .dyn-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .dyn-card {
+            position: relative;
+            padding: 16px 18px 14px;
+            background: linear-gradient(180deg, rgba(26,26,46,0.7), rgba(13,13,23,0.45));
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+            transition: all 0.25s;
+        }
+        .dyn-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 90% 10%, var(--accent-subtle), transparent 60%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .dyn-card:hover {
+            border-color: var(--accent-dim);
+            transform: translateY(-1px);
+        }
+        .dyn-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 8px;
+        }
+        .dyn-label {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .dyn-trend {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 10px;
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+            border: 1px solid transparent;
+        }
+        .dyn-trend.up   { color: var(--accent); background: rgba(77,201,212,0.1); border-color: rgba(77,201,212,0.25); }
+        .dyn-trend.down { color: #ff6b6b; background: rgba(255,107,107,0.08); border-color: rgba(255,107,107,0.22); }
+        .dyn-trend.flat { color: var(--muted); background: rgba(255,255,255,0.02); border-color: var(--border-soft); }
+        .dyn-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--accent);
+            letter-spacing: -0.025em;
+            font-variant-numeric: tabular-nums;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 24px var(--accent-glow);
+        }
+        .dyn-value .unit {
+            font-size: 14px;
+            color: var(--dim);
+            margin-left: 3px;
+            font-weight: 500;
+        }
+        .dyn-spark {
+            margin-top: 10px;
+            width: 100%;
+            height: 24px;
+            display: block;
+        }
+        .dyn-spark-flat {
+            margin-top: 10px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--muted);
+            letter-spacing: 0.2em;
+        }
+        .dyn-prev {
+            margin-top: 6px;
+            font-size: 10px;
+            color: var(--muted);
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.04em;
+        }
+
+        /* ===== GEOGRAPHY ===== */
+        .geo-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+        .geo-side {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .geo-countries-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .geo-row {
+            display: grid;
+            grid-template-columns: 180px 1fr 90px;
+            gap: 14px;
+            align-items: center;
+            font-size: 12px;
+        }
+        .geo-row .geo-label {
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .geo-row .geo-label .flag {
+            margin-right: 7px;
+            font-size: 14px;
+            opacity: 0.95;
+        }
+        .geo-row .geo-label .cc {
+            color: var(--muted);
+            font-size: 10px;
+            margin-right: 4px;
+            letter-spacing: 0.06em;
+        }
+        .geo-row .geo-bar {
+            position: relative;
+            height: 8px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 1px;
+            overflow: hidden;
+        }
+        .geo-row .geo-bar-inner {
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+            box-shadow: 0 0 12px var(--accent-glow);
+            transform-origin: left;
+            transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .geo-row .geo-meta {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            color: var(--dim);
+            font-size: 11px;
+        }
+        .geo-row .geo-meta .n { color: var(--text); font-weight: 500; }
+        .geo-more {
+            margin-top: 8px;
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding-top: 8px;
+            border-top: 1px dashed var(--border-soft);
+        }
+
+        .geo-cities-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .geo-city {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 7px 10px;
+            font-size: 11px;
+            background: rgba(13,13,23,0.4);
+            border: 1px solid var(--border-soft);
+            border-radius: 2px;
+        }
+        .geo-city .name { color: var(--text); }
+        .geo-city .n { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 500; }
+
+        .geo-regions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .geo-region-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            font-size: 10px;
+            color: var(--dim);
+            background: var(--accent-subtle);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            letter-spacing: 0.04em;
+        }
+        .geo-region-tag .n {
+            color: var(--accent);
+            font-variant-numeric: tabular-nums;
+            font-weight: 500;
+        }
+
+        /* ===== INTEGRATIONS ===== */
+        .int-note {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            font-size: 11px;
+            color: var(--dim);
+            border-left: 2px solid var(--accent-dim);
+            background: rgba(77,201,212,0.03);
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+        .int-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        .int-card {
+            position: relative;
+            padding: 18px 20px 16px;
+            background: linear-gradient(180deg, rgba(26,26,46,0.7), rgba(13,13,23,0.45));
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+            transition: all 0.25s;
+        }
+        .int-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 85% 15%, var(--accent-subtle), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.25s;
+            pointer-events: none;
+        }
+        .int-card.active {
+            border-color: var(--accent-dim);
+            background: linear-gradient(180deg, rgba(77,201,212,0.07), rgba(13,13,23,0.45));
+        }
+        .int-card.active::before { opacity: 0.8; }
+        .int-card.inactive:hover {
+            border-color: var(--accent-dim);
+            transform: translateY(-1px);
+            box-shadow: 0 0 20px rgba(77,201,212,0.08);
+        }
+        .int-card.inactive:hover::before { opacity: 0.4; }
+        .int-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+        .int-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+        .int-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+        .int-chip.active {
+            color: var(--accent);
+            background: rgba(77,201,212,0.12);
+            border-color: var(--accent-dim);
+        }
+        .int-chip.connect {
+            color: var(--muted);
+            border-color: var(--border-soft);
+        }
+        .int-url {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .int-desc {
+            font-size: 11px;
+            color: var(--dim);
+            line-height: 1.55;
+            position: relative;
+            z-index: 1;
+        }
+
         /* ===== EMPTY / LOADING ===== */
         .skeleton {
             background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(77,201,212,0.05) 50%, rgba(255,255,255,0.02) 100%);
@@ -935,31 +1244,45 @@
             .kpi-grid { grid-template-columns: repeat(4, 1fr); }
             .funnel-wrap { grid-template-columns: 1fr; }
             .two-col { grid-template-columns: 1fr; }
+            .geo-grid { grid-template-columns: 1fr; }
+            .int-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 920px) {
             .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .dyn-grid { grid-template-columns: repeat(2, 1fr); }
             .triptych { grid-template-columns: 1fr; }
             .dash-header-inner { flex-wrap: wrap; padding: 14px 18px; }
             .dash-controls { width: 100%; }
             main { padding: 22px 18px 40px; }
+            .geo-row { grid-template-columns: 140px 1fr 80px; }
+        }
+        @media (max-width: 720px) {
+            .int-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 520px) {
             .kpi-grid { grid-template-columns: 1fr; }
+            .dyn-grid { grid-template-columns: 1fr; }
+            .int-grid { grid-template-columns: 1fr; }
             .funnel-step-inner { grid-template-columns: 28px 1fr; row-gap: 8px; }
             .funnel-step-count, .funnel-step-pct { grid-column: 2; text-align: left; }
             .period-group { flex-wrap: wrap; }
             .kpi-value { font-size: 34px; }
+            .dyn-value { font-size: 26px; }
             .funnel-summary-value { font-size: 42px; }
+            .geo-row { grid-template-columns: 110px 1fr 70px; font-size: 11px; }
         }
 
         /* subtle entrance */
         .section { opacity: 0; transform: translateY(6px); animation: enter 0.5s forwards; }
         .section:nth-child(1) { animation-delay: 0.02s; }
-        .section:nth-child(2) { animation-delay: 0.08s; }
-        .section:nth-child(3) { animation-delay: 0.14s; }
-        .section:nth-child(4) { animation-delay: 0.20s; }
-        .section:nth-child(5) { animation-delay: 0.26s; }
-        .section:nth-child(6) { animation-delay: 0.32s; }
+        .section:nth-child(2) { animation-delay: 0.07s; }
+        .section:nth-child(3) { animation-delay: 0.12s; }
+        .section:nth-child(4) { animation-delay: 0.17s; }
+        .section:nth-child(5) { animation-delay: 0.22s; }
+        .section:nth-child(6) { animation-delay: 0.27s; }
+        .section:nth-child(7) { animation-delay: 0.32s; }
+        .section:nth-child(8) { animation-delay: 0.37s; }
+        .section:nth-child(9) { animation-delay: 0.42s; }
         @keyframes enter {
             to { opacity: 1; transform: translateY(0); }
         }
@@ -1011,6 +1334,14 @@
     <section class="section" aria-labelledby="kpi-label">
         <div class="section-label" id="kpi-label">overview <span class="hint" id="period-hint">· last 7 days</span></div>
         <div class="kpi-grid" id="kpi-grid">
+            <!-- populated by JS -->
+        </div>
+    </section>
+
+    <!-- ===== DYNAMICS (period over period) ===== -->
+    <section class="section" aria-labelledby="dyn-label">
+        <div class="section-label" id="dyn-label">dynamics <span class="hint">· period over period</span></div>
+        <div class="dyn-grid" id="dyn-grid">
             <!-- populated by JS -->
         </div>
     </section>
@@ -1089,9 +1420,9 @@
         </div>
     </section>
 
-    <!-- ===== AUDIENCE TRIPTYCH ===== -->
+    <!-- ===== AUDIENCE TRIPTYCH (devices / browsers / os) ===== -->
     <section class="section">
-        <div class="section-label">audience <span class="hint">· where visitors come from</span></div>
+        <div class="section-label">audience <span class="hint">· what they use</span></div>
         <div class="triptych">
             <div class="card audience-card">
                 <div class="audience-title">devices</div>
@@ -1104,9 +1435,46 @@
                 <div class="audience-list" id="browsers-list"></div>
             </div>
             <div class="card audience-card">
-                <div class="audience-title">countries</div>
-                <div class="audience-sub">top 10 by visits</div>
-                <div class="audience-list" id="countries-list"></div>
+                <div class="audience-title">operating systems</div>
+                <div class="audience-sub">os distribution</div>
+                <div class="audience-list" id="os-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GEOGRAPHY ===== -->
+    <section class="section" aria-labelledby="geo-label">
+        <div class="section-label" id="geo-label">geography <span class="hint">· where visitors come from</span></div>
+        <div class="geo-grid">
+            <div class="card">
+                <div class="chart-header">
+                    <div>
+                        <div class="chart-title">countries</div>
+                        <div class="chart-sub">top 10 by share</div>
+                    </div>
+                </div>
+                <div class="geo-countries-list" id="geo-countries"></div>
+                <div class="geo-more" id="geo-countries-more" style="display:none;"></div>
+            </div>
+            <div class="geo-side">
+                <div class="card">
+                    <div class="chart-header">
+                        <div>
+                            <div class="chart-title">cities</div>
+                            <div class="chart-sub">top 8</div>
+                        </div>
+                    </div>
+                    <div class="geo-cities-list" id="geo-cities"></div>
+                </div>
+                <div class="card" id="geo-regions-card">
+                    <div class="chart-header">
+                        <div>
+                            <div class="chart-title">regions</div>
+                            <div class="chart-sub">administrative areas</div>
+                        </div>
+                    </div>
+                    <div class="geo-regions" id="geo-regions"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1133,6 +1501,64 @@
                 <tbody></tbody>
             </table>
             <div id="pages-hint"></div>
+        </div>
+    </section>
+
+    <!-- ===== INTEGRATIONS ===== -->
+    <section class="section" aria-labelledby="int-label">
+        <div class="section-label" id="int-label">integrations <span class="hint">· what else plugs in</span></div>
+        <div class="int-note">
+            this dashboard reads from umami only. swap or stack anything below — the pattern is the same: <strong>fetch → transform → render</strong>.
+        </div>
+        <div class="int-grid">
+            <div class="int-card active">
+                <div class="int-head">
+                    <div class="int-name">Umami</div>
+                    <div class="int-chip active">● active</div>
+                </div>
+                <div class="int-url">cloud.umami.is</div>
+                <div class="int-desc">privacy-first, self-hostable, no cookies. currently powering this page via a netlify function.</div>
+            </div>
+            <div class="int-card inactive">
+                <div class="int-head">
+                    <div class="int-name">Google Analytics 4</div>
+                    <div class="int-chip connect">+ connect</div>
+                </div>
+                <div class="int-url">analytics.google.com</div>
+                <div class="int-desc">richest ecosystem, event-based model, free. deep integration with google ads and bigquery.</div>
+            </div>
+            <div class="int-card inactive">
+                <div class="int-head">
+                    <div class="int-name">Яндекс.Метрика</div>
+                    <div class="int-chip connect">+ connect</div>
+                </div>
+                <div class="int-url">metrika.yandex.ru</div>
+                <div class="int-desc">вебвизор, тепловые карты, сессионные записи. сильна на RU аудитории.</div>
+            </div>
+            <div class="int-card inactive">
+                <div class="int-head">
+                    <div class="int-name">Plausible</div>
+                    <div class="int-chip connect">+ connect</div>
+                </div>
+                <div class="int-url">plausible.io</div>
+                <div class="int-desc">lightweight, privacy-first, €9/mo. single-page dashboard, public share links.</div>
+            </div>
+            <div class="int-card inactive">
+                <div class="int-head">
+                    <div class="int-name">PostHog</div>
+                    <div class="int-chip connect">+ connect</div>
+                </div>
+                <div class="int-url">posthog.com</div>
+                <div class="int-desc">product analytics + session replay + feature flags + experiments. open source.</div>
+            </div>
+            <div class="int-card inactive">
+                <div class="int-head">
+                    <div class="int-name">Simple Analytics</div>
+                    <div class="int-chip connect">+ connect</div>
+                </div>
+                <div class="int-url">simpleanalytics.com</div>
+                <div class="int-desc">minimal, cookieless, €9/mo. opinionated single-screen reports, eu-hosted.</div>
+            </div>
         </div>
     </section>
 
@@ -1235,6 +1661,16 @@ function shortUrl(u) {
 function prettyName(s) {
     return (s || '').replace(/[-_]/g, ' ');
 }
+// normalize timeseries point — backend may emit {t,v} or {x,y}
+function tsPoint(p) {
+    if (!p) return { t: new Date(0), v: 0 };
+    const tRaw = p.t != null ? p.t : p.x;
+    const vRaw = p.v != null ? p.v : p.y;
+    return { t: new Date(tRaw), v: +vRaw || 0 };
+}
+function tsNormalize(arr) {
+    return (arr || []).map(tsPoint);
+}
 
 // ============================================================
 // DATA FETCH
@@ -1284,11 +1720,13 @@ function render() {
     $('#period-hint').textContent = '· ' + periodHint(state.period);
     renderLive(d.overall?.current?.active_now || 0);
     renderKPI(d);
+    renderDynamics(d);
     renderHeroChart(d.timeseries || {});
     renderFunnel(d.funnel || {});
     renderReferrers(d.referrers || []);
     renderEvents(d.events || { total: 0, by_name: {} });
     renderAudience(d);
+    renderGeo(d);
     renderPages(d.pages || []);
     updateUpdatedNote();
     $('#gen-time').textContent = d.generated_at ? new Date(d.generated_at).toLocaleString('en-GB') : '—';
@@ -1423,14 +1861,219 @@ function renderKPI(d) {
 }
 
 // ============================================================
+// DYNAMICS (period over period)
+// ============================================================
+const DYN_DEFS = [
+    { key: 'pageviews',       label: 'pageviews',     type: 'num',  series: 'pageviews' },
+    { key: 'visitors',        label: 'visitors',      type: 'num',  series: 'visitors'  },
+    { key: 'apply_clicks',    label: 'apply-clicks',  type: 'num',  series: null        },
+    { key: 'conversion_rate', label: 'conversion',    type: 'pct100', series: null      },
+];
+
+function deriveDynamic(key, d) {
+    // prefer backend-provided dynamics block; fall back to overall{current,previous,delta_pct}
+    const dyn = d.dynamics?.[key];
+    if (dyn) return dyn;
+
+    const cur = d.overall?.current || {};
+    const prev = d.overall?.previous || {};
+    const dpct = d.overall?.delta_pct || {};
+    const byName = d.events?.by_name || {};
+    const pickEvt = (name) => {
+        const raw = byName[name];
+        if (raw == null) return 0;
+        return typeof raw === 'number' ? raw : (raw.count || 0);
+    };
+
+    if (key === 'pageviews' || key === 'visitors') {
+        const c = cur[key];
+        const p = prev[key];
+        const pct = dpct[key];
+        return {
+            current: c,
+            previous: p,
+            delta_abs: (c != null && p != null) ? (c - p) : null,
+            delta_pct: pct,
+            trend: pct == null ? (c > 0 ? 'up' : 'flat') : (pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat'),
+        };
+    }
+    if (key === 'apply_clicks') {
+        const c = pickEvt('apply-click');
+        return { current: c, previous: null, delta_abs: null, delta_pct: null, trend: c > 0 ? 'up' : 'flat' };
+    }
+    if (key === 'conversion_rate') {
+        const rate = d.funnel?.conversion_rate;
+        // funnel rate is 0..1 — convert to percent to match backend contract's dynamics.conversion_rate (percent number)
+        const c = rate != null ? rate * 100 : null;
+        return { current: c, previous: null, delta_abs: null, delta_pct: null, trend: (c || 0) > 0 ? 'up' : 'flat' };
+    }
+    return { current: null, previous: null, delta_abs: null, delta_pct: null, trend: 'flat' };
+}
+
+function fmtDynDelta(dyn) {
+    if (!dyn) return { cls: 'flat', txt: '◆ 0' };
+    const { delta_abs, delta_pct, trend, current, previous } = dyn;
+
+    // both null → unknown
+    if (delta_abs == null && delta_pct == null) {
+        // if trend hint exists with non-zero current, show ▲ +N
+        if (current != null && (previous == null || previous === 0) && current > 0) {
+            return { cls: 'up', txt: '▲ +' + fmtNum(current) };
+        }
+        return { cls: 'flat', txt: '◆ 0' };
+    }
+
+    // both abs + pct → show pct (more informative)
+    if (delta_pct != null && !isNaN(delta_pct)) {
+        if (delta_pct > 0)  return { cls: 'up',   txt: '▲ +' + Math.abs(delta_pct).toFixed(delta_pct >= 10 ? 0 : 1) + '%' };
+        if (delta_pct < 0)  return { cls: 'down', txt: '▼ -' + Math.abs(delta_pct).toFixed(Math.abs(delta_pct) >= 10 ? 0 : 1) + '%' };
+        return { cls: 'flat', txt: '◆ 0%' };
+    }
+
+    // abs only (previous was 0)
+    if (delta_abs != null) {
+        if (delta_abs > 0)  return { cls: 'up',   txt: '▲ +' + fmtNum(delta_abs) };
+        if (delta_abs < 0)  return { cls: 'down', txt: '▼ -' + fmtNum(Math.abs(delta_abs)) };
+        return { cls: 'flat', txt: '◆ 0' };
+    }
+
+    // fallback on trend
+    if (trend === 'up')   return { cls: 'up',   txt: '▲' };
+    if (trend === 'down') return { cls: 'down', txt: '▼' };
+    return { cls: 'flat', txt: '◆ 0' };
+}
+
+function fmtDynValue(type, v) {
+    if (v == null || isNaN(v)) return { big: '—', unit: '' };
+    switch (type) {
+        case 'num':    return { big: fmtNum(v), unit: '' };
+        case 'pct100': return { big: (+v).toFixed(1), unit: '%' };
+    }
+    return { big: String(v), unit: '' };
+}
+
+function renderDynamics(d) {
+    const grid = $('#dyn-grid');
+    const html = DYN_DEFS.map(def => {
+        const dyn = deriveDynamic(def.key, d);
+        const fmt = fmtDynValue(def.type, dyn.current);
+        const del = fmtDynDelta(dyn);
+
+        // sparkline (from timeseries if a series key exists, otherwise flat placeholder)
+        let spark = '';
+        if (def.series) {
+            const series = tsNormalize(d.timeseries?.[def.series]);
+            spark = sparklineSVG(series, def.series === 'visitors' ? 'blue' : 'teal', { className: 'dyn-spark', width: 140, height: 24 });
+        } else {
+            spark = `<div class="dyn-spark-flat">—</div>`;
+        }
+
+        // prev row
+        let prevTxt = 'vs prev period · —';
+        if (dyn.previous != null && !isNaN(dyn.previous)) {
+            const pv = fmtDynValue(def.type, dyn.previous);
+            prevTxt = `vs prev period · ${pv.big}${pv.unit}`;
+        }
+
+        return `
+        <div class="dyn-card" data-key="${def.key}">
+            <div class="dyn-head">
+                <div class="dyn-label">${def.label}</div>
+                <div class="dyn-trend ${del.cls}">${del.txt}</div>
+            </div>
+            <div class="dyn-value">${fmt.big}<span class="unit">${fmt.unit}</span></div>
+            ${spark}
+            <div class="dyn-prev">${prevTxt}</div>
+        </div>`;
+    }).join('');
+    grid.innerHTML = html;
+}
+
+// ============================================================
+// GEOGRAPHY
+// ============================================================
+function renderGeo(d) {
+    // countries: prefer geo.countries, fall back to legacy flat `countries`
+    const countries = (d.geo?.countries ?? d.countries ?? []).slice();
+    const cities    = (d.geo?.cities    ?? []).slice();
+    const regions   = (d.geo?.regions   ?? []).slice();
+
+    // ---- countries (top 10 bar list) ----
+    const list = $('#geo-countries');
+    const more = $('#geo-countries-more');
+
+    if (!countries.length) {
+        list.innerHTML = `<div class="empty-hint">no country data yet</div>`;
+        more.style.display = 'none';
+    } else {
+        // sort by share/visits desc
+        countries.sort((a, b) => (b.share || b.visits || 0) - (a.share || a.visits || 0));
+        const top = countries.slice(0, 10);
+        const rest = countries.slice(10);
+        const maxShare = Math.max(...top.map(c => c.share || 0), 0.001);
+
+        list.innerHTML = top.map(c => {
+            const share = c.share || 0;
+            const barW = (share / maxShare) * 100;
+            const name = c.name || c.label || '';
+            const cc = c.label || '';
+            const fl = c.flag || flag(cc);
+            const visits = c.visits != null ? c.visits : (c.value || 0);
+            return `
+            <div class="geo-row">
+                <div class="geo-label"><span class="flag">${fl}</span><span class="cc">${cc}</span>${name}</div>
+                <div class="geo-bar"><div class="geo-bar-inner" style="width:${barW.toFixed(1)}%"></div></div>
+                <div class="geo-meta"><span class="n">${fmtNum(visits)}</span> · ${fmtPct(share)}</div>
+            </div>`;
+        }).join('');
+
+        if (rest.length) {
+            const restVisits = rest.reduce((s, c) => s + (c.visits || 0), 0);
+            more.style.display = '';
+            more.textContent = `+ ${rest.length} more · ${fmtNum(restVisits)} visits`;
+        } else {
+            more.style.display = 'none';
+        }
+    }
+
+    // ---- cities ----
+    const citiesEl = $('#geo-cities');
+    if (!cities.length) {
+        citiesEl.innerHTML = `<div class="empty-hint">no city data yet — umami city tracking active but no hits</div>`;
+    } else {
+        cities.sort((a, b) => (b.visits || 0) - (a.visits || 0));
+        citiesEl.innerHTML = cities.slice(0, 8).map(c => `
+            <div class="geo-city">
+                <div class="name">${c.label || c.name || '—'}</div>
+                <div class="n">${fmtNum(c.visits || 0)}</div>
+            </div>
+        `).join('');
+    }
+
+    // ---- regions (optional) ----
+    const regionsCard = $('#geo-regions-card');
+    const regionsEl = $('#geo-regions');
+    if (!regions.length) {
+        regionsCard.style.display = 'none';
+    } else {
+        regionsCard.style.display = '';
+        regions.sort((a, b) => (b.visits || 0) - (a.visits || 0));
+        regionsEl.innerHTML = regions.slice(0, 14).map(r => `
+            <div class="geo-region-tag">${r.label || r.name || '—'} <span class="n">${fmtNum(r.visits || 0)}</span></div>
+        `).join('');
+    }
+}
+
+// ============================================================
 // SPARKLINE
 // ============================================================
-function sparklineSVG(series, color = 'teal') {
-    const W = 100, H = 28;
+function sparklineSVG(series, color = 'teal', opts = {}) {
+    const W = opts.width || 100, H = opts.height || 28;
+    const className = opts.className || 'kpi-spark';
     if (!series || series.length < 2) {
-        return `<svg class="kpi-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="0" y1="${H-2}" x2="${W}" y2="${H-2}" stroke="var(--border-soft)" stroke-width="1"/></svg>`;
+        return `<svg class="${className}" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="0" y1="${H-2}" x2="${W}" y2="${H-2}" stroke="var(--border-soft)" stroke-width="1"/></svg>`;
     }
-    const values = series.map(p => p.v || 0);
+    const values = series.map(p => (p.v != null ? p.v : p.y) || 0);
     const max = Math.max(...values, 1);
     const min = Math.min(...values, 0);
     const range = max - min || 1;
@@ -1447,7 +2090,7 @@ function sparklineSVG(series, color = 'teal') {
     const stroke = color === 'blue' ? 'var(--blue)' : 'var(--accent)';
     const gradId = 'sg-' + Math.random().toString(36).slice(2, 8);
 
-    return `<svg class="kpi-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+    return `<svg class="${className}" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
         <defs>
             <linearGradient id="${gradId}" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%" stop-color="${stroke}" stop-opacity="0.35"/>
@@ -1469,8 +2112,8 @@ function renderHeroChart(ts) {
     const cw = W - P.l - P.r;
     const ch = H - P.t - P.b;
 
-    const pv = (ts.pageviews || []).map(p => ({ t: new Date(p.t), v: +p.v || 0 }));
-    const vi = (ts.visitors  || []).map(p => ({ t: new Date(p.t), v: +p.v || 0 }));
+    const pv = tsNormalize(ts.pageviews);
+    const vi = tsNormalize(ts.visitors);
 
     if (!pv.length && !vi.length) {
         svg.innerHTML = `<text x="${W/2}" y="${H/2}" text-anchor="middle" class="axis-label">no data for this period</text>`;
@@ -1697,20 +2340,43 @@ function renderEvents(evts) {
 
     $('#events-list').innerHTML = entries.map(([name, data]) => {
         const count = typeof data === 'number' ? data : (data.count || 0);
-        const byRole = (typeof data === 'object' && data.by_role) ? data.by_role : null;
         const barW = (count / total) * 100;
-        let sub = '';
-        if (byRole) {
-            const roles = Object.entries(byRole).sort((a, b) => b[1] - a[1]);
-            const maxRole = Math.max(...roles.map(r => r[1]), 1);
-            sub = `<div class="event-sub">` + roles.map(([r, c]) => `
-                <div class="event-sub-row">
-                    <div class="role">${r}</div>
-                    <div class="bar-outer"><div class="bar-inner" style="width:${(c / maxRole * 100).toFixed(1)}%"></div></div>
-                    <div class="num">${fmtNum(c)}</div>
-                </div>
-            `).join('') + `</div>`;
+
+        // Two property shapes supported:
+        //  1. legacy `by_role: {marketing: 3, tech: 2}`
+        //  2. new `properties: {role: {marketing: 3}, tier: {free: 1}}`
+        let subRows = [];
+
+        if (typeof data === 'object') {
+            if (data.by_role) {
+                const roles = Object.entries(data.by_role).sort((a, b) => b[1] - a[1]);
+                const maxRole = Math.max(...roles.map(r => r[1]), 1);
+                subRows.push({ key: 'role', items: roles, max: maxRole });
+            }
+            if (data.properties && typeof data.properties === 'object') {
+                for (const [propKey, propObj] of Object.entries(data.properties)) {
+                    if (!propObj || typeof propObj !== 'object') continue;
+                    const items = Object.entries(propObj).sort((a, b) => b[1] - a[1]);
+                    if (!items.length) continue;
+                    const maxV = Math.max(...items.map(r => r[1]), 1);
+                    subRows.push({ key: propKey, items, max: maxV });
+                }
+            }
         }
+
+        let sub = '';
+        if (subRows.length) {
+            sub = `<div class="event-sub">` + subRows.map(group => {
+                return group.items.map(([k, c]) => `
+                    <div class="event-sub-row">
+                        <div class="role">↳ ${group.key}: ${k}</div>
+                        <div class="bar-outer"><div class="bar-inner" style="width:${(c / group.max * 100).toFixed(1)}%"></div></div>
+                        <div class="num">${fmtNum(c)}</div>
+                    </div>
+                `).join('');
+            }).join('') + `</div>`;
+        }
+
         return `
         <div class="event-row">
             <div class="event-row-head">
@@ -1729,7 +2395,7 @@ function renderEvents(evts) {
 function renderAudience(d) {
     renderBars('#devices-list',  d.devices  || [], { blue: false });
     renderBars('#browsers-list', d.browsers || [], { blue: false });
-    renderBars('#countries-list',(d.countries || []).slice(0, 10), { blue: true, flags: true });
+    renderBars('#os-list',       d.os       || [], { blue: true });
 }
 function renderBars(sel, list, opts = {}) {
     const el = $(sel);
@@ -1801,6 +2467,19 @@ function renderSkeleton() {
             <div class="skeleton skel-line" style="width:100%; height:20px;"></div>
         </div>
     `).join('');
+    const dyn = $('#dyn-grid');
+    if (dyn) {
+        dyn.innerHTML = Array.from({ length: 4 }).map(() => `
+            <div class="dyn-card">
+                <div class="dyn-head">
+                    <div class="skeleton skel-line" style="width:40%;"></div>
+                    <div class="skeleton skel-line" style="width:30px;"></div>
+                </div>
+                <div class="skeleton" style="height:28px; margin:8px 0;"></div>
+                <div class="skeleton skel-line" style="width:100%; height:18px;"></div>
+            </div>
+        `).join('');
+    }
 }
 function renderError() {
     $('#error-slot').innerHTML = `

@@ -56,9 +56,39 @@ function buildRange(period) {
   };
 }
 
-// Decide time-series granularity: hour for 24h, day for everything else.
-function pickUnit(period) {
-  return period === "24h" ? "hour" : "day";
+// Decide time-series granularity based on range length.
+// <= 1 day → hour; > 1 day → day (Umami downgrades hour→day past 30d anyway).
+function pickUnit(lengthMs) {
+  return lengthMs <= DAY ? "hour" : "day";
+}
+
+// ISO country code → full name. Keep small and hand-curated; unknowns fall back to the code.
+const COUNTRY_NAMES = {
+  PT: "Portugal", US: "United States", GB: "United Kingdom", DE: "Germany",
+  FR: "France", ES: "Spain", IT: "Italy", NL: "Netherlands", RU: "Russia",
+  UA: "Ukraine", PL: "Poland", BY: "Belarus", KZ: "Kazakhstan", LT: "Lithuania",
+  LV: "Latvia", EE: "Estonia", FI: "Finland", SE: "Sweden", NO: "Norway",
+  DK: "Denmark", IE: "Ireland", BE: "Belgium", CH: "Switzerland", AT: "Austria",
+  CZ: "Czechia", SK: "Slovakia", HU: "Hungary", RO: "Romania", BG: "Bulgaria",
+  GR: "Greece", TR: "Turkey", IL: "Israel", AE: "UAE", SA: "Saudi Arabia",
+  IN: "India", CN: "China", JP: "Japan", KR: "South Korea", SG: "Singapore",
+  HK: "Hong Kong", TW: "Taiwan", TH: "Thailand", VN: "Vietnam", ID: "Indonesia",
+  MY: "Malaysia", PH: "Philippines", AU: "Australia", NZ: "New Zealand",
+  CA: "Canada", MX: "Mexico", BR: "Brazil", AR: "Argentina", CL: "Chile",
+  CO: "Colombia", ZA: "South Africa", EG: "Egypt", NG: "Nigeria", KE: "Kenya",
+  MA: "Morocco", GE: "Georgia", AM: "Armenia", AZ: "Azerbaijan", MD: "Moldova",
+  RS: "Serbia", HR: "Croatia", SI: "Slovenia", IS: "Iceland", LU: "Luxembourg",
+  MT: "Malta", CY: "Cyprus",
+};
+
+// ISO 3166-1 alpha-2 → regional indicator symbols (flag emoji).
+function isoToFlag(iso) {
+  if (typeof iso !== "string" || iso.length !== 2) return "";
+  const upper = iso.toUpperCase();
+  if (!/^[A-Z]{2}$/.test(upper)) return "";
+  return String.fromCodePoint(
+    ...[...upper].map((c) => 0x1f1e6 - 65 + c.charCodeAt(0))
+  );
 }
 
 // GET wrapper for Umami API. Throws on non-2xx.
@@ -148,28 +178,58 @@ function normalizeMetrics(raw) {
   });
 }
 
+// Parse Umami bucket timestamp into ms since epoch (UTC).
+function parseBucketTs(rawT) {
+  if (rawT == null) return null;
+  if (typeof rawT === "number") return rawT;
+  const s = String(rawT).replace(" ", "T");
+  const d = new Date(s.endsWith("Z") ? s : `${s}Z`);
+  return Number.isNaN(d.getTime()) ? null : d.getTime();
+}
+
+// Round a timestamp down to the bucket boundary.
+function bucketStart(ts, unit) {
+  const d = new Date(ts);
+  if (unit === "hour") {
+    d.setUTCMinutes(0, 0, 0);
+  } else {
+    d.setUTCHours(0, 0, 0, 0);
+  }
+  return d.getTime();
+}
+
+function bucketNext(ts, unit) {
+  return ts + (unit === "hour" ? HOUR : DAY);
+}
+
 // Normalize pageviews time-series: {pageviews: [{x, y}], sessions: [{x, y}]}
-// → { pageviews: [{t, v}], visitors: [{t, v}] }.
-// Umami returns `x` as a timestamp string ("2026-04-10 14:00:00") — pass through
-// converted to ISO.
-function normalizeTimeseries(raw) {
-  const toPoint = (entry) => {
-    const rawT = entry?.x;
-    let iso;
-    if (rawT == null) {
-      iso = null;
-    } else if (typeof rawT === "number") {
-      iso = new Date(rawT).toISOString();
-    } else {
-      // "2026-04-10 14:00:00" → treat as UTC
-      const s = String(rawT).replace(" ", "T");
-      const d = new Date(s.endsWith("Z") ? s : `${s}Z`);
-      iso = Number.isNaN(d.getTime()) ? String(rawT) : d.toISOString();
+// → { pageviews: [{t, v}], visitors: [{t, v}] }. Fills gaps with zeros so the
+// client gets a continuous series across the entire requested range.
+function normalizeTimeseries(raw, range, unit) {
+  const indexSeries = (arr) => {
+    const idx = new Map();
+    if (!Array.isArray(arr)) return idx;
+    for (const entry of arr) {
+      const ts = parseBucketTs(entry?.x);
+      if (ts == null) continue;
+      idx.set(bucketStart(ts, unit), Number(entry?.y ?? 0));
     }
-    return { t: iso, v: Number(entry?.y ?? 0) };
+    return idx;
   };
-  const pageviews = Array.isArray(raw?.pageviews) ? raw.pageviews.map(toPoint) : [];
-  const visitors = Array.isArray(raw?.sessions) ? raw.sessions.map(toPoint) : [];
+  const pvIdx = indexSeries(raw?.pageviews);
+  const vIdx = indexSeries(raw?.sessions);
+
+  const pageviews = [];
+  const visitors = [];
+  if (!range) return { pageviews, visitors };
+
+  const start = bucketStart(range.startAt, unit);
+  const endBoundary = bucketStart(range.endAt, unit);
+  for (let t = start; t <= endBoundary; t = bucketNext(t, unit)) {
+    const iso = new Date(t).toISOString();
+    pageviews.push({ t: iso, v: pvIdx.get(t) ?? 0 });
+    visitors.push({ t: iso, v: vIdx.get(t) ?? 0 });
+  }
   return { pageviews, visitors };
 }
 
@@ -227,52 +287,86 @@ function buildFunnel(totalVisits, eventMetrics) {
   return { steps, conversion_rate };
 }
 
-// Aggregate event-data/events raw response into { total, by_name: { name: { count, by_role } } }.
-// event-data/events returns an array of event instances with optional eventProperties.
-// Shape on Umami Cloud is best-effort — we try a few known keys.
-function aggregateEventDetails(rawEvents, eventMetrics) {
+// Aggregate event details into { total, by_name: { [name]: { count, properties: { [key]: { [value]: count } } } } }.
+//
+// Real Umami Cloud shape:
+//   GET /event-data/events  → [{eventName, propertyName, dataType, total}, ...]
+//     (one row per (event × property) with total occurrences of that property in the range)
+//   GET /event-data/values?eventName=X&propertyName=Y → [{value, total}, ...]
+//     (distribution of actual values for a given event+property)
+//
+// So we first build the (event, property) skeleton from /events, then fetch
+// /values for each (event, property) pair in parallel to get the value breakdown.
+async function aggregateEventDetails(rawEvents, eventMetrics, range, apiKey) {
   const byName = {};
 
-  // Seed from metrics so events without detailed rows still appear.
+  // Seed from metrics so events without property rows still appear.
   for (const m of eventMetrics) {
     if (!m.label) continue;
-    byName[m.label] = { count: m.visits, by_role: {} };
+    byName[m.label] = { count: m.visits, properties: {} };
   }
 
+  // Discover (event, property) pairs from /event-data/events.
+  const pairs = [];
   if (Array.isArray(rawEvents)) {
     for (const row of rawEvents) {
-      const name =
-        row?.eventName ||
-        row?.event_name ||
-        row?.name ||
-        row?.urlPath ||
-        "unknown";
-      if (!byName[name]) byName[name] = { count: 0, by_role: {} };
-      // Only increment if we got raw instances (not just metadata).
-      // If the row looks like an instance (has createdAt or sessionId), count it.
-      if (row?.createdAt || row?.created_at || row?.sessionId || row?.session_id) {
-        byName[name].count += 1;
-      }
-      // Try to pull a `role` property out of common shapes.
-      const props =
-        row?.eventData ||
-        row?.event_data ||
-        row?.properties ||
-        row?.data ||
-        null;
-      const role =
-        (props && (props.role || props.Role)) ||
-        row?.role ||
-        null;
-      if (role) {
-        const key = String(role);
-        byName[name].by_role[key] = (byName[name].by_role[key] || 0) + 1;
-      }
+      const name = row?.eventName || row?.event_name || row?.name;
+      const prop = row?.propertyName || row?.property_name;
+      if (!name || !prop) continue;
+      if (!byName[name]) byName[name] = { count: 0, properties: {} };
+      if (!byName[name].properties[prop]) byName[name].properties[prop] = {};
+      pairs.push({ eventName: name, propertyName: prop });
     }
   }
 
+  // Fetch value distributions in parallel. Each failure is swallowed — we still
+  // have the property key, just without value breakdown.
+  const qs = `startAt=${range.startAt}&endAt=${range.endAt}`;
+  await Promise.all(
+    pairs.map(async ({ eventName, propertyName }) => {
+      try {
+        const path =
+          `/websites/${WEBSITE_ID}/event-data/values?${qs}` +
+          `&eventName=${encodeURIComponent(eventName)}` +
+          `&propertyName=${encodeURIComponent(propertyName)}`;
+        const values = await fetchUmami(path, apiKey);
+        if (!Array.isArray(values)) return;
+        const bucket = byName[eventName].properties[propertyName];
+        for (const v of values) {
+          const key = String(v?.value ?? "");
+          if (!key) continue;
+          bucket[key] = (bucket[key] || 0) + Number(v?.total ?? 0);
+        }
+      } catch (e) {
+        // Silent — already have property key, just no value breakdown.
+      }
+    })
+  );
+
   const total = Object.values(byName).reduce((sum, e) => sum + (e.count || 0), 0);
   return { total, by_name: byName };
+}
+
+// Trend classifier for dynamics block.
+function trendOf(current, previous) {
+  const c = Number(current) || 0;
+  const p = Number(previous) || 0;
+  if (c > p) return "up";
+  if (c < p) return "down";
+  return "flat";
+}
+
+// Build dynamics entry: {current, previous, delta_abs, delta_pct, trend}.
+function dynamicsEntry(current, previous) {
+  const c = Number(current) || 0;
+  const p = Number(previous) || 0;
+  return {
+    current: c,
+    previous: p,
+    delta_abs: Math.round((c - p) * 10) / 10,
+    delta_pct: computeDelta(c, p),
+    trend: trendOf(c, p),
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -303,8 +397,8 @@ export async function handler(event) {
   const period = (event.queryStringParameters?.period || "7d").toLowerCase();
   const validPeriods = new Set(["24h", "7d", "30d", "90d", "all"]);
   const safePeriod = validPeriods.has(period) ? period : "7d";
-  const { current, previous } = buildRange(safePeriod);
-  const unit = pickUnit(safePeriod);
+  const { current, previous, length } = buildRange(safePeriod);
+  const unit = pickUnit(length);
 
   const rangeQS = (r) => `startAt=${r.startAt}&endAt=${r.endAt}`;
   const curQS = rangeQS(current);
@@ -328,11 +422,17 @@ export async function handler(event) {
     settle("os", fetchUmami(`/websites/${WEBSITE_ID}/metrics?type=os&${curQS}`, apiKey)),
     settle("devices", fetchUmami(`/websites/${WEBSITE_ID}/metrics?type=device&${curQS}`, apiKey)),
     settle("countries", fetchUmami(`/websites/${WEBSITE_ID}/metrics?type=country&${curQS}`, apiKey)),
+    settle("cities", fetchUmami(`/websites/${WEBSITE_ID}/metrics?type=city&${curQS}`, apiKey)),
+    settle("regions", fetchUmami(`/websites/${WEBSITE_ID}/metrics?type=region&${curQS}`, apiKey)),
     settle("eventMetrics", fetchUmami(`/websites/${WEBSITE_ID}/metrics?type=event&${curQS}`, apiKey)),
     settle("active", fetchUmami(`/websites/${WEBSITE_ID}/active`, apiKey)),
 
     // Previous period
     settle("stats.previous", fetchUmami(`/websites/${WEBSITE_ID}/stats?${prevQS}`, apiKey)),
+    settle(
+      "eventMetrics.previous",
+      fetchUmami(`/websites/${WEBSITE_ID}/metrics?type=event&${prevQS}`, apiKey)
+    ),
 
     // Event details — may 404 on Umami Cloud
     settle(
@@ -407,7 +507,7 @@ export async function handler(event) {
   // Time-series
   // -------------------------------------------------------------------------
   const pvRaw = need("pageviews.current");
-  const timeseries = pvRaw ? normalizeTimeseries(pvRaw) : { pageviews: [], visitors: [] };
+  const timeseries = normalizeTimeseries(pvRaw, current, unit);
 
   // -------------------------------------------------------------------------
   // Metric dimensions
@@ -418,13 +518,35 @@ export async function handler(event) {
   const os = normalizeMetrics(need("os"));
   const devices = normalizeMetrics(need("devices"));
   const countries = normalizeMetrics(need("countries"));
+  const cities = normalizeMetrics(need("cities"));
+  const regions = normalizeMetrics(need("regions"));
   const eventMetrics = normalizeMetrics(need("eventMetrics"));
+  const eventMetricsPrev = normalizeMetrics(need("eventMetrics.previous"));
+
+  // -------------------------------------------------------------------------
+  // Geo with ISO flag + country name enrichment
+  // -------------------------------------------------------------------------
+  const countriesEnriched = countries.map((c) => ({
+    ...c,
+    name: COUNTRY_NAMES[c.label] || c.label,
+    flag: isoToFlag(c.label),
+  }));
+  const geo = {
+    countries: countriesEnriched,
+    cities,
+    regions,
+  };
 
   // -------------------------------------------------------------------------
   // Event details (best-effort)
   // -------------------------------------------------------------------------
-  const rawEventInstances = need("event-data.events");
-  const events = aggregateEventDetails(rawEventInstances, eventMetrics);
+  const rawEventAggregates = need("event-data.events");
+  const events = await aggregateEventDetails(
+    rawEventAggregates,
+    eventMetrics,
+    current,
+    apiKey
+  );
 
   // event-data.stats is fetched for completeness — if it returned, merge total.
   const evStats = need("event-data.stats");
@@ -441,6 +563,29 @@ export async function handler(event) {
   const funnel = buildFunnel(curFlat.visits, eventMetrics);
 
   // -------------------------------------------------------------------------
+  // Dynamics — key metrics current vs previous with trend classification
+  // -------------------------------------------------------------------------
+  const findEventCount = (metrics, name) => {
+    const m = metrics.find((e) => e.label === name);
+    return m ? m.visits : 0;
+  };
+  const applyClicksCur = findEventCount(eventMetrics, "apply-click");
+  const applyClicksPrev = findEventCount(eventMetricsPrev, "apply-click");
+
+  const conversionRate = (clicks, visits) =>
+    visits > 0 ? Math.round((clicks / visits) * 1000) / 10 : 0;
+
+  const convCur = conversionRate(applyClicksCur, curFlat.visits);
+  const convPrev = prevFlat ? conversionRate(applyClicksPrev, prevFlat.visits) : 0;
+
+  const dynamics = {
+    pageviews: dynamicsEntry(curFlat.pageviews, prevFlat?.pageviews ?? 0),
+    visitors: dynamicsEntry(curFlat.visitors, prevFlat?.visitors ?? 0),
+    apply_clicks: dynamicsEntry(applyClicksCur, applyClicksPrev),
+    conversion_rate: dynamicsEntry(convCur, convPrev),
+  };
+
+  // -------------------------------------------------------------------------
   // Response
   // -------------------------------------------------------------------------
   const body = {
@@ -448,13 +593,15 @@ export async function handler(event) {
     generated_at: new Date().toISOString(),
     range: { current, previous },
     overall,
+    dynamics,
     timeseries,
     pages,
     referrers,
     browsers,
     os,
     devices,
-    countries,
+    countries: countriesEnriched,
+    geo,
     events,
     funnel,
     errors,
