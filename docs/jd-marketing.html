@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>performance marketing lead — AI Mindset</title>
+    <meta name="description" content="ищем AI-native маркетолога, который считает в деньгах, а не в лайках. 5+ лет в performance, edtech/e-com/B2C SaaS. €1,400–3,000/мес, remote, старт asap.">
+    <meta property="og:title" content="performance marketing lead — AI Mindset">
+    <meta property="og:description" content="AI-native маркетолог. деньги, а не лайки. €1,400–3,000/мес, remote.">
+    <meta property="og:image" content="https://ai-mindset-org.github.io/aim-apply/og.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-mindset-org.github.io/aim-apply/jd-marketing.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ai-mindset-org.github.io/aim-apply/og.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #161620;
+            --bg-card: #1a1a2e;
+            --bg-deep: #0d0d17;
+            --accent: #4dc9d4;
+            --accent-dim: rgba(77,201,212,0.5);
+            --accent-glow: rgba(77,201,212,0.25);
+            --accent-subtle: rgba(77,201,212,0.08);
+            --blue: #3b82f6;
+            --amber: #f59e0b;
+            --rose: #f43f5e;
+            --green: #10b981;
+            --text: #e8e8ef;
+            --dim: rgba(232,232,239,0.58);
+            --muted: rgba(232,232,239,0.32);
+            --border: rgba(77,201,212,0.14);
+            --border-soft: rgba(232,232,239,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Mono', monospace;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background-image:
+                linear-gradient(rgba(77,201,212,0.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(77,201,212,0.022) 1px, transparent 1px);
+            background-size: 60px 60px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 10%, rgba(77,201,212,0.08) 0%, transparent 45%),
+                radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.06) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 90%, rgba(77,201,212,0.04) 0%, transparent 55%);
+            pointer-events: none; z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        /* --- circuit decoration --- */
+        .circuit-svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: visible;
+        }
+        .circuit-svg line, .circuit-svg polyline {
+            stroke: rgba(77,201,212,0.07);
+            stroke-width: 1;
+            fill: none;
+        }
+        .circuit-svg circle {
+            fill: rgba(77,201,212,0.12);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100svh;
+            padding: 56px 24px 48px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 36px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .hero-top img {
+            width: 22px; height: 22px;
+            opacity: 0.8;
+        }
+        .hero-top .divider {
+            color: var(--accent-dim);
+        }
+
+        .role-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            background: var(--accent-subtle);
+        }
+        .role-tag::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(44px, 9vw, 84px);
+            font-weight: 700;
+            line-height: 0.96;
+            color: #fff;
+            margin-bottom: 22px;
+            letter-spacing: -0.025em;
+            max-width: 880px;
+        }
+        h1 .slash { color: var(--accent); }
+        h1 .em { color: var(--accent); }
+
+        .tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(15px, 2.2vw, 19px);
+            color: var(--dim);
+            margin-bottom: 42px;
+            line-height: 1.5;
+            max-width: 640px;
+            font-weight: 400;
+        }
+        .tagline strong { color: var(--text); font-weight: 500; }
+
+        .hero-stats {
+            display: flex;
+            gap: 0;
+            margin-bottom: 44px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            background: rgba(13,13,23,0.4);
+            backdrop-filter: blur(6px);
+        }
+        .hero-stat {
+            padding: 16px 26px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 130px;
+        }
+        .hero-stat:last-child { border-right: none; }
+        .hero-stat .label {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .hero-stat .value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1;
+        }
+        .hero-stat .value.accent { color: var(--accent); }
+
+        .cta-row {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 17px 42px;
+            background: var(--accent);
+            border: 1.5px solid var(--accent);
+            color: var(--bg);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            box-shadow: 0 0 60px var(--accent-glow);
+        }
+        .cta:hover {
+            background: #5fd4de;
+            box-shadow: 0 0 80px rgba(77,201,212,0.4), 0 0 140px rgba(77,201,212,0.15);
+            transform: translateY(-1px);
+        }
+        .cta .arr { transition: transform 0.25s; }
+        .cta:hover .arr { transform: translateX(5px); }
+
+        .cta-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 17px 26px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--dim);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 400;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .cta-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-meta {
+            margin-top: 32px;
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+        }
+        .hero-meta code {
+            color: var(--dim);
+            background: rgba(255,255,255,0.04);
+            padding: 2px 7px;
+            border-radius: 3px;
+        }
+
+        /* ===== FOLD ===== */
+        .fold {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+            z-index: 1;
+        }
+
+        .fold-hint {
+            text-align: center;
+            padding-bottom: 48px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        /* --- section label --- */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 56px 0 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .section-label::before {
+            content: '';
+            width: 12px;
+            height: 1px;
+            background: var(--accent);
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 18px;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 18px 0 10px;
+            letter-spacing: 0.01em;
+        }
+
+        p {
+            font-size: 14.5px;
+            line-height: 1.78;
+            color: var(--dim);
+            margin-bottom: 14px;
+        }
+        p strong { color: var(--text); font-weight: 500; }
+        p em { color: var(--accent); font-style: normal; }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 18px;
+        }
+        ul li {
+            font-size: 14px;
+            line-height: 1.72;
+            color: var(--dim);
+            padding: 6px 0 6px 22px;
+            position: relative;
+        }
+        ul li::before {
+            content: '–';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            opacity: 0.7;
+        }
+        ul li strong { color: var(--text); font-weight: 500; }
+
+        /* --- role description cards --- */
+        .role-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border: 1px solid var(--border);
+            background: rgba(13,13,23,0.35);
+            backdrop-filter: blur(6px);
+            margin-bottom: 24px;
+        }
+        .role-card {
+            padding: 26px 28px;
+            border-bottom: 1px solid var(--border);
+        }
+        .role-card:last-child { border-bottom: none; }
+        .role-card-head {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .role-card-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+        .role-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            color: var(--text);
+            font-weight: 600;
+            flex: 1;
+        }
+        .role-card-pct {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .role-card p:last-child { margin-bottom: 0; }
+        .role-card ul { margin-bottom: 0; }
+
+        /* --- requirements block --- */
+        .req-block {
+            border-left: 2px solid var(--border);
+            padding: 4px 0 4px 22px;
+            margin-bottom: 22px;
+        }
+        .req-block.primary { border-left-color: var(--accent); }
+        .req-block.secondary { border-left-color: var(--blue); }
+        .req-block-label {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        .req-block.primary .req-block-label { color: var(--accent); }
+        .req-block.secondary .req-block-label { color: var(--blue); }
+        .req-block-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .deal-breaker-note {
+            display: inline-block;
+            padding: 4px 10px;
+            margin-top: 8px;
+            font-size: 11px;
+            color: var(--rose);
+            background: rgba(244,63,94,0.08);
+            border: 1px solid rgba(244,63,94,0.25);
+            border-radius: 3px;
+            letter-spacing: 0.04em;
+        }
+
+        /* --- anti-list block --- */
+        .anti-list {
+            border: 1px solid rgba(244,63,94,0.25);
+            background: rgba(244,63,94,0.04);
+            padding: 22px 28px;
+            margin-bottom: 20px;
+        }
+        .anti-list ul li {
+            color: var(--dim);
+        }
+        .anti-list ul li::before {
+            content: '\00d7';
+            color: var(--rose);
+            opacity: 0.8;
+            font-weight: 600;
+        }
+        .anti-list ul li strong {
+            color: #fca5b4;
+            font-weight: 500;
+        }
+
+        /* --- process steps --- */
+        .process {
+            counter-reset: step;
+            margin-bottom: 20px;
+        }
+        .process-step {
+            display: flex;
+            gap: 22px;
+            padding: 22px 0;
+            border-bottom: 1px solid var(--border-soft);
+            counter-increment: step;
+        }
+        .process-step:last-child { border-bottom: none; }
+        .process-step::before {
+            content: counter(step, decimal-leading-zero);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 48px;
+            line-height: 1;
+            padding-top: 2px;
+        }
+        .process-step-body h3 {
+            margin-top: 0;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+        .process-step-meta {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+        .process-step-body p {
+            margin-bottom: 0;
+            font-size: 13.5px;
+        }
+
+        /* --- KPI cards --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .kpi-card {
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+            background: rgba(13,13,23,0.3);
+            font-size: 13px;
+            color: var(--dim);
+            line-height: 1.5;
+        }
+        .kpi-card strong {
+            display: block;
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        /* ===== APPLY BLOCK ===== */
+        .apply-section {
+            margin: 80px auto 40px;
+            max-width: 800px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .apply-block {
+            background: linear-gradient(180deg, rgba(77,201,212,0.08) 0%, rgba(77,201,212,0.02) 100%);
+            border: 1px solid var(--accent-dim);
+            padding: 52px 44px;
+            position: relative;
+            overflow: hidden;
+        }
+        .apply-block::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at center, rgba(77,201,212,0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .apply-block > * { position: relative; }
+
+        .apply-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+        .apply-label::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .apply-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(26px, 4vw, 36px);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 14px;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+        }
+
+        .apply-subtitle {
+            font-size: 14px;
+            color: var(--dim);
+            line-height: 1.7;
+            margin-bottom: 28px;
+            max-width: 600px;
+        }
+
+        .template-box {
+            background: var(--bg-deep);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 20px 22px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--dim);
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .template-box::before {
+            content: 'шаблон';
+            position: absolute;
+            top: -9px;
+            left: 16px;
+            background: var(--bg);
+            padding: 0 10px;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+        .template-box .placeholder {
+            color: var(--accent);
+            opacity: 0.75;
+        }
+
+        .apply-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 17px 40px;
+            background: var(--accent);
+            border: 1.5px solid var(--accent);
+            color: var(--bg);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 40px var(--accent-glow);
+            letter-spacing: 0.02em;
+        }
+        .btn-primary:hover {
+            background: #5fd4de;
+            box-shadow: 0 0 60px rgba(77,201,212,0.45), 0 0 120px rgba(77,201,212,0.15);
+            transform: translateY(-1px);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .btn-primary.copied {
+            background: var(--green);
+            border-color: var(--green);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 17px 30px;
+            background: transparent;
+            border: 1px solid var(--accent-dim);
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.02em;
+        }
+        .btn-secondary:hover {
+            background: var(--accent-subtle);
+            border-color: var(--accent);
+        }
+
+        .apply-note {
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .apply-note code {
+            background: rgba(255,255,255,0.05);
+            padding: 1px 6px;
+            border-radius: 2px;
+            color: var(--dim);
+        }
+
+        /* --- resources grid --- */
+        .resources {
+            margin-top: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+        .resource {
+            background: var(--bg);
+            padding: 20px 22px;
+            text-decoration: none;
+            color: var(--dim);
+            transition: all 0.2s ease;
+            display: block;
+        }
+        .resource:hover {
+            background: var(--accent-subtle);
+            color: var(--text);
+        }
+        .resource-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .resource-url {
+            font-size: 13px;
+            color: var(--text);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .resource-desc {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* --- footer --- */
+        .foot {
+            text-align: center;
+            padding: 64px 24px 40px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            position: relative;
+            z-index: 1;
+        }
+        .foot a {
+            color: var(--accent);
+            text-decoration: none;
+            opacity: 0.6;
+        }
+        .foot a:hover { opacity: 1; }
+        .foot-divider {
+            margin: 0 10px;
+            color: var(--accent-dim);
+        }
+
+        /* --- responsive --- */
+        @media (max-width: 640px) {
+            .hero-stat {
+                padding: 12px 18px;
+                min-width: 110px;
+            }
+            .hero-stat .value { font-size: 16px; }
+            .apply-block { padding: 36px 24px; }
+            .role-card { padding: 22px 20px; }
+            .cta, .btn-primary { padding: 15px 30px; font-size: 14px; }
+            .section-label::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <svg class="circuit-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <polyline points="0,420 120,420 160,360 280,360 300,380"/>
+            <circle cx="300" cy="380" r="3"/>
+            <polyline points="160,360 160,280 220,220"/>
+            <circle cx="220" cy="220" r="2.5"/>
+            <polyline points="1200,370 1060,370 1020,430 920,430 900,410"/>
+            <circle cx="900" cy="410" r="3"/>
+            <polyline points="1020,430 1020,520 960,580"/>
+            <circle cx="960" cy="580" r="2.5"/>
+            <line x1="400" y1="0" x2="400" y2="80"/>
+            <polyline points="400,80 450,130 550,130"/>
+            <circle cx="550" cy="130" r="2"/>
+            <line x1="700" y1="800" x2="700" y2="720"/>
+            <polyline points="700,720 650,670 580,670"/>
+            <circle cx="580" cy="670" r="2"/>
+            <polyline points="300,380 380,380 420,340"/>
+            <polyline points="900,410 820,410 780,450"/>
+        </svg>
+
+        <div class="hero-top">
+            <img src="logo.png" alt="AI Mindset">
+            <span>AI Mindset</span>
+            <span class="divider">/</span>
+            <span>hiring · 2026</span>
+        </div>
+
+        <div class="role-tag">role open · apply now</div>
+
+        <h1>performance<br><span class="em">marketing</span> lead</h1>
+
+        <p class="tagline">ищем маркетолога, который считает в <strong>деньгах</strong>, а не в лайках.<br>AI-native дженералист. остальное — на странице.</p>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="label">опыт</span>
+                <span class="value">5+ лет</span>
+            </div>
+            <div class="hero-stat">
+                <span class="label">формат</span>
+                <span class="value">remote</span>
+            </div>
+            <div class="hero-stat">
+                <span class="label">компенсация</span>
+                <span class="value accent">€1,4–3K</span>
+            </div>
+            <div class="hero-stat">
+                <span class="label">старт</span>
+                <span class="value">asap</span>
+            </div>
+        </div>
+
+        <div class="cta-row">
+            <a href="#apply" class="cta">откликнуться <span class="arr">→</span></a>
+            <a href="#role" class="cta-ghost">сначала про роль ↓</a>
+        </div>
+
+        <div class="hero-meta">
+            пробный месяц · async-first · <code>~3 дня</code> на ответ
+        </div>
+    </section>
+
+    <!-- ===== FOLD ===== -->
+    <section class="fold">
+        <div class="fold-hint">scroll ↓</div>
+
+        <!-- ========== О РОЛИ ========== -->
+        <div id="role" class="section-label">о роли</div>
+        <h2>не контент-менеджер. не SMM. не «ведёт соцсети».</h2>
+        <p>нам нужен <strong>AI-native маркетолог-дженералист</strong>, который:</p>
+        <ul>
+            <li>считает результат маркетинга в <strong>деньгах</strong>, а не в лайках</li>
+            <li>формулирует эксперименты <strong>каждую неделю</strong></li>
+            <li>открывает новые каналы <em>до того</em>, как текущие насытятся</li>
+            <li>жонглирует контентом, аналитикой и закупками одновременно</li>
+        </ul>
+        <p>со временем это вырастет в команду. но сейчас нужен <strong>один человек</strong>, который выстроит фундамент.</p>
+
+        <!-- ========== ЧЕМ ЗАНИМАЕШЬСЯ ========== -->
+        <div class="section-label">чем занимаешься</div>
+
+        <div class="role-grid">
+            <div class="role-card">
+                <div class="role-card-head">
+                    <span class="role-card-num">01</span>
+                    <span class="role-card-title">performance & эксперименты</span>
+                    <span class="role-card-pct">50%</span>
+                </div>
+                <p>это главное. всё остальное поддерживает это.</p>
+                <ul>
+                    <li>дизайн, запуск и анализ маркетинговых экспериментов каждую неделю</li>
+                    <li>построение и оптимизация воронок от первого касания до оплаты</li>
+                    <li>настройка и ведение рекламы — <strong>TG Ads, Meta, Google</strong> (хотя бы 2 из 3)</li>
+                    <li>управление рекламным бюджетом с ROI-целями по каждому каналу</li>
+                    <li>постоянный поиск новых каналов — текущие насытятся</li>
+                    <li>weekly report: расходы, лиды, конверсии, выручка</li>
+                </ul>
+            </div>
+
+            <div class="role-card">
+                <div class="role-card-head">
+                    <span class="role-card-num">02</span>
+                    <span class="role-card-title">контент для конверсии</span>
+                    <span class="role-card-pct">30%</span>
+                </div>
+                <p>не творчество ради творчества. контент — <em>инструмент привлечения</em>.</p>
+                <ul>
+                    <li>переупаковка экспертного контента (видео, подкасты, доклады) в рекламные форматы</li>
+                    <li>конверсионный копирайтинг для TG, ботов, лендингов, email</li>
+                    <li>рекламные креативы — тексты и визуал</li>
+                    <li>A/B тестирование посадочных страниц</li>
+                    <li>нарезка видео под короткие форматы (reels, shorts)</li>
+                </ul>
+            </div>
+
+            <div class="role-card">
+                <div class="role-card-head">
+                    <span class="role-card-num">03</span>
+                    <span class="role-card-title">market intelligence</span>
+                    <span class="role-card-pct">20%</span>
+                </div>
+                <ul>
+                    <li>мониторинг рынка: конкуренты, тренды в edtech/AI, инфоповоды</li>
+                    <li>channel discovery: исследование новых площадок раньше конкурентов</li>
+                    <li>еженедельный дайджест для команды</li>
+                    <li>автоматизация рутины через AI-инструменты</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ТРЕБОВАНИЯ ========== -->
+        <div class="section-label">обязательные требования</div>
+        <p>в порядке приоритета. первые два блока — deal-breakers.</p>
+
+        <div class="req-block primary">
+            <span class="req-block-label">priority 01 · performance marketing</span>
+            <div class="req-block-title">фундамент, без которого AI-скиллы не помогут</div>
+            <ul>
+                <li><strong>5+ лет опыта</strong> в performance/digital marketing — edtech, e-com или B2C SaaS</li>
+                <li><strong>дизайн экспериментов</strong> — гипотеза → метрика → тест → анализ → следующий тест</li>
+                <li><strong>аналитика</strong> — воронки, конверсии, когортный анализ, unit economics, LTV, CAC</li>
+                <li><strong>управление бюджетом</strong> — опыт от $5K/мес, ROI-цели по каналу</li>
+                <li><strong>закупка трафика</strong> — TG Ads, Meta Ads, Google Ads — самостоятельное ведение</li>
+            </ul>
+            <span class="deal-breaker-note">deal-breaker</span>
+        </div>
+
+        <div class="req-block primary">
+            <span class="req-block-label">priority 02 · мышление</span>
+            <div class="req-block-title">как ты подходишь к задачам</div>
+            <ul>
+                <li><strong>channel discovery</strong> — постоянно ищешь новые каналы, не только оптимизируешь старые</li>
+                <li><strong>инициативность</strong> — предлагаешь эксперименты сам, не ждёшь задач</li>
+                <li><strong>быстрая итерация</strong> — запустил → измерил → скорректировал</li>
+                <li><strong>data-driven</strong> — каждое решение подкреплено данными</li>
+            </ul>
+            <span class="deal-breaker-note">deal-breaker</span>
+        </div>
+
+        <div class="req-block secondary">
+            <span class="req-block-label">priority 03 · контент и копирайтинг</span>
+            <div class="req-block-title">язык, которым ты пишешь</div>
+            <ul>
+                <li><strong>русский</strong> — основной язык, лаконичный стиль, без корпоративщины</li>
+                <li><strong>английский</strong> — рабочий уровень</li>
+                <li><strong>конверсионный копирайтинг</strong> — тексты, которые продают</li>
+            </ul>
+        </div>
+
+        <div class="req-block secondary">
+            <span class="req-block-label">priority 04 · AI-native</span>
+            <div class="req-block-title">важно, но вторично — строится поверх фундамента</div>
+            <ul>
+                <li>ежедневное использование AI — Claude, ChatGPT, AI для аналитики и автоматизации</li>
+                <li>prompt engineering — формулировка задач с рабочим результатом</li>
+                <li>опыт создания AI-powered воронок, ботов или workflows — плюс</li>
+            </ul>
+        </div>
+
+        <!-- ========== БУДЕТ ПЛЮСОМ ========== -->
+        <div class="section-label">будет плюсом</div>
+        <ul>
+            <li>опыт в edtech или community-продуктах</li>
+            <li>Telegram marketing: каналы, боты, рассылки</li>
+            <li>опыт с маленькими командами (< 15 человек)</li>
+            <li>знание Linear, Notion, AI IDE</li>
+            <li>собственные генеративные инструменты для креативов</li>
+        </ul>
+
+        <!-- ========== КОГО НЕ ИЩЕМ ========== -->
+        <div class="section-label">кого мы не ищем</div>
+        <div class="anti-list">
+            <ul>
+                <li><strong>«контент-менеджер»</strong> — если твоя работа = планировщик постов + Canva</li>
+                <li><strong>реактивный исполнитель</strong> — ждёт задач и подробных инструкций</li>
+                <li><strong>боится цифр</strong> — не может объяснить unit economics своей последней кампании</li>
+                <li><strong>не использует AI в 2026</strong> — «иногда ChatGPT для текстов» — red flag</li>
+                <li><strong>не следит за рынком</strong> — не может назвать 5 конкурентов в AI/edtech</li>
+                <li><strong>корпоративный стиль</strong> — «в рамках», «хотелось бы», «давайте синхронизируемся»</li>
+                <li><strong>нужен onboarding в AI</strong> — у нас нет времени. нужен человек, который уже там</li>
+            </ul>
+        </div>
+
+        <!-- ========== ПРОЦЕСС ========== -->
+        <div class="section-label">процесс отбора</div>
+        <div class="process">
+            <div class="process-step">
+                <div class="process-step-body">
+                    <h3>скрининг</h3>
+                    <div class="process-step-meta">15–20 мин · переписка или созвон</div>
+                    <p>формат работы, timezone, ожидания по компенсации, базовый опыт. проверяем match на человеческом уровне.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-body">
+                    <h3>deep dive</h3>
+                    <div class="process-step-meta">45–60 мин · видеозвонок с основателем</div>
+                    <p>performance-кейсы с цифрами, experiment design на живом сценарии, AI workflow, market awareness, culture fit.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-body">
+                    <h3>экспертная оценка</h3>
+                    <div class="process-step-meta">30 мин · при необходимости</div>
+                    <p>внешний advisor с опытом в performance marketing. включается при сомнениях по hard skills.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-body">
+                    <h3>оффер → пробный месяц</h3>
+                    <div class="process-step-meta">1 месяц · с KPI</div>
+                    <p>после раундов — оффер на пробный период с конкретными KPI (см. ниже). если всё складывается — постоянный контракт.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== KPI ========== -->
+        <div class="section-label">KPI пробного месяца</div>
+        <div class="kpi-grid">
+            <div class="kpi-card"><strong>experiments</strong>3+ маркетинговых эксперимента запущены и проанализированы</div>
+            <div class="kpi-card"><strong>funnels</strong>хотя бы 1 воронка оптимизирована с измеримым результатом</div>
+            <div class="kpi-card"><strong>reporting</strong>weekly report по каналам — расходы, лиды, конверсии, ROI</div>
+            <div class="kpi-card"><strong>budget</strong>рекламный бюджет под управлением с ROI-целями</div>
+            <div class="kpi-card"><strong>initiative</strong>3+ самостоятельных идеи, хотя бы 1 реализована</div>
+            <div class="kpi-card"><strong>intelligence</strong>еженедельный market digest для команды</div>
+        </div>
+    </section>
+
+    <!-- ===== APPLY ===== -->
+    <section class="apply-section" id="apply">
+        <div class="apply-block">
+            <div class="apply-label">apply</div>
+            <h2 class="apply-title">как откликнуться</h2>
+            <p class="apply-subtitle">
+                нажми <strong>«скопировать шаблон»</strong> — он ляжет в буфер обмена. потом «открыть чат команды» — заполнишь плейсхолдеры и отправишь. мы ответим в течение 3 дней.
+            </p>
+
+            <div class="template-box" id="template"><span class="placeholder">привет!</span>
+
+хочу откликнуться на вакансию performance marketing lead.
+
+коротко про себя:
+– <span class="placeholder">[опыт: где работал, сколько лет, специализация]</span>
+– <span class="placeholder">[лучший кейс: канал / бюджет / CPL / ROAS / конверсия]</span>
+– <span class="placeholder">[почему именно performance, а не контент — одним предложением]</span>
+
+готов(а) обсудить детали и показать артефакты. удобное время на короткий созвон?</div>
+
+            <div class="apply-actions">
+                <button class="btn-primary" id="copy-btn" onclick="copyTemplate()">
+                    <span id="copy-text">скопировать шаблон</span>
+                    <span class="arr">⌘</span>
+                </button>
+                <a href="https://t.me/ai_mind_set_team" target="_blank" rel="noopener" class="btn-secondary">
+                    открыть чат команды →
+                </a>
+            </div>
+
+            <p class="apply-note">
+                чат команды: <code>t.me/ai_mind_set_team</code> — сюда приходят все отклики.<br>
+                без CV, без сопроводительных. три строки с цифрами — этого достаточно для первого касания.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== RESOURCES ===== -->
+    <section class="resources">
+        <div class="section-label">публичные ресурсы · посмотри, как мы работаем</div>
+        <div class="resources-grid">
+            <a href="https://aimindset.org" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">сайт</span>
+                <span class="resource-url">aimindset.org</span>
+                <span class="resource-desc">главный лендинг — что мы делаем и для кого</span>
+            </a>
+            <a href="https://t.me/ai_mind_set" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">telegram канал</span>
+                <span class="resource-url">@ai_mind_set</span>
+                <span class="resource-desc">~8K подписчиков · тон, темы, контент</span>
+            </a>
+            <a href="https://www.youtube.com/@A-I-Mindset" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">youtube</span>
+                <span class="resource-url">@A-I-Mindset</span>
+                <span class="resource-desc">лекции, discussions, demo days</span>
+            </a>
+            <a href="https://learn.aimindset.org" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">LMS</span>
+                <span class="resource-url">learn.aimindset.org</span>
+                <span class="resource-desc">курсы и база знаний</span>
+            </a>
+            <a href="https://ai-native.aimindset.org" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">ai-native sprint</span>
+                <span class="resource-url">ai-native.aimindset.org</span>
+                <span class="resource-desc">4-недельный корпоративный спринт</span>
+            </a>
+            <a href="https://t.me/aimindset_bot" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">telegram-бот продуктов</span>
+                <span class="resource-url">@aimindset_bot</span>
+                <span class="resource-desc">лендинги программ и подписки</span>
+            </a>
+        </div>
+        <p style="margin-top: 18px; font-size: 12px; color: var(--muted); text-align: center;">
+            лучший способ понять, подходит ли тебе наш вайб — полистать канал за последние 2 недели.
+        </p>
+    </section>
+
+    <footer class="foot">
+        built by agents, for agents
+        <span class="foot-divider">·</span>
+        <a href="https://github.com/ai-mindset-org/aim-apply">github</a>
+        <span class="foot-divider">·</span>
+        <span>обновлено 2026-04-10</span>
+    </footer>
+
+    <script>
+        function copyTemplate() {
+            const template = `привет!
+
+хочу откликнуться на вакансию performance marketing lead.
+
+коротко про себя:
+– [опыт: где работал, сколько лет, специализация]
+– [лучший кейс: канал / бюджет / CPL / ROAS / конверсия]
+– [почему именно performance, а не контент — одним предложением]
+
+готов(а) обсудить детали и показать артефакты. удобное время на короткий созвон?`;
+
+            navigator.clipboard.writeText(template).then(() => {
+                const btn = document.getElementById('copy-btn');
+                const text = document.getElementById('copy-text');
+                const originalText = text.textContent;
+                btn.classList.add('copied');
+                text.textContent = 'скопировано · открываю чат';
+                setTimeout(() => {
+                    window.open('https://t.me/ai_mind_set_team', '_blank');
+                }, 600);
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    text.textContent = originalText;
+                }, 3000);
+            }).catch(() => {
+                alert('не удалось скопировать. вот текст:\n\n' + template);
+            });
+        }
+    </script>
+</body>
+</html>
