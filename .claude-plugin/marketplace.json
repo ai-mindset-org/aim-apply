@@ -1,0 +1,16 @@
+{
+  "name": "aim-apply",
+  "metadata": {
+    "displayName": "AI Mindset Apply",
+    "description": "Hiring assessment plugin for AI Mindset team",
+    "owner": "ai-mindset-org",
+    "homepage": "https://aimindset.org"
+  },
+  "plugins": [
+    {
+      "name": "aim-apply",
+      "source": ".",
+      "description": "Guided 3-phase hiring assessment with role tracks"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "aim-apply",
+  "version": "0.1.0",
+  "description": "Guided hiring assessment for AI Mindset team — 3-phase flow through profile, task, reflection. Ships 5 role tracks (general, marketing, automation, visual, ops).",
+  "author": {
+    "name": "AI Mindset",
+    "url": "https://aimindset.org"
+  },
+  "keywords": ["hiring", "assessment", "ai-mindset"],
+  "license": "MIT",
+  "homepage": "https://aim-apply.netlify.app/jd-marketing.html"
+}

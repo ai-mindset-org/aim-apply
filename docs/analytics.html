@@ -1048,6 +1048,193 @@
             font-weight: 500;
         }
 
+        /* ===== APPLICATIONS ===== */
+        .apps-context-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .ctx-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .ctx-selector {
+            display: inline-flex;
+            gap: 2px;
+            padding: 3px;
+            border: 1px solid var(--border);
+            background: rgba(13,13,23,0.4);
+            flex-wrap: wrap;
+        }
+        .ctx-btn {
+            padding: 7px 14px;
+            background: transparent;
+            border: 0;
+            color: var(--dim);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .ctx-btn:hover {
+            color: var(--accent);
+            background: rgba(77,201,212,0.05);
+        }
+        .ctx-btn.active {
+            color: var(--bg);
+            background: var(--accent);
+            font-weight: 600;
+        }
+        .ctx-btn.divider {
+            margin-left: 8px;
+            position: relative;
+        }
+        .ctx-btn.divider::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 25%;
+            bottom: 25%;
+            width: 1px;
+            background: var(--border);
+        }
+        .apps-kpis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .apps-kpi {
+            padding: 20px 22px;
+            border: 1px solid var(--border);
+            background: rgba(13,13,23,0.4);
+        }
+        .apps-kpi .label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        .apps-kpi .value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--dim);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .apps-kpi .value.accent { color: var(--accent); }
+        .apps-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 820px) {
+            .apps-two-col { grid-template-columns: 1fr; }
+        }
+        .apps-funnel-card,
+        .apps-breakdown-card {
+            padding: 22px 24px;
+            border: 1px solid var(--border);
+            background: rgba(13,13,23,0.4);
+            min-height: 200px;
+        }
+        .apps-sub-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+        .apps-funnel-row {
+            display: grid;
+            grid-template-columns: 110px 1fr 60px;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+        }
+        .apps-funnel-name { color: var(--dim); }
+        .apps-funnel-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        .apps-funnel-bar-fill {
+            position: absolute;
+            inset: 0 auto 0 0;
+            background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+            transition: width 0.5s ease;
+        }
+        .apps-funnel-val {
+            text-align: right;
+            color: var(--accent);
+            font-variant-numeric: tabular-nums;
+            font-weight: 600;
+        }
+        .apps-roles {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .apps-role-row {
+            display: grid;
+            grid-template-columns: 110px 1fr 50px;
+            align-items: center;
+            gap: 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+        }
+        .apps-role-name { color: var(--dim); }
+        .apps-role-bar {
+            height: 6px;
+            background: rgba(255,255,255,0.03);
+            position: relative;
+        }
+        .apps-role-bar-fill {
+            position: absolute;
+            inset: 0 auto 0 0;
+            background: var(--accent-dim);
+        }
+        .apps-role-val {
+            text-align: right;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .apps-empty {
+            color: var(--muted);
+            font-size: 12px;
+            font-style: italic;
+            padding: 16px 0;
+        }
+        .apps-note {
+            padding: 12px 16px;
+            font-size: 11px;
+            color: var(--muted);
+            border-left: 2px solid var(--accent-dim);
+            background: rgba(77,201,212,0.03);
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+        .apps-note code {
+            color: var(--accent);
+            background: rgba(77,201,212,0.08);
+            padding: 1px 6px;
+            border-radius: 2px;
+        }
+
         /* ===== INTEGRATIONS ===== */
         .int-note {
             margin-bottom: 16px;
@@ -1504,6 +1691,49 @@
         </div>
     </section>
 
+    <!-- ===== APPLICATIONS (hiring submissions) ===== -->
+    <section class="section" aria-labelledby="apps-label">
+        <div class="section-label" id="apps-label">applications <span class="hint" id="apps-hint">· hiring funnel · all roles</span></div>
+        <div class="apps-context-row">
+            <label class="ctx-label">context:</label>
+            <div class="ctx-selector" role="tablist" id="apps-ctx">
+                <button type="button" class="ctx-btn active" data-ctx="all">all</button>
+                <button type="button" class="ctx-btn" data-ctx="general">general</button>
+                <button type="button" class="ctx-btn" data-ctx="marketing">marketing</button>
+                <button type="button" class="ctx-btn" data-ctx="automation">automation</button>
+                <button type="button" class="ctx-btn" data-ctx="visual">visual</button>
+                <button type="button" class="ctx-btn" data-ctx="ops">ops</button>
+                <button type="button" class="ctx-btn divider" data-ctx="plugin">plugin installs</button>
+            </div>
+        </div>
+
+        <div class="apps-kpis" id="apps-kpis">
+            <div class="apps-kpi"><div class="label">submitted</div><div class="value accent" id="apps-total">—</div></div>
+            <div class="apps-kpi"><div class="label">started</div><div class="value" id="apps-started">—</div></div>
+            <div class="apps-kpi"><div class="label">completion</div><div class="value" id="apps-completion">—</div></div>
+            <div class="apps-kpi"><div class="label">avg duration</div><div class="value" id="apps-avg-duration">—</div></div>
+        </div>
+
+        <div class="apps-two-col">
+            <div class="apps-funnel-card">
+                <div class="apps-sub-label">phase funnel</div>
+                <div class="apps-funnel" id="apps-funnel-list">
+                    <div class="apps-empty">no submissions yet</div>
+                </div>
+            </div>
+            <div class="apps-breakdown-card">
+                <div class="apps-sub-label">by role</div>
+                <div class="apps-roles" id="apps-roles-list">
+                    <div class="apps-empty">no submissions yet</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="apps-note" id="apps-note">
+            submissions pipeline reads from private github repo via the <code>submissions-summary</code> netlify function. zero content is exposed — only aggregate counts, phase durations, drop-off. each candidate controls what's sent at submit time.
+        </div>
+    </section>
+
     <!-- ===== INTEGRATIONS ===== -->
     <section class="section" aria-labelledby="int-label">
         <div class="section-label" id="int-label">integrations <span class="hint">· what else plugs in</span></div>
@@ -1586,6 +1816,8 @@ const state = {
     period: '7d',
     vs: true,
     data: null,
+    apps: null,
+    appsContext: 'all',
     loading: false,
     error: null,
     lastUpdated: null,
@@ -1598,6 +1830,7 @@ const state = {
 };
 
 const ENDPOINT = '/.netlify/functions/umami-stats-extended';
+const APPS_ENDPOINT = '/.netlify/functions/submissions-summary';
 const REFRESH_MS = 30_000;
 
 // ============================================================
@@ -1683,15 +1916,35 @@ async function fetchData() {
     updateRefreshBtn();
 
     try {
-        const res = await fetch(`${ENDPOINT}?period=${encodeURIComponent(state.period)}`, {
-            signal: state.currentAbort.signal,
-            headers: { 'accept': 'application/json' }
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-        state.data = json;
+        // Fetch umami traffic + applications summary in parallel — graceful degradation
+        const [umamiRes, appsRes] = await Promise.allSettled([
+            fetch(`${ENDPOINT}?period=${encodeURIComponent(state.period)}`, {
+                signal: state.currentAbort.signal,
+                headers: { 'accept': 'application/json' }
+            }),
+            fetch(`${APPS_ENDPOINT}?context=${encodeURIComponent(state.appsContext)}&period=${encodeURIComponent(state.period)}`, {
+                signal: state.currentAbort.signal,
+                headers: { 'accept': 'application/json' }
+            }),
+        ]);
+
+        if (umamiRes.status === 'fulfilled' && umamiRes.value.ok) {
+            state.data = await umamiRes.value.json();
+            state.error = null;
+        } else {
+            throw new Error(umamiRes.status === 'fulfilled'
+                ? `HTTP ${umamiRes.value.status}`
+                : (umamiRes.reason?.message || 'umami fetch failed'));
+        }
+
+        if (appsRes.status === 'fulfilled' && appsRes.value.ok) {
+            state.apps = await appsRes.value.json();
+        } else {
+            // Non-fatal — dashboard still renders with umami data + empty apps
+            state.apps = { total: 0, by_role: {}, funnel: {}, errors: ['submissions endpoint unreachable'] };
+        }
+
         state.lastUpdated = new Date();
-        state.error = null;
         render();
     } catch (err) {
         if (err.name === 'AbortError') return;
@@ -1701,6 +1954,25 @@ async function fetchData() {
     } finally {
         state.loading = false;
         updateRefreshBtn();
+    }
+}
+
+async function fetchAppsOnly() {
+    // Used when switching context without re-fetching umami
+    try {
+        const res = await fetch(`${APPS_ENDPOINT}?context=${encodeURIComponent(state.appsContext)}&period=${encodeURIComponent(state.period)}`, {
+            headers: { 'accept': 'application/json' }
+        });
+        if (res.ok) {
+            state.apps = await res.json();
+        } else {
+            state.apps = { total: 0, by_role: {}, funnel: {}, errors: ['fetch failed'] };
+        }
+        renderApps();
+    } catch (err) {
+        console.error('[apps] fetch failed', err);
+        state.apps = { total: 0, by_role: {}, funnel: {}, errors: [err.message] };
+        renderApps();
     }
 }
 
@@ -1728,9 +2000,73 @@ function render() {
     renderAudience(d);
     renderGeo(d);
     renderPages(d.pages || []);
+    renderApps();
     updateUpdatedNote();
     $('#gen-time').textContent = d.generated_at ? new Date(d.generated_at).toLocaleString('en-GB') : '—';
     $('#error-slot').innerHTML = '';
+}
+
+function renderApps() {
+    const a = state.apps || { total: 0, by_role: {}, funnel: {}, errors: [] };
+    const ctx = state.appsContext;
+
+    // update hint with current context
+    const ctxLabel = ctx === 'all' ? 'hiring funnel · all roles'
+                   : ctx === 'plugin' ? 'plugin installs · copy-command events'
+                   : `hiring funnel · role=${ctx}`;
+    $('#apps-hint').textContent = '· ' + ctxLabel;
+
+    // KPIs
+    const total = a.total || 0;
+    const started = a.funnel?.started || 0;
+    const completionRate = started > 0 ? Math.round((total / started) * 100) : 0;
+    const avgMs = a.avg_duration_per_phase
+        ? Object.values(a.avg_duration_per_phase).reduce((s, v) => s + (v || 0), 0)
+        : 0;
+    const avgFmt = avgMs > 0 ? `${Math.round(avgMs / 60000)}m` : '—';
+
+    $('#apps-total').textContent = total;
+    $('#apps-started').textContent = started || '—';
+    $('#apps-completion').textContent = started > 0 ? `${completionRate}%` : '—';
+    $('#apps-avg-duration').textContent = avgFmt;
+
+    // Funnel
+    const fn = a.funnel || {};
+    const funnelSteps = [
+        ['started',         fn.started         ?? 0],
+        ['profile done',    fn.profile_done    ?? 0],
+        ['task done',       fn.task_done       ?? 0],
+        ['reflection done', fn.reflection_done ?? 0],
+        ['submitted',       fn.submitted       ?? 0],
+    ];
+    const fnMax = Math.max(1, ...funnelSteps.map(s => s[1]));
+    const funnelHtml = funnelSteps.every(s => s[1] === 0)
+        ? '<div class="apps-empty">no session data yet — candidates will appear here as they start the assessment</div>'
+        : funnelSteps.map(([name, v]) => {
+            const pct = Math.round((v / fnMax) * 100);
+            return `<div class="apps-funnel-row">
+                <span class="apps-funnel-name">${name}</span>
+                <div class="apps-funnel-bar"><div class="apps-funnel-bar-fill" style="width:${pct}%"></div></div>
+                <span class="apps-funnel-val">${v}</span>
+            </div>`;
+        }).join('');
+    $('#apps-funnel-list').innerHTML = funnelHtml;
+
+    // By role
+    const roles = a.by_role || {};
+    const roleEntries = Object.entries(roles).sort((a, b) => b[1] - a[1]);
+    const roleMax = Math.max(1, ...roleEntries.map(e => e[1]));
+    const rolesHtml = roleEntries.length === 0 || roleEntries.every(e => e[1] === 0)
+        ? '<div class="apps-empty">no submissions yet</div>'
+        : roleEntries.map(([name, v]) => {
+            const pct = Math.round((v / roleMax) * 100);
+            return `<div class="apps-role-row">
+                <span class="apps-role-name">${name}</span>
+                <div class="apps-role-bar"><div class="apps-role-bar-fill" style="width:${pct}%"></div></div>
+                <span class="apps-role-val">${v}</span>
+            </div>`;
+        }).join('');
+    $('#apps-roles-list').innerHTML = rolesHtml;
 }
 
 function periodHint(p) {
@@ -2524,6 +2860,17 @@ $('#vs-toggle').addEventListener('change', (e) => {
 });
 
 $('#refresh-btn').addEventListener('click', fetchData);
+
+// applications context selector — fetch only apps, don't touch umami
+$$('#apps-ctx .ctx-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const ctx = btn.dataset.ctx;
+        if (ctx === state.appsContext) return;
+        state.appsContext = ctx;
+        $$('#apps-ctx .ctx-btn').forEach(b => b.classList.toggle('active', b === btn));
+        fetchAppsOnly();
+    });
+});
 
 $$('.legend-item').forEach(item => {
     item.addEventListener('click', () => {
