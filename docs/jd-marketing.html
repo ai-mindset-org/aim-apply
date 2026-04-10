@@ -635,50 +635,61 @@
             letter-spacing: -0.01em;
         }
 
-        /* --- collapsible template --- */
-        .template-details {
+        /* --- inline template block (always visible) --- */
+        .template-wrap {
             margin-top: 32px;
-            margin-bottom: 0;
+            border: 1px solid var(--border);
+            background: var(--bg-deep);
         }
-        .template-summary {
+        .template-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 18px;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
             background: rgba(13,13,23,0.6);
-            border: 1px solid var(--border);
-            cursor: pointer;
-            list-style: none;
+        }
+        .template-label {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 13px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .btn-copy-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: transparent;
+            border: 1px solid var(--border);
             color: var(--dim);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.15s ease;
             letter-spacing: 0.02em;
-            transition: all 0.2s;
-            user-select: none;
         }
-        .template-summary::-webkit-details-marker { display: none; }
-        .template-summary::before {
-            content: '\25B8';
-            color: var(--accent-dim);
-            font-size: 12px;
-            transition: transform 0.2s;
-            display: inline-block;
-            width: 14px;
-            text-align: center;
-        }
-        .template-details[open] > .template-summary::before {
-            transform: rotate(90deg);
-        }
-        .template-summary:hover {
-            background: rgba(77,201,212,0.05);
+        .btn-copy-inline .icon {
+            font-size: 13px;
             color: var(--accent);
-            border-color: var(--accent-dim);
+            line-height: 1;
         }
+        .btn-copy-inline:hover {
+            background: rgba(77,201,212,0.06);
+            border-color: var(--accent-dim);
+            color: var(--accent);
+        }
+        .btn-copy-inline.copied {
+            background: rgba(16,185,129,0.1);
+            color: var(--green);
+            border-color: rgba(16,185,129,0.5);
+        }
+        .btn-copy-inline.copied .icon { color: var(--green); }
 
         .template-box {
-            background: var(--bg-deep);
-            border: 1px solid var(--border);
-            border-top: none;
             padding: 22px 24px;
             font-family: 'IBM Plex Mono', monospace;
             font-size: 12.5px;
@@ -776,45 +787,6 @@
             border-color: rgba(16,185,129,0.5);
         }
         .btn-secondary.copied .icon { color: var(--green); }
-
-        .apply-handle-row {
-            margin-top: 28px;
-            font-size: 13px;
-            color: var(--muted);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .chat-handle {
-            background: rgba(77,201,212,0.06);
-            border: 1px solid var(--border);
-            padding: 6px 12px;
-            border-radius: 2px;
-            color: var(--accent);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            user-select: all;
-        }
-        .chat-handle:hover {
-            background: rgba(77,201,212,0.12);
-            border-color: var(--accent-dim);
-        }
-        .chat-handle.copied {
-            background: rgba(16,185,129,0.15);
-            border-color: rgba(16,185,129,0.5);
-            color: var(--green);
-        }
-        .handle-hint {
-            font-size: 11px;
-            color: var(--muted);
-            letter-spacing: 0.03em;
-        }
-        .handle-hint.copied {
-            color: var(--green);
-        }
 
         .apply-note {
             margin-top: 28px;
@@ -1232,19 +1204,15 @@
                 </button>
             </div>
 
-            <p class="apply-handle-row">
-                чат команды:
-                <code class="chat-handle" id="chat-handle" onclick="copyHandle(event)" title="клик — скопировать">t.me/ai_mind_set_team</code>
-                <span class="handle-hint" id="handle-hint">клик — копирует</span>
-            </p>
-
-            <details class="template-details">
-                <summary class="template-summary">
-                    <span>раскрыть шаблон первого сообщения</span>
-                </summary>
-                <div class="template-box" id="template"><span class="placeholder">привет!</span>
-
-хочу откликнуться на вакансию AI-native marketing lead.
+            <div class="template-wrap">
+                <div class="template-header">
+                    <span class="template-label">шаблон первого сообщения</span>
+                    <button type="button" class="btn-copy-inline" id="copy-template-btn-inline" onclick="copyTemplate(event)" data-umami-event="template-copy">
+                        <span class="icon" aria-hidden="true">⎘</span>
+                        <span id="copy-template-text-inline">скопировать</span>
+                    </button>
+                </div>
+                <div class="template-box" id="template"><span class="placeholder">привет, меня заинтересовала вакансия AI-native marketing lead. сейчас расскажу про себя.</span>
 
 <span class="block-label">про себя</span>– <span class="placeholder">[имя, откуда, сколько лет в performance marketing]</span>
 – <span class="placeholder">[где работал(а), какие продукты, почему ушёл(ла)]</span>
@@ -1262,7 +1230,7 @@
 – удобное время на созвон 20-30 минут?
 
 спасибо.</div>
-            </details>
+            </div>
 
             <p class="apply-note">
                 без CV, без сопроводительных. один человек читает каждое сообщение и отвечает лично. ответ в течение 3 дней.
@@ -1319,9 +1287,7 @@
     </footer>
 
     <script>
-        const APPLY_TEMPLATE = `привет!
-
-хочу откликнуться на вакансию AI-native marketing lead.
+        const APPLY_TEMPLATE = `привет, меня заинтересовала вакансия AI-native marketing lead. сейчас расскажу про себя.
 
 про себя
 – [имя, откуда, сколько лет в performance marketing]
@@ -1365,32 +1331,29 @@
         }
 
         function copyTemplate() {
-            const btn = document.getElementById('copy-template-btn');
-            const text = document.getElementById('copy-template-text');
-            const original = text.textContent;
-            copyText(APPLY_TEMPLATE, () => {
-                btn.classList.add('copied');
-                text.textContent = '✓ скопировано';
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    text.textContent = original;
-                }, 2500);
-            });
-        }
+            // Flash both copy buttons (top-row secondary and inline-above-template) together
+            const targets = [
+                { btn: 'copy-template-btn',        label: 'copy-template-text' },
+                { btn: 'copy-template-btn-inline', label: 'copy-template-text-inline' },
+            ];
+            const state = targets
+                .map(({ btn, label }) => {
+                    const b = document.getElementById(btn);
+                    const t = document.getElementById(label);
+                    return b && t ? { b, t, original: t.textContent } : null;
+                })
+                .filter(Boolean);
 
-        function copyHandle(e) {
-            e.preventDefault();
-            const handle = document.getElementById('chat-handle');
-            const hint = document.getElementById('handle-hint');
-            const originalHint = hint.textContent;
-            copyText('t.me/ai_mind_set_team', () => {
-                handle.classList.add('copied');
-                hint.classList.add('copied');
-                hint.textContent = '✓ скопировано';
+            copyText(APPLY_TEMPLATE, () => {
+                state.forEach(({ b, t }) => {
+                    b.classList.add('copied');
+                    t.textContent = '✓ скопировано';
+                });
                 setTimeout(() => {
-                    handle.classList.remove('copied');
-                    hint.classList.remove('copied');
-                    hint.textContent = originalHint;
+                    state.forEach(({ b, t, original }) => {
+                        b.classList.remove('copied');
+                        t.textContent = original;
+                    });
                 }, 2500);
             });
         }
