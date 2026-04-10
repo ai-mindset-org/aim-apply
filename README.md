@@ -1,3 +1,19 @@
+## Install as Claude Code plugin
+
+Inside Claude Code session, run:
+
+```
+/plugin marketplace add ai-mindset-org/aim-apply
+/plugin install aim-apply@aim-apply
+/aim-apply:apply marketing
+```
+
+Replace `marketing` with your target role: `general`, `marketing`, `automation`, `visual`, `ops`.
+
+Takes ~25 minutes. 3 phases (profile → task → reflection). Session logged locally to `~/aim-apply-session-{date}/`. Nothing sent until explicit submit at the end.
+
+---
+
 <div align="center">
 
 <br>
