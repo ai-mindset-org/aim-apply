@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>aim-apply · /analytics · OG cover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #161620;
+    --bg-card: #1a1a2e;
+    --bg-deep: #0d0d17;
+    --accent: #4dc9d4;
+    --accent-dim: rgba(77,201,212,0.5);
+    --accent-glow: rgba(77,201,212,0.25);
+    --accent-subtle: rgba(77,201,212,0.08);
+    --blue: #3b82f6;
+    --green: #10b981;
+    --text: #e8e8ef;
+    --dim: rgba(232,232,239,0.60);
+    --muted: rgba(232,232,239,0.34);
+    --border: rgba(77,201,212,0.16);
+    --border-soft: rgba(232,232,239,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .stage {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  /* layer 1 — 60px grid */
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(77,201,212,0.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(77,201,212,0.032) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 1;
+  }
+
+  /* layer 2 — radial glow */
+  .glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 12% 8%, rgba(77,201,212,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 82% 18%, rgba(59,130,246,0.10) 0%, transparent 48%),
+      radial-gradient(ellipse at 40% 100%, rgba(77,201,212,0.06) 0%, transparent 55%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* layer 3 — noise */
+  .noise {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    z-index: 9;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* layer 4 — circuit decoration */
+  .circuit-svg {
+    position: absolute; inset: 0;
+    width: 1200px; height: 630px;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .circuit-svg line, .circuit-svg polyline {
+    stroke: rgba(77,201,212,0.14);
+    stroke-width: 1;
+    fill: none;
+  }
+  .circuit-svg circle {
+    fill: rgba(77,201,212,0.22);
+  }
+
+  /* content */
+  .content {
+    position: relative;
+    z-index: 5;
+    width: 1200px;
+    height: 630px;
+    display: grid;
+    grid-template-columns: 720px 480px;
+    padding: 64px 64px 56px;
+    gap: 40px;
+  }
+
+  /* LEFT ===== */
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 16px;
+  }
+
+  .mini-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 26px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mini-label::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--accent-dim);
+    display: inline-block;
+  }
+
+  h1.display {
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    font-size: 116px;
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    color: #fff;
+    margin-bottom: 22px;
+  }
+  h1.display .slash {
+    color: var(--accent);
+  }
+
+  .sub {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--dim);
+    margin-bottom: 32px;
+    max-width: 600px;
+  }
+  .sub strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .meta .dot {
+    color: var(--accent-dim);
+  }
+  .meta .live-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* RIGHT — terminal card ===== */
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .terminal {
+    width: 440px;
+    background: rgba(13,13,23,0.85);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(77,201,212,0.04),
+      0 0 60px rgba(77,201,212,0.08);
+    backdrop-filter: blur(8px);
+  }
+
+  .term-bar {
+    height: 32px;
+    background: rgba(255,255,255,0.025);
+    border-bottom: 1px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    position: relative;
+  }
+  .dots {
+    display: flex;
+    gap: 7px;
+  }
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #febc2e; }
+  .dot.g { background: #28c840; }
+
+  .term-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .term-body {
+    padding: 22px 24px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .kpi {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .kpi .label {
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .kpi .val {
+    color: var(--accent);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+  }
+  .kpi .val.small {
+    font-size: 17px;
+  }
+  .kpi .trend {
+    color: var(--green);
+    font-size: 11px;
+    margin-left: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
+  }
+
+  .active-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent), 0 0 4px var(--accent);
+    display: inline-block;
+  }
+
+  .term-divider {
+    height: 1px;
+    background: var(--border-soft);
+    margin: 14px 0 12px;
+  }
+
+  .spark-wrap {
+    padding-top: 2px;
+  }
+  .spark-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .spark-label .hint { color: var(--accent-dim); }
+
+  /* corner accents ===== */
+  .corner-tr {
+    position: absolute;
+    top: 48px;
+    right: 64px;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .corner-tr .rule {
+    width: 56px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.55;
+  }
+  .corner-tr .year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+  }
+
+  .corner-bl {
+    position: absolute;
+    left: 64px;
+    bottom: 44px;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .corner-bl svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  .corner-br {
+    position: absolute;
+    right: 64px;
+    bottom: 44px;
+    z-index: 6;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .corner-br .bullet {
+    color: var(--accent-dim);
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+
+    <!-- backgrounds -->
+    <div class="grid"></div>
+    <div class="glow"></div>
+
+    <!-- circuit decoration (same DNA as jd-marketing hero) -->
+    <svg class="circuit-svg" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <!-- left side -->
+      <polyline points="0,330 120,330 160,270 280,270 300,290"/>
+      <circle cx="300" cy="290" r="3"/>
+      <polyline points="160,270 160,180 220,120"/>
+      <circle cx="220" cy="120" r="2.5"/>
+      <polyline points="0,520 90,520 130,480 220,480"/>
+      <circle cx="220" cy="480" r="2.5"/>
+      <!-- right side -->
+      <polyline points="1200,290 1060,290 1020,350 920,350 900,330"/>
+      <circle cx="900" cy="330" r="3"/>
+      <polyline points="1020,350 1020,430 960,490"/>
+      <circle cx="960" cy="490" r="2.5"/>
+      <!-- top and accents -->
+      <line x1="540" y1="0" x2="540" y2="60"/>
+      <polyline points="540,60 590,110 680,110"/>
+      <circle cx="680" cy="110" r="2"/>
+      <polyline points="300,290 380,290 420,250"/>
+      <polyline points="900,330 820,330 780,370"/>
+      <line x1="760" y1="630" x2="760" y2="570"/>
+      <polyline points="760,570 720,530 640,530"/>
+      <circle cx="640" cy="530" r="2"/>
+    </svg>
+
+    <!-- corner: top-right -->
+    <div class="corner-tr">
+      <div class="rule"></div>
+      <div class="year">2026</div>
+    </div>
+
+    <!-- main content -->
+    <div class="content">
+
+      <!-- LEFT: editorial type -->
+      <div class="left">
+        <div class="mini-label">ai mindset · apply · 2026</div>
+
+        <h1 class="display"><span class="slash">/</span>analytics</h1>
+
+        <div class="sub">
+          live metrics for <strong>hiring landing pages</strong>
+        </div>
+
+        <div class="meta">
+          <span><span class="live-dot"></span>aim-apply.aimindset.org</span>
+          <span class="dot">·</span>
+          <span>last 7 days</span>
+          <span class="dot">·</span>
+          <span>auto-refresh 30s</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: terminal card -->
+      <div class="right">
+        <div class="terminal">
+          <div class="term-bar">
+            <div class="dots">
+              <span class="dot r"></span>
+              <span class="dot y"></span>
+              <span class="dot g"></span>
+            </div>
+            <div class="term-title">stats — aim-apply</div>
+          </div>
+          <div class="term-body">
+            <div class="kpi">
+              <span class="label">pageviews</span>
+              <span><span class="val">487</span><span class="trend">+18%</span></span>
+            </div>
+            <div class="kpi">
+              <span class="label">visitors</span>
+              <span><span class="val">156</span><span class="trend">+12%</span></span>
+            </div>
+            <div class="kpi">
+              <span class="label">visits</span>
+              <span><span class="val">234</span><span class="trend">+9%</span></span>
+            </div>
+            <div class="kpi">
+              <span class="label">events</span>
+              <span><span class="val small">21</span></span>
+            </div>
+            <div class="kpi">
+              <span class="label">active</span>
+              <span class="active-line"><span class="val small">3</span><span class="pulse-dot"></span></span>
+            </div>
+
+            <div class="term-divider"></div>
+
+            <div class="spark-wrap">
+              <div class="spark-label">
+                <span>pageviews · 7d</span>
+                <span class="hint">live</span>
+              </div>
+              <svg width="392" height="48" viewBox="0 0 392 48" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="sg" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#4dc9d4" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#4dc9d4" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <polyline
+                  points="0,36 49,32 98,38 147,22 196,28 245,14 294,20 343,8 392,12"
+                  fill="none"
+                  stroke="#4dc9d4"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+                <polyline
+                  points="0,36 49,32 98,38 147,22 196,28 245,14 294,20 343,8 392,12 392,48 0,48"
+                  fill="url(#sg)"
+                  stroke="none"/>
+                <circle cx="392" cy="12" r="2.5" fill="#4dc9d4"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- corner: bottom-left (dot logo + wordmark) -->
+    <div class="corner-bl">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" fill="transparent"/>
+        <circle cx="16" cy="16" r="11" fill="none" stroke="#4dc9d4" stroke-width="1.2" opacity="0.45"/>
+        <circle cx="16" cy="16" r="6" fill="#4dc9d4"/>
+        <circle cx="16" cy="16" r="2" fill="#161620"/>
+      </svg>
+      <span>ai mindset</span>
+    </div>
+
+    <!-- corner: bottom-right (version stamp) -->
+    <div class="corner-br">
+      <span>v1</span>
+      <span class="bullet">·</span>
+      <span>og 1200×630</span>
+    </div>
+
+    <!-- noise overlay on top -->
+    <div class="noise"></div>
+  </div>
+</body>
+</html>

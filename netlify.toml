@@ -1,0 +1,20 @@
+[build]
+  publish = "docs"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  # allow Umami API calls to complete even if slow (Netlify default is 10s)
+  timeout = 26
+
+[[redirects]]
+  from = "/go"
+  to = "https://raw.githubusercontent.com/ai-mindset-org/aim-apply/main/scripts/install.sh"
+  status = 200
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, x-umami-api-key"
