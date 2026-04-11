@@ -446,16 +446,29 @@
 
         <h1><span>/</span>apply</h1>
 
-        <div class="role">AI Native Operator</div>
+        <div class="role">AI Mindset Team</div>
 
-        <p class="tagline">последняя вакансия, на которую ты подашься</p>
+        <p class="tagline">это не вакансия. это proof of how you work.</p>
 
-        <a href="https://github.com/ai-mindset-org/aim-apply" class="cta">
-            Apply <span class="arr">&rarr;</span>
-        </a>
+        <div class="install-block" style="margin-bottom: 24px;">
+            <div class="terminal" style="max-width: 620px; margin: 0 auto;">
+                <div class="terminal-bar">
+                    <span class="terminal-dot r"></span>
+                    <span class="terminal-dot y"></span>
+                    <span class="terminal-dot g"></span>
+                    <span class="terminal-title">claude code · 3 команды</span>
+                </div>
+                <div class="terminal-body" style="text-align: left;">
+                    <div><span class="prompt">$</span> <span class="cmd">/plugin marketplace add ai-mindset-org/aim-apply</span></div>
+                    <div><span class="prompt">$</span> <span class="cmd">/plugin install aim-apply@aim-apply</span></div>
+                    <div><span class="prompt">$</span> <span class="cmd">/aim-apply:apply general</span></div>
+                </div>
+            </div>
+            <button id="copy-install-btn" onclick="copyInstall()" style="margin-top: 12px; background: transparent; border: 1px solid var(--border); color: var(--dim); font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 8px 20px; cursor: pointer; transition: all 0.2s;">скопировать всё</button>
+        </div>
 
         <div class="micro-steps">
-            <code>git clone</code> &middot; <code>claude</code> &middot; <code>submit</code>
+            3 команды в Claude Code &middot; <code>~25 мин</code> &middot; результаты приватны
         </div>
     </section>
 
@@ -477,9 +490,9 @@
             <summary>философия</summary>
             <div class="section-body">
                 <p>мы не ищем сотрудников. мы ищем людей, которые уже живут внутри AI-first парадигмы.</p>
-                <p><em>/apply</em> -- это не анкета. это <strong>рабочая среда</strong>. ты клонируешь репо, запускаешь агента, решаешь задачу. если тебе это привычно -- ты уже внутри.</p>
-                <p>нет резюме. нет сопроводительных писем. только <strong>git log</strong> и то, как ты думаешь рядом с машиной.</p>
-                <p>последняя вакансия -- потому что после неё ты либо работаешь с нами, либо понимаешь, что можешь строить что угодно сам.</p>
+                <p><em>/apply</em> -- это не анкета и не тест. это <strong>25-минутная сессия</strong> в терминале. разговор, задания, рефлексия. мы смотрим не на результат, а на <strong>процесс</strong> -- как ты думаешь, какие инструменты выбираешь, что делаешь без подсказки.</p>
+                <p>нет резюме. нет сопроводительных писем. нет GitHub. одна команда в терминале -- и мы видим, как ты работаешь.</p>
+                <p>все действия логируются (tool usage, timing) -- открыто, с твоего согласия. результаты приватны -- видны только команде.</p>
             </div>
         </details>
 
@@ -507,13 +520,13 @@
         <details>
             <summary>направления</summary>
             <div class="section-body">
-                <p>мы не нанимаем на должность. мы ищем человека, который закроет одно или несколько направлений:</p>
+                <p>несколько направлений:</p>
                 <ul class="directions">
                     <li>
                         <span class="dir-marker">//</span>
                         <div>
                             <div class="dir-title">content & growth</div>
-                            <div class="dir-desc">каналы, посты, воронки, SEO, рассылки, запуски</div>
+                            <div class="dir-desc">каналы, посты, воронки, SEO, рассылки, запуски, performance</div>
                         </div>
                     </li>
                     <li>
@@ -537,14 +550,8 @@
                             <div class="dir-desc">задачи, процессы, метрики, координация, CRM</div>
                         </div>
                     </li>
-                    <li>
-                        <span class="dir-marker">//</span>
-                        <div>
-                            <div class="dir-title">community & support</div>
-                            <div class="dir-desc">участники, кураторы, онбординг, фидбек, чаты</div>
-                        </div>
-                    </li>
                 </ul>
+                <p style="margin-top: 14px;">выбираешь направление при запуске. задания адаптируются.</p>
             </div>
         </details>
 
@@ -552,26 +559,33 @@
         <details>
             <summary>как это работает</summary>
             <div class="section-body">
+                <p><strong>/apply</strong> — это <em>Claude Code плагин</em>. ты уже должен иметь <a href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent-dim)">Claude Code</a> установленный (это же главный инструмент работы в AI Mindset). три команды внутри CC — и assessment запускается.</p>
+
                 <div class="terminal">
                     <div class="terminal-bar">
                         <span class="terminal-dot r"></span>
                         <span class="terminal-dot y"></span>
                         <span class="terminal-dot g"></span>
-                        <span class="terminal-title">aim-apply</span>
+                        <span class="terminal-title">claude code session</span>
                     </div>
                     <div class="terminal-body">
-                        <div><span class="prompt">$</span> <span class="cmd">git clone https://github.com/ai-mindset-org/aim-apply</span></div>
-                        <div><span class="prompt">$</span> <span class="cmd">cd aim-apply</span></div>
-                        <div><span class="prompt">$</span> <span class="cmd">claude</span></div>
-                        <div><span class="comment"># агент читает AGENTS.md, даёт тебе задачу</span></div>
-                        <div><span class="comment"># ты решаешь, коммитишь, пушишь</span></div>
+                        <div><span class="comment"># 1. добавить marketplace (один раз)</span></div>
+                        <div><span class="prompt">$</span> <span class="cmd">/plugin marketplace add ai-mindset-org/aim-apply</span></div>
                         <div><span class="output">&nbsp;</span></div>
-                        <div><span class="prompt">$</span> <span class="cmd">git push origin my-solution</span></div>
-                        <div><span class="prompt">$</span> <span class="cmd">gh pr create</span></div>
-                        <div><span class="comment"># готово. PR = твоя заявка</span></div>
+                        <div><span class="comment"># 2. установить плагин (один раз)</span></div>
+                        <div><span class="prompt">$</span> <span class="cmd">/plugin install aim-apply@aim-apply</span></div>
+                        <div><span class="output">&nbsp;</span></div>
+                        <div><span class="comment"># 3. запустить assessment — выбери роль</span></div>
+                        <div><span class="prompt">$</span> <span class="cmd">/aim-apply:apply marketing</span></div>
+                        <div><span class="output">&nbsp;</span></div>
+                        <div><span class="output">  consent screen...</span></div>
+                        <div><span class="comment"># фаза 1: разговор про тебя (~5 мин)</span></div>
+                        <div><span class="comment"># фаза 2: задача по направлению (~15 мин)</span></div>
+                        <div><span class="comment"># фаза 3: рефлексия + preview + отправка (~5 мин)</span></div>
                     </div>
                 </div>
-                <p style="margin-top:14px;">никаких форм. <strong>pull request</strong> -- это и есть отклик. код говорит за тебя.</p>
+                <p style="margin-top:14px;">роли: <code>general</code>, <code>marketing</code>, <code>automation</code>, <code>visual</code>, <code>ops</code>. <strong>general</strong> — для тех кто не помещается в одну коробку, сам предлагает что делать.</p>
+                <p>никаких форм, никакого GitHub, никакого CV. session.jsonl пишется локально, ничего не уходит до твоего явного подтверждения в конце. результаты видны <strong>только команде</strong>.</p>
             </div>
         </details>
 
@@ -579,35 +593,37 @@
         <details>
             <summary>scoring</summary>
             <div class="section-body">
-                <p>каждый PR оценивается по <strong>4 осям</strong>, каждая от 0 до 4:</p>
-                <div class="matrix">
-                    <div class="matrix-cell matrix-header">thinking</div>
-                    <div class="matrix-cell matrix-header">craft</div>
-                    <div class="matrix-cell matrix-header">velocity</div>
-                    <div class="matrix-cell matrix-header">signal</div>
+                <p>assessment строит <strong>6-осевой профиль</strong> на основе разговора, заданий и поведения в сессии:</p>
+                <div class="matrix" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="matrix-cell matrix-header">AI fluency</div>
+                    <div class="matrix-cell matrix-header">tool stack</div>
+                    <div class="matrix-cell matrix-header">strategy</div>
 
                     <div class="matrix-cell">
-                        <span class="score">0-4</span>
-                        как ты разбираешь задачу
-                        <span class="matrix-label">декомпозиция, edge cases, решения</span>
+                        <span class="matrix-label">глубина AI-стека, daily usage</span>
                     </div>
                     <div class="matrix-cell">
-                        <span class="score">0-4</span>
-                        качество результата
-                        <span class="matrix-label">код, структура, git hygiene</span>
+                        <span class="matrix-label">ширина инструментов, automation</span>
                     </div>
                     <div class="matrix-cell">
-                        <span class="score">0-4</span>
-                        скорость и итерации
-                        <span class="matrix-label">agent usage, automation, workflow</span>
+                        <span class="matrix-label">приоритеты, логика, системное мышление</span>
+                    </div>
+
+                    <div class="matrix-cell matrix-header">execution</div>
+                    <div class="matrix-cell matrix-header">taste</div>
+                    <div class="matrix-cell matrix-header">initiative</div>
+
+                    <div class="matrix-cell">
+                        <span class="matrix-label">качество артефактов, скорость</span>
                     </div>
                     <div class="matrix-cell">
-                        <span class="score">0-4</span>
-                        что ещё видно
-                        <span class="matrix-label">инициатива, стиль, потенциал</span>
+                        <span class="matrix-label">стиль, структура, читаемость</span>
+                    </div>
+                    <div class="matrix-cell">
+                        <span class="matrix-label">делает больше, чем просят</span>
                     </div>
                 </div>
-                <p style="margin-top:12px;"><em>12+</em> из 16 -- приглашение на разговор. <em>14+</em> -- оффер.</p>
+                <p style="margin-top:12px;">результат -- тепловая карта твоих сильных сторон. мы смотрим не на идеальный балл, а на <em>профиль</em>.</p>
             </div>
         </details>
 
@@ -623,6 +639,43 @@
     <footer class="foot">
         built by agents, for agents &middot; <a href="https://github.com/ai-mindset-org/aim-apply">github</a>
     </footer>
+
+    <script>
+        const INSTALL_COMMANDS = `/plugin marketplace add ai-mindset-org/aim-apply
+/plugin install aim-apply@aim-apply
+/aim-apply:apply general`;
+
+        function copyInstall() {
+            const btn = document.getElementById('copy-install-btn');
+            const original = btn.textContent;
+            const done = () => {
+                btn.textContent = '✓ скопировано';
+                btn.style.color = 'var(--accent)';
+                btn.style.borderColor = 'var(--accent-dim)';
+                setTimeout(() => {
+                    btn.textContent = original;
+                    btn.style.color = '';
+                    btn.style.borderColor = '';
+                }, 2500);
+            };
+            const fallback = () => {
+                const ta = document.createElement('textarea');
+                ta.value = INSTALL_COMMANDS;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); done(); }
+                catch (err) { alert('не удалось скопировать:\n\n' + INSTALL_COMMANDS); }
+                document.body.removeChild(ta);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(INSTALL_COMMANDS).then(done).catch(fallback);
+            } else {
+                fallback();
+            }
+        }
+    </script>
 
 </body>
 </html>
