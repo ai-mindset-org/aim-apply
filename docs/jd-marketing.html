@@ -635,150 +635,6 @@
             letter-spacing: -0.01em;
         }
 
-        /* --- apply path blocks (plugin + telegram) --- */
-        .apply-path {
-            margin-top: 20px;
-        }
-        .apply-path + .apply-path {
-            margin-top: 0;
-        }
-        .path-label {
-            display: flex;
-            align-items: baseline;
-            gap: 14px;
-            margin-bottom: 14px;
-            flex-wrap: wrap;
-        }
-        .path-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--accent);
-            letter-spacing: 0.15em;
-            padding: 3px 9px;
-            border: 1px solid var(--accent-dim);
-            border-radius: 2px;
-            background: rgba(77,201,212,0.04);
-        }
-        .path-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text);
-            letter-spacing: -0.01em;
-        }
-        .path-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-            padding: 2px 8px;
-            background: rgba(77,201,212,0.08);
-            border-radius: 2px;
-        }
-        .path-tag.muted {
-            color: var(--muted);
-            background: rgba(255,255,255,0.03);
-        }
-        .path-desc {
-            font-size: 13px;
-            color: var(--dim);
-            line-height: 1.65;
-            margin-bottom: 18px;
-            max-width: 620px;
-        }
-        .path-note {
-            margin-top: 14px;
-            font-size: 11px;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-        .path-note a {
-            color: var(--accent);
-            text-decoration: none;
-            border-bottom: 1px dotted var(--accent-dim);
-        }
-        .path-note a:hover { border-bottom-style: solid; }
-
-        .apply-divider {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin: 36px 0 28px;
-            color: var(--muted);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-        .apply-divider::before,
-        .apply-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        /* --- install terminal --- */
-        .install-terminal {
-            border: 1px solid var(--border);
-            background: var(--bg-deep);
-            margin-bottom: 4px;
-        }
-        .terminal-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 14px;
-            background: rgba(13,13,23,0.7);
-            border-bottom: 1px solid var(--border);
-        }
-        .term-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .term-dot.r { background: #ff5f57; }
-        .term-dot.y { background: #febc2e; }
-        .term-dot.g { background: #28c840; }
-        .term-title {
-            margin-left: 6px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            color: var(--muted);
-            letter-spacing: 0.03em;
-            flex: 1;
-        }
-        .term-copy {
-            padding: 5px 10px !important;
-            font-size: 10px !important;
-        }
-        .terminal-body {
-            padding: 20px 22px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
-            line-height: 1.9;
-            color: var(--dim);
-            white-space: pre-wrap;
-            margin: 0;
-            overflow-x: auto;
-        }
-        .term-comment {
-            color: var(--muted);
-            font-style: italic;
-        }
-        .term-cmd {
-            color: var(--accent);
-            font-weight: 500;
-        }
-        .term-cmd::before {
-            content: '$ ';
-            color: var(--muted);
-            opacity: 0.6;
-        }
-
         /* --- inline template block (always visible) --- */
         .template-wrap {
             margin-top: 32px;
@@ -1337,64 +1193,16 @@
             <div class="apply-label">apply</div>
             <h2 class="apply-title">как откликнуться</h2>
 
-            <!-- ============ PATH 1: Claude Code plugin ============ -->
-            <div class="apply-path">
-                <div class="path-label">
-                    <span class="path-num">01</span>
-                    <span class="path-title">через Claude Code плагин</span>
-                    <span class="path-tag">рекомендуемый путь</span>
-                </div>
-                <p class="path-desc">
-                    guided assessment — 25 минут, 3 фазы (профиль → задача → рефлексия). плагин ведёт тебя за руку через весь процесс, локально. ничего не уходит на сервер до твоего явного подтверждения в конце.
-                </p>
-                <div class="install-terminal">
-                    <div class="terminal-header">
-                        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
-                        <span class="term-title">claude code · 3 команды</span>
-                        <button type="button" class="btn-copy-inline term-copy" id="copy-install-btn" onclick="copyInstall(event)" data-umami-event="plugin-copy-install">
-                            <span class="icon" aria-hidden="true">⎘</span>
-                            <span id="copy-install-text">скопировать всё</span>
-                        </button>
-                    </div>
-                    <pre class="terminal-body" id="install-block"><span class="term-comment"># 1. добавить marketplace (один раз)</span>
-<span class="term-cmd">/plugin marketplace add ai-mindset-org/aim-apply</span>
-
-<span class="term-comment"># 2. установить плагин (один раз)</span>
-<span class="term-cmd">/plugin install aim-apply@aim-apply</span>
-
-<span class="term-comment"># 3. запустить assessment для этой вакансии</span>
-<span class="term-cmd">/aim-apply:apply marketing</span></pre>
-                </div>
-                <p class="path-note">
-                    нужен Claude Code установленный. если нет — <a href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank" rel="noopener">инструкция</a>. assessment запускается внутри CC, ничего больше ставить не надо.
-                </p>
+            <div class="apply-actions">
+                <a href="https://t.me/ai_mind_set_team" target="_blank" rel="noopener" class="btn-primary" id="apply-btn" data-umami-event="apply-click" data-umami-event-role="marketing">
+                    <span>написать в команду</span>
+                    <span class="arr">→</span>
+                </a>
+                <button type="button" class="btn-secondary" id="copy-template-btn" onclick="copyTemplate(event)" data-umami-event="template-copy">
+                    <span class="icon" aria-hidden="true">⎘</span>
+                    <span id="copy-template-text">скопировать шаблон</span>
+                </button>
             </div>
-
-            <div class="apply-divider">
-                <span>или</span>
-            </div>
-
-            <!-- ============ PATH 2: Direct Telegram ============ -->
-            <div class="apply-path">
-                <div class="path-label">
-                    <span class="path-num">02</span>
-                    <span class="path-title">написать напрямую в Telegram</span>
-                    <span class="path-tag muted">быстрый путь</span>
-                </div>
-                <p class="path-desc">
-                    если предпочитаешь написать руками — ниже шаблон для первого сообщения. скопируй, открой команду, дополни, отправь.
-                </p>
-
-                <div class="apply-actions">
-                    <a href="https://t.me/ai_mind_set_team" target="_blank" rel="noopener" class="btn-primary" id="apply-btn" data-umami-event="apply-click" data-umami-event-role="marketing">
-                        <span>написать в команду</span>
-                        <span class="arr">→</span>
-                    </a>
-                    <button type="button" class="btn-secondary" id="copy-template-btn" onclick="copyTemplate(event)" data-umami-event="template-copy">
-                        <span class="icon" aria-hidden="true">⎘</span>
-                        <span id="copy-template-text">скопировать шаблон</span>
-                    </button>
-                </div>
 
             <div class="template-wrap">
                 <div class="template-header">
@@ -1422,7 +1230,6 @@
 – удобное время на созвон 20-30 минут?
 
 спасибо.</div>
-                </div>
             </div>
 
             <p class="apply-note">
@@ -1521,24 +1328,6 @@
             } else {
                 fallback();
             }
-        }
-
-        const INSTALL_COMMANDS = `/plugin marketplace add ai-mindset-org/aim-apply
-/plugin install aim-apply@aim-apply
-/aim-apply:apply marketing`;
-
-        function copyInstall() {
-            const btn = document.getElementById('copy-install-btn');
-            const text = document.getElementById('copy-install-text');
-            const original = text.textContent;
-            copyText(INSTALL_COMMANDS, () => {
-                btn.classList.add('copied');
-                text.textContent = '✓ скопировано';
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    text.textContent = original;
-                }, 2500);
-            });
         }
 
         function copyTemplate() {
