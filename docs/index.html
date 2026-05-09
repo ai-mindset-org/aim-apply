@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>/apply — AI Mindset</title>
-    <meta property="og:title" content="/apply — AI Mindset">
-    <meta property="og:description" content="последняя вакансия, на которую ты подашься">
+    <title>/apply — AI Mindset · открытые позиции</title>
+    <meta name="description" content="2 открытые позиции в AI Mindset: AI-native marketing lead (full-time) и account manager (part-time). remote, async-first.">
+    <meta property="og:title" content="/apply — AI Mindset · 2 открытые позиции">
+    <meta property="og:description" content="AI-native marketing lead · account manager. remote, async-first, AI как способ работы.">
     <meta property="og:image" content="https://ai-mindset-org.github.io/aim-apply/og.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-mindset-org.github.io/aim-apply/">
@@ -407,6 +408,102 @@
                 font-size: 24px;
             }
         }
+
+        /* ===== OPEN VACANCIES ===== */
+        .vacancies {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 24px 48px;
+            position: relative;
+            z-index: 1;
+        }
+        .vacancies-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+        .vacancies-label::before,
+        .vacancies-label::after {
+            content: '';
+            width: 60px;
+            height: 1px;
+            background: var(--border);
+        }
+        .vacancies-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .vacancy-card {
+            display: flex;
+            flex-direction: column;
+            padding: 26px 24px 22px;
+            border: 1px solid var(--border);
+            background: rgba(13,13,23,0.4);
+            backdrop-filter: blur(6px);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        .vacancy-card:hover {
+            border-color: var(--accent-dim);
+            background: var(--accent-subtle);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(77,201,212,0.08);
+        }
+        .vacancy-tag {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .vacancy-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+        .vacancy-meta {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 14px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .vacancy-desc {
+            font-size: 13.5px;
+            color: var(--dim);
+            line-height: 1.6;
+            margin-bottom: 18px;
+            flex: 1;
+        }
+        .vacancy-arrow {
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            opacity: 0.7;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .vacancy-card:hover .vacancy-arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+        @media (max-width: 720px) {
+            .vacancies-grid { grid-template-columns: 1fr; }
+            .vacancy-title { font-size: 19px; }
+        }
     </style>
 </head>
 <body>
@@ -469,6 +566,30 @@
 
         <div class="micro-steps">
             3 команды в Claude Code &middot; <code>~25 мин</code> &middot; результаты приватны
+        </div>
+        <div class="micro-steps" style="margin-top:14px;">
+            или <a href="#open" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent-dim)">смотри открытые позиции ↓</a>
+        </div>
+    </section>
+
+    <!-- ===== OPEN VACANCIES ===== -->
+    <section class="vacancies" id="open">
+        <div class="vacancies-label">открытые позиции · 2</div>
+        <div class="vacancies-grid">
+            <a href="jd-marketing.html" class="vacancy-card">
+                <div class="vacancy-tag">priority 01 · full-time</div>
+                <div class="vacancy-title">AI-native marketing lead</div>
+                <div class="vacancy-meta">remote · €2,000–4,000/мес · 5+ лет</div>
+                <p class="vacancy-desc">маркетолог, для которого AI — ежедневный рабочий стек, а performance — естественный результат. считает в деньгах, а не в лайках.</p>
+                <div class="vacancy-arrow">смотреть вакансию →</div>
+            </a>
+            <a href="jd-accounts.html" class="vacancy-card">
+                <div class="vacancy-tag">new · part-time</div>
+                <div class="vacancy-title">account manager</div>
+                <div class="vacancy-meta">remote · €700–1,400/мес · 20–30h/week</div>
+                <p class="vacancy-desc">тёплый аккаунтинг для AI-native команды. inbound лиды, ведение Notion CRM, follow-ups. не холодные продажи. конверсия ~50%.</p>
+                <div class="vacancy-arrow">смотреть вакансию →</div>
+            </a>
         </div>
     </section>
 
