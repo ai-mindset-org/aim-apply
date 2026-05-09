@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>/apply — AI Mindset · открытые позиции</title>
-    <meta name="description" content="2 открытые позиции в AI Mindset: AI-native marketing lead (full-time) и account manager (part-time). remote, async-first.">
-    <meta property="og:title" content="/apply — AI Mindset · 2 открытые позиции">
-    <meta property="og:description" content="AI-native marketing lead · account manager. remote, async-first, AI как способ работы.">
+    <title>/apply — AI Mindset · две роли или процесс</title>
+    <meta name="description" content="две роли в AI Mindset: маркетолог (full-time, €2,000–3,000) и account manager (part-time, €700–1,400). или покажи как работаешь через клод-код. remote, async-first.">
+    <meta property="og:title" content="/apply — AI Mindset · две роли или процесс">
+    <meta property="og:description" content="маркетолог · account manager · или процесс работы через клод-код. выбирай путь, не вакансию.">
     <meta property="og:image" content="https://ai-mindset-org.github.io/aim-apply/og.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-mindset-org.github.io/aim-apply/">
@@ -445,19 +445,78 @@
         .vacancy-card {
             display: flex;
             flex-direction: column;
-            padding: 26px 24px 22px;
+            padding: 28px 26px 24px;
             border: 1px solid var(--border);
             background: rgba(13,13,23,0.4);
             backdrop-filter: blur(6px);
             text-decoration: none;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .vacancy-card::before {
+            content: '';
+            position: absolute;
+            bottom: -120px;
+            right: -120px;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.55;
+            transition: opacity 0.4s ease, transform 0.6s ease;
+            filter: blur(20px);
+        }
+        .vacancy-card[href*="marketing"]::before {
+            background: radial-gradient(circle, rgba(244,63,94,0.3) 0%, rgba(77,201,212,0.15) 50%, transparent 75%);
+        }
+        .vacancy-card[href*="accounts"]::before {
+            background: radial-gradient(circle, rgba(245,158,11,0.3) 0%, rgba(77,201,212,0.15) 50%, transparent 75%);
+        }
+        .vacancy-card::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.3;
+            transition: opacity 0.4s ease;
+            filter: blur(28px);
+        }
+        .vacancy-card[href*="marketing"]::after {
+            background: radial-gradient(circle, rgba(77,201,212,0.45) 0%, transparent 70%);
+        }
+        .vacancy-card[href*="accounts"]::after {
+            background: radial-gradient(circle, rgba(180,120,255,0.4) 0%, transparent 70%);
         }
         .vacancy-card:hover {
             border-color: var(--accent-dim);
-            background: var(--accent-subtle);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(77,201,212,0.08);
+            background: rgba(13,13,23,0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(77,201,212,0.12);
+        }
+        .vacancy-card:hover::before {
+            opacity: 0.85;
+            transform: scale(1.15);
+        }
+        .vacancy-card:hover::after {
+            opacity: 0.55;
+        }
+        .vacancy-essence {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            color: var(--accent);
+            font-style: italic;
+            opacity: 0.72;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            letter-spacing: 0.005em;
         }
         .vacancy-tag {
             display: inline-block;
@@ -545,35 +604,37 @@
 
         <div class="role">AI Mindset Team</div>
 
-        <p class="tagline">2 открытые позиции в команде. выбирай свою — или подавай общее заявление через Claude Code.</p>
+        <p class="tagline">две роли в команде — или просто покажи, как ты работаешь.<br>выбирай путь, не вакансию.</p>
 
         <div class="vacancies-grid" style="max-width: 880px; width: 100%; margin: 8px auto 32px;">
             <a href="jd-marketing.html" class="vacancy-card">
                 <div class="vacancy-tag">priority 01 · full-time</div>
-                <div class="vacancy-title">AI-native marketing lead</div>
-                <div class="vacancy-meta">remote · €2,000–4,000/мес · 5+ лет</div>
-                <p class="vacancy-desc">маркетолог, для которого AI — ежедневный рабочий стек, а performance — естественный результат. считает в деньгах, а не в лайках.</p>
+                <div class="vacancy-title">маркетолог</div>
+                <div class="vacancy-meta">remote · €2,000–3,000/мес · 3+ года</div>
+                <p class="vacancy-essence">не SMM, не таргетолог. человек, который превращает контент в людей.</p>
+                <p class="vacancy-desc">маркетолог-дженералист, который умеет руками. контент, growth, партнёрки. AI как ежедневный стек, не игрушка.</p>
                 <div class="vacancy-arrow">смотреть вакансию →</div>
             </a>
             <a href="jd-accounts.html" class="vacancy-card">
                 <div class="vacancy-tag">new · part-time</div>
                 <div class="vacancy-title">account manager</div>
                 <div class="vacancy-meta">remote · €700–1,400/мес · 20–30h/week</div>
-                <p class="vacancy-desc">тёплый аккаунтинг для AI-native команды. inbound лиды, ведение Notion CRM, follow-ups. не холодные продажи. конверсия ~50%.</p>
+                <p class="vacancy-essence">не продавец. человек, который ловит интерес и доводит до начала.</p>
+                <p class="vacancy-desc">тёплый аккаунтинг для AI-native команды. inbound лиды, ведение Notion CRM, follow-ups. не холодные продажи.</p>
                 <div class="vacancy-arrow">смотреть вакансию →</div>
             </a>
         </div>
 
         <div class="micro-steps">
-            или <a href="#general" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent-dim)">общее заявление через Claude Code ↓</a>
+            или <a href="#general" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent-dim)">зайди через клод-код ↓</a>
         </div>
     </section>
 
-    <!-- ===== GENERAL APPLICATION ===== -->
+    <!-- ===== ЗАЙДИ ЧЕРЕЗ КЛОД-КОД ===== -->
     <section class="vacancies" id="general" style="padding-top: 32px;">
-        <div class="vacancies-label">general application · через Claude Code</div>
-        <p style="text-align: center; color: var(--dim); font-size: 14px; max-width: 580px; margin: 0 auto 24px; line-height: 1.6;">
-            не подходит ни одна из открытых ролей или хочешь показать <em style="color:var(--accent);font-style:normal">процесс работы</em>, а не выбрать вакансию? подавай общее заявление через Claude Code плагин — 25 минут в терминале, без CV.
+        <div class="vacancies-label">зайди через клод-код · покажи процесс</div>
+        <p style="text-align: center; color: var(--dim); font-size: 14px; max-width: 600px; margin: 0 auto 24px; line-height: 1.6;">
+            не вписался ни в одну из ролей? покажи как ты работаешь — <em style="color:var(--accent);font-style:normal">процесс важнее анкеты</em>. три команды в терминале, и мы видим тебя в деле.
         </p>
 
         <div class="install-block" style="text-align: center;">
