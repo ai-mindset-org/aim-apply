@@ -18,3 +18,21 @@ umami-key
 
 # metrics dumps are private (only stats.html is public)
 metrics/
+
+# Private agent/session artifacts
+tracking/
+.claude/local/
+.codex/
+.cursor/
+_sessions/
+file-history/
+*.jsonl
+*.sqlite
+*.sqlite3
+*.db
+*.pem
+*.key
+HANDOFF.md
+CONTEXT-HANDOFF.md
+SESSION-*-HANDOFF.md
+*.backup-*

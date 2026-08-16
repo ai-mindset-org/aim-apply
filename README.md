@@ -131,13 +131,13 @@ aim-apply/
 ├── context/               ← об AI Mindset, продуктах, роли
 ├── tasks/                 ← 4 задания
 ├── outputs/               ← ты заполняешь
-├── tracking/              ← авто-логирование (hooks)
-├── scripts/               ← tracking scripts
-├── .claude/settings.json  ← hooks config
+├── scripts/               ← public validation and metrics utilities
 └── docs/                  ← landing page
 ```
 
 </details>
+
+Raw agent sessions, tool-use logs, handoffs, local paths, and private exports are not part of an application and must never be committed or attached to a pull request.
 
 ---
 

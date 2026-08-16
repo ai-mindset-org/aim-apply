@@ -1,0 +1,14 @@
+[extend]
+useDefault = true
+
+[[rules]]
+id = "openrouter-key"
+description = "OpenRouter API key"
+regex = '''sk-or-v1-[0-9a-fA-F]{48,}'''
+keywords = ["sk-or-v1-"]
+
+[[rules]]
+id = "umami-api-key"
+description = "Umami API key"
+regex = '''api_[A-Za-z0-9]{24,}'''
+keywords = ["api_"]
