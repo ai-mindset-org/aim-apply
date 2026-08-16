@@ -20,7 +20,8 @@ fi
 content_pattern='(/Users/[A-Za-z0-9._-]+/|/home/[A-Za-z0-9._-]+/|"(sessionId|parentUuid|cwd|transcript_path)"[[:space:]]*:|sk-or-v1-|sk-[A-Za-z0-9_-]{20,}|api_[A-Za-z0-9]{24,})'
 if git grep -IEn "$content_pattern" -- . \
   ':(exclude)scripts/privacy-check.sh' \
-  ':(exclude).github/workflows/privacy.yml'; then
+  ':(exclude).github/workflows/privacy.yml' \
+  ':(exclude).gitleaks.toml'; then
   printf 'privacy check failed: private identity, runtime, or credential marker found\n' >&2
   fail=1
 fi
