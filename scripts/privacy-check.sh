@@ -17,7 +17,7 @@ if [[ -n "$private_paths" ]]; then
   fail=1
 fi
 
-content_pattern='(/Users/[A-Za-z0-9._-]+/|/home/[A-Za-z0-9._-]+/|"(sessionId|parentUuid|cwd|transcript_path)"[[:space:]]*:|sk-or-v1-|sk-[A-Za-z0-9_-]{20,}|api_[A-Za-z0-9]{24,})'
+content_pattern='(/Users/[A-Za-z0-9._-]+/|/home/[A-Za-z0-9._-]+/|session\.jsonl|tracking/profile\.json|"(sessionId|parentUuid|cwd|transcript_path)"[[:space:]]*:|sk-or-v1-|sk-[A-Za-z0-9_-]{20,}|api_[A-Za-z0-9]{24,})'
 if git grep -IEn "$content_pattern" -- . \
   ':(exclude)scripts/privacy-check.sh' \
   ':(exclude).github/workflows/privacy.yml' \
