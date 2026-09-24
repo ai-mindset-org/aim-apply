@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>менеджер по продажам – AI Mindset</title>
+    <meta name="description" content="входящие заявки с лендингов и из Telegram-бота, живая CRM, доведение до старта обучения. full-time, remote, €700–1 000 плюс процент с продаж.">
+    <meta property="og:title" content="менеджер по продажам – AI Mindset">
+    <meta property="og:description" content="входящие заявки, CRM, доведение до старта обучения. full-time, €700–1 000 плюс процент, remote.">
+    <meta property="og:image" content="https://ai-mindset-org.github.io/aim-apply/accounts-og.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-mindset-org.github.io/aim-apply/jd-sales.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ai-mindset-org.github.io/aim-apply/accounts-og.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- analytics: Umami Cloud (cookieless, GDPR-friendly, privacy-first)
+         dashboard: https://cloud.umami.is
+         website-id: 7ea4880d-b761-4f50-838a-1eed2dd3f443 -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="7ea4880d-b761-4f50-838a-1eed2dd3f443"></script>
+    <style>
+        :root {
+            --bg: #161620;
+            --bg-card: #1a1a2e;
+            --bg-deep: #0d0d17;
+            --accent: #4dc9d4;
+            --accent-dim: rgba(77,201,212,0.5);
+            --accent-glow: rgba(77,201,212,0.25);
+            --accent-subtle: rgba(77,201,212,0.08);
+            --blue: #3b82f6;
+            --amber: #f59e0b;
+            --rose: #f43f5e;
+            --green: #10b981;
+            --text: #e8e8ef;
+            --dim: rgba(232,232,239,0.58);
+            --muted: rgba(232,232,239,0.32);
+            --border: rgba(77,201,212,0.14);
+            --border-soft: rgba(232,232,239,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Mono', monospace;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background-image:
+                linear-gradient(rgba(77,201,212,0.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(77,201,212,0.022) 1px, transparent 1px);
+            background-size: 60px 60px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 10%, rgba(77,201,212,0.08) 0%, transparent 45%),
+                radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.06) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 90%, rgba(77,201,212,0.04) 0%, transparent 55%);
+            pointer-events: none; z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        /* --- circuit decoration --- */
+        .circuit-svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: visible;
+        }
+        .circuit-svg line, .circuit-svg polyline {
+            stroke: rgba(77,201,212,0.07);
+            stroke-width: 1;
+            fill: none;
+        }
+        .circuit-svg circle {
+            fill: rgba(77,201,212,0.12);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100svh;
+            padding: 56px 24px 48px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 36px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .hero-top img {
+            width: 22px; height: 22px;
+            opacity: 0.8;
+        }
+        .hero-top .divider {
+            color: var(--accent-dim);
+        }
+
+        .role-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            background: var(--accent-subtle);
+        }
+        .role-tag::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(44px, 9vw, 84px);
+            font-weight: 700;
+            line-height: 0.96;
+            color: #fff;
+            margin-bottom: 22px;
+            letter-spacing: -0.025em;
+            max-width: 880px;
+        }
+        h1 .slash { color: var(--accent); }
+        h1 .em { color: var(--accent); }
+
+        .tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(15px, 2.2vw, 19px);
+            color: var(--dim);
+            margin-bottom: 42px;
+            line-height: 1.5;
+            max-width: 640px;
+            font-weight: 400;
+        }
+        .tagline strong { color: var(--text); font-weight: 500; }
+
+        .hero-stats {
+            display: flex;
+            gap: 0;
+            margin-bottom: 44px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            background: rgba(13,13,23,0.4);
+            backdrop-filter: blur(6px);
+        }
+        .hero-stat {
+            padding: 16px 26px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 130px;
+        }
+        .hero-stat:last-child { border-right: none; }
+        .hero-stat .label {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .hero-stat .value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1;
+        }
+        .hero-stat .value.accent { color: var(--accent); }
+
+        .cta-row {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 17px 42px;
+            background: var(--accent);
+            border: 1.5px solid var(--accent);
+            color: var(--bg);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            box-shadow: 0 0 60px var(--accent-glow);
+        }
+        .cta:hover {
+            background: #5fd4de;
+            box-shadow: 0 0 80px rgba(77,201,212,0.4), 0 0 140px rgba(77,201,212,0.15);
+            transform: translateY(-1px);
+        }
+        .cta .arr { transition: transform 0.25s; }
+        .cta:hover .arr { transform: translateX(5px); }
+
+        .cta-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 17px 26px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--dim);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 400;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .cta-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-meta {
+            margin-top: 32px;
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+        }
+        .hero-meta code {
+            color: var(--dim);
+            background: rgba(255,255,255,0.04);
+            padding: 2px 7px;
+            border-radius: 3px;
+        }
+
+        /* ===== FOLD ===== */
+        .fold {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+            z-index: 1;
+        }
+
+        .fold-hint {
+            text-align: center;
+            padding-bottom: 48px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        /* --- section label --- */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 56px 0 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .section-label::before {
+            content: '';
+            width: 12px;
+            height: 1px;
+            background: var(--accent);
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 18px;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 18px 0 10px;
+            letter-spacing: 0.01em;
+        }
+
+        p {
+            font-size: 14.5px;
+            line-height: 1.78;
+            color: var(--dim);
+            margin-bottom: 14px;
+        }
+        p strong { color: var(--text); font-weight: 500; }
+        p em { color: var(--accent); font-style: normal; }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 18px;
+        }
+        ul li {
+            font-size: 14px;
+            line-height: 1.72;
+            color: var(--dim);
+            padding: 6px 0 6px 22px;
+            position: relative;
+        }
+        ul li::before {
+            content: '–';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            opacity: 0.7;
+        }
+        ul li strong { color: var(--text); font-weight: 500; }
+
+        /* --- role description cards --- */
+        .role-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border: 1px solid var(--border);
+            background: rgba(13,13,23,0.35);
+            backdrop-filter: blur(6px);
+            margin-bottom: 24px;
+        }
+        .role-card {
+            padding: 26px 28px;
+            border-bottom: 1px solid var(--border);
+        }
+        .role-card:last-child { border-bottom: none; }
+        .role-card-head {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .role-card-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+        .role-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            color: var(--text);
+            font-weight: 600;
+            flex: 1;
+        }
+        .role-card-pct {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .role-card p:last-child { margin-bottom: 0; }
+        .role-card ul { margin-bottom: 0; }
+
+        /* --- requirements block --- */
+        .req-block {
+            border-left: 2px solid var(--border);
+            padding: 4px 0 4px 22px;
+            margin-bottom: 22px;
+        }
+        .req-block.primary { border-left-color: var(--accent); }
+        .req-block.secondary { border-left-color: var(--blue); }
+        .req-block-label {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        .req-block.primary .req-block-label { color: var(--accent); }
+        .req-block.secondary .req-block-label { color: var(--blue); }
+        .req-block-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .deal-breaker-note {
+            display: inline-block;
+            padding: 4px 10px;
+            margin-top: 8px;
+            font-size: 11px;
+            color: var(--rose);
+            background: rgba(244,63,94,0.08);
+            border: 1px solid rgba(244,63,94,0.25);
+            border-radius: 3px;
+            letter-spacing: 0.04em;
+        }
+
+        /* --- anti-list block --- */
+        .anti-list {
+            border: 1px solid rgba(244,63,94,0.25);
+            background: rgba(244,63,94,0.04);
+            padding: 22px 28px;
+            margin-bottom: 20px;
+        }
+        .anti-list ul li {
+            color: var(--dim);
+        }
+        .anti-list ul li::before {
+            content: '\00d7';
+            color: var(--rose);
+            opacity: 0.8;
+            font-weight: 600;
+        }
+        .anti-list ul li strong {
+            color: #fca5b4;
+            font-weight: 500;
+        }
+
+        /* --- process steps --- */
+        .process {
+            counter-reset: step;
+            margin-bottom: 20px;
+        }
+        .process-step {
+            display: flex;
+            gap: 22px;
+            padding: 22px 0;
+            border-bottom: 1px solid var(--border-soft);
+            counter-increment: step;
+        }
+        .process-step:last-child { border-bottom: none; }
+        .process-step::before {
+            content: counter(step, decimal-leading-zero);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 48px;
+            line-height: 1;
+            padding-top: 2px;
+        }
+        .process-step-body h3 {
+            margin-top: 0;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+        .process-step-meta {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+        .process-step-body p {
+            margin-bottom: 0;
+            font-size: 13.5px;
+        }
+
+        /* --- stack grid --- */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+        .stack-card {
+            background: rgba(13,13,23,0.4);
+            padding: 22px 24px;
+            transition: background 0.2s ease;
+        }
+        .stack-card:hover {
+            background: rgba(77,201,212,0.04);
+        }
+        .stack-card-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .stack-card-name .role-label {
+            color: var(--accent);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-left: 6px;
+        }
+        .stack-card-desc {
+            font-size: 12.5px;
+            line-height: 1.6;
+            color: var(--dim);
+            margin: 0;
+        }
+
+        /* --- KPI cards --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .kpi-card {
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+            background: rgba(13,13,23,0.3);
+            font-size: 13px;
+            color: var(--dim);
+            line-height: 1.5;
+        }
+        .kpi-card strong {
+            display: block;
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        /* ===== APPLY BLOCK ===== */
+        .apply-section {
+            margin: 80px auto 40px;
+            max-width: 800px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .apply-block {
+            background: linear-gradient(180deg, rgba(77,201,212,0.08) 0%, rgba(77,201,212,0.02) 100%);
+            border: 1px solid var(--accent-dim);
+            padding: 52px 44px;
+            position: relative;
+            overflow: hidden;
+        }
+        .apply-block::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at center, rgba(77,201,212,0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .apply-block > * { position: relative; }
+
+        .apply-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+        .apply-label::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .apply-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(26px, 4vw, 36px);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 14px;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+        }
+
+        /* --- inline template block (always visible) --- */
+        .template-wrap {
+            margin-top: 32px;
+            border: 1px solid var(--border);
+            background: var(--bg-deep);
+        }
+        .template-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(13,13,23,0.6);
+        }
+        .template-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .btn-copy-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--dim);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            letter-spacing: 0.02em;
+        }
+        .btn-copy-inline .icon {
+            font-size: 13px;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .btn-copy-inline:hover {
+            background: rgba(77,201,212,0.06);
+            border-color: var(--accent-dim);
+            color: var(--accent);
+        }
+        .btn-copy-inline.copied {
+            background: rgba(16,185,129,0.1);
+            color: var(--green);
+            border-color: rgba(16,185,129,0.5);
+        }
+        .btn-copy-inline.copied .icon { color: var(--green); }
+
+        .template-box {
+            padding: 22px 24px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12.5px;
+            line-height: 1.75;
+            color: var(--dim);
+            white-space: pre-wrap;
+            margin: 0;
+        }
+        .template-box .block-label {
+            display: block;
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin: 14px 0 4px;
+            font-weight: 600;
+        }
+        .template-box .block-label:first-child {
+            margin-top: 0;
+        }
+        .template-box .placeholder {
+            color: var(--accent);
+            opacity: 0.7;
+        }
+
+        .apply-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 48px;
+            background: var(--accent);
+            border: 1.5px solid var(--accent);
+            color: var(--bg);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 60px var(--accent-glow), 0 0 120px rgba(77,201,212,0.12);
+            letter-spacing: 0.02em;
+        }
+        .btn-primary:hover {
+            background: #5fd4de;
+            box-shadow: 0 0 80px rgba(77,201,212,0.5), 0 0 160px rgba(77,201,212,0.2);
+            transform: translateY(-1px);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .btn-primary.copied {
+            background: var(--green);
+            border-color: var(--green);
+            color: #fff;
+            box-shadow: 0 0 60px rgba(16,185,129,0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 28px;
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--dim);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.02em;
+        }
+        .btn-secondary .icon {
+            font-size: 16px;
+            line-height: 1;
+            color: var(--accent);
+        }
+        .btn-secondary:hover {
+            background: rgba(77,201,212,0.06);
+            border-color: var(--accent-dim);
+            color: var(--accent);
+        }
+        .btn-secondary.copied {
+            background: rgba(16,185,129,0.1);
+            color: var(--green);
+            border-color: rgba(16,185,129,0.5);
+        }
+        .btn-secondary.copied .icon { color: var(--green); }
+
+        .apply-note {
+            margin-top: 28px;
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+        .apply-note code {
+            background: rgba(255,255,255,0.05);
+            padding: 1px 6px;
+            border-radius: 2px;
+            color: var(--dim);
+        }
+
+        /* --- resources grid --- */
+        .resources {
+            margin-top: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+        .resource {
+            background: var(--bg);
+            padding: 20px 22px;
+            text-decoration: none;
+            color: var(--dim);
+            transition: all 0.2s ease;
+            display: block;
+        }
+        .resource:hover {
+            background: var(--accent-subtle);
+            color: var(--text);
+        }
+        .resource-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .resource-url {
+            font-size: 13px;
+            color: var(--text);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .resource-desc {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* --- footer --- */
+        .foot {
+            text-align: center;
+            padding: 64px 24px 40px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            position: relative;
+            z-index: 1;
+        }
+        .foot a {
+            color: var(--accent);
+            text-decoration: none;
+            opacity: 0.6;
+        }
+        .foot a:hover { opacity: 1; }
+        .foot-divider {
+            margin: 0 10px;
+            color: var(--accent-dim);
+        }
+
+        /* --- responsive --- */
+        @media (max-width: 640px) {
+            .hero-stat {
+                padding: 12px 18px;
+                min-width: 110px;
+            }
+            .hero-stat .value { font-size: 16px; }
+            .apply-block { padding: 36px 24px; }
+            .role-card { padding: 22px 20px; }
+            .cta, .btn-primary { padding: 15px 30px; font-size: 14px; }
+            .section-label::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <svg class="circuit-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <polyline points="0,420 120,420 160,360 280,360 300,380"/>
+            <circle cx="300" cy="380" r="3"/>
+            <polyline points="160,360 160,280 220,220"/>
+            <circle cx="220" cy="220" r="2.5"/>
+            <polyline points="1200,370 1060,370 1020,430 920,430 900,410"/>
+            <circle cx="900" cy="410" r="3"/>
+            <polyline points="1020,430 1020,520 960,580"/>
+            <circle cx="960" cy="580" r="2.5"/>
+            <line x1="400" y1="0" x2="400" y2="80"/>
+            <polyline points="400,80 450,130 550,130"/>
+            <circle cx="550" cy="130" r="2"/>
+            <line x1="700" y1="800" x2="700" y2="720"/>
+            <polyline points="700,720 650,670 580,670"/>
+            <circle cx="580" cy="670" r="2"/>
+            <polyline points="300,380 380,380 420,340"/>
+            <polyline points="900,410 820,410 780,450"/>
+        </svg>
+
+        <a href="https://ai-mindset-org.github.io/aim-apply/" class="hero-top" style="text-decoration:none;">
+            <img src="logo.png" alt="AI Mindset">
+            <span>ai mindset</span>
+            <span class="divider">/</span>
+            <span>apply</span>
+            <span class="divider">/</span>
+            <span>2026</span>
+        </a>
+
+        <div class="role-tag">role open · apply now</div>
+
+        <h1><span class="em">менеджер</span><br>по продажам</h1>
+
+        <p class="tagline">разговариваешь с теми, кто оставил заявку, помогаешь выбрать программу под задачу<br>и доводишь до старта обучения. <strong>средний чек около €1 000</strong>, конверсия около 50%.</p>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="label">опыт</span>
+                <span class="value">2+ года</span>
+            </div>
+            <div class="hero-stat">
+                <span class="label">формат</span>
+                <span class="value">full-time</span>
+            </div>
+            <div class="hero-stat">
+                <span class="label">компенсация</span>
+                <span class="value accent">€700–1 000 + %</span>
+            </div>
+            <div class="hero-stat">
+                <span class="label">старт</span>
+                <span class="value">asap</span>
+            </div>
+        </div>
+
+        <div class="cta-row">
+            <a href="#apply" class="cta">откликнуться <span class="arr">→</span></a>
+            <a href="#role" class="cta-ghost">сначала про роль ↓</a>
+        </div>
+
+        <div class="hero-meta">
+            remote · async-first · <code>3 дня</code> на ответ · отбор через короткое видео
+        </div>
+    </section>
+
+    <!-- ===== FOLD ===== -->
+    <section class="fold">
+        <div class="fold-hint">scroll ↓</div>
+
+        <!-- ========== О КОМПАНИИ ========== -->
+        <div id="role" class="section-label">о компании</div>
+        <h2>AI Mindset – AI-native команда про образование и сообщество</h2>
+        <p>помогаем основателям, руководителям и командам встроить ИИ в работу и в то, как они думают о своём деле. программы идут потоками: <strong>AI Native</strong>, маркетинг-спринт, лаборатории. средний чек около <strong>€1 000</strong>.</p>
+        <p>ищем человека, который будет разговаривать с теми, кто оставил заявку, помогать им понять, какая программа решит их задачу, и доводить до старта обучения.</p>
+        <ul>
+            <li><strong>100–200 заявок в месяц</strong> в пиковые запуски, 20–30 в спокойные недели</li>
+            <li><strong>конверсия около 50%</strong> – каждый второй заинтересованный доходит до оплаты</li>
+            <li><strong>первый ответ до 4 часов</strong> в рабочее время</li>
+            <li><strong>несколько сотен человек</strong> в базе уже проявили интерес и ждут касания</li>
+        </ul>
+
+        <!-- ========== ЧЕМ ЗАНИМАЕШЬСЯ ========== -->
+        <div class="section-label">чем предстоит заниматься</div>
+
+        <div class="role-grid">
+            <div class="role-card">
+                <div class="role-card-head">
+                    <span class="role-card-num">01</span>
+                    <span class="role-card-title">продажи</span>
+                    <span class="role-card-pct">50%</span>
+                </div>
+                <p>главная часть роли. заявка приходит тёплой, дальше всё зависит от разговора.</p>
+                <ul>
+                    <li>отвечать на входящие заявки с лендингов и из Telegram-бота в течение <strong>4 часов</strong> в рабочее время</li>
+                    <li>выяснять контекст человека: роль, задачу, сроки, формат участия</li>
+                    <li>подбирать программу под задачу; если человеку пока рано – звать на бесплатный эфир или в лист ожидания</li>
+                    <li>вести переписку в Telegram и созвоны, разбирать сомнения по цене, срокам и формату</li>
+                    <li>возвращаться к базе: несколько сотен человек ждут касания, с них начинаются первые продажи</li>
+                </ul>
+            </div>
+
+            <div class="role-card">
+                <div class="role-card-head">
+                    <span class="role-card-num">02</span>
+                    <span class="role-card-title">CRM</span>
+                    <span class="role-card-pct">35%</span>
+                </div>
+                <p>CRM у нас живая система контекста, по ней принимаются решения о следующем запуске.</p>
+                <ul>
+                    <li>вести историю каждого клиента: статус, источник, касания, договорённости, причина отказа</li>
+                    <li>строить цепочки повторных касаний, чтобы заявка не остывала без ответа</li>
+                    <li>раз в неделю короткий отчёт: цифры воронки и идеи, что поправить в лендинге, боте или текстах</li>
+                </ul>
+            </div>
+
+            <div class="role-card">
+                <div class="role-card-head">
+                    <span class="role-card-num">03</span>
+                    <span class="role-card-title">передача в обучение</span>
+                    <span class="role-card-pct">15%</span>
+                </div>
+                <p>оплата – это середина пути, а не конец.</p>
+                <ul>
+                    <li>подтверждать оплату и отправлять приветственные материалы в течение суток</li>
+                    <li>знакомить человека с потоком и сообществом</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== КОГО ИЩЕМ ========== -->
+        <div class="section-label">кого ищем</div>
+
+        <div class="req-block primary">
+            <div class="req-block-label">обязательно</div>
+            <div class="req-block-title">вы сами используете ИИ каждый день</div>
+            <p>Claude, ChatGPT, свои промпты, автоматизации для follow-up и аналитики. готовы осваивать Claude Code и MCP-интеграции. можете рассказать, что нового открыли для себя в этой сфере за последний месяц.</p>
+            <div class="deal-breaker-note">это проверяется на первом же разговоре и в видео-отклике</div>
+        </div>
+
+        <div class="req-block primary">
+            <div class="req-block-label">обязательно</div>
+            <div class="req-block-title">умеете задавать вопросы и слушать</div>
+            <p>продаёте через понимание задачи человека. без давления, без скидок и искусственных дедлайнов. у нас длинный цикл решения и взрослая аудитория, здесь это работает.</p>
+        </div>
+
+        <div class="req-block primary">
+            <div class="req-block-label">обязательно</div>
+            <div class="req-block-title">от двух лет во входящих продажах, account management или customer success</div>
+            <p>опыт в EdTech, сообществах или B2C SaaS будет преимуществом. держите CRM в порядке и системно ведёте follow-up.</p>
+        </div>
+
+        <div class="req-block secondary">
+            <div class="req-block-label">важно</div>
+            <div class="req-block-title">пишете по-русски грамотно, живо и коротко</div>
+            <p>умеете объяснять сложное простыми словами. английский на рабочем уровне. комфортно общаетесь с основателями и руководителями на равных.</p>
+        </div>
+
+        <div class="section-label">будет плюсом</div>
+        <ul>
+            <li>опыт потоковых запусков</li>
+            <li>знакомство с нашими программами или сообществом</li>
+            <li>опыт работы с ботами и автоворонками</li>
+        </ul>
+
+        <!-- ========== СТЕК ========== -->
+        <div class="section-label">инструменты</div>
+        <h2>чем работает команда</h2>
+        <div class="stack-grid">
+            <div class="stack-card">
+                <div class="stack-card-name">Notion <span class="role-label">CRM</span></div>
+                <p class="stack-card-desc">карточки клиентов, статусы, источники, история касаний. основное рабочее окно.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Telegram <span class="role-label">канал продаж</span></div>
+                <p class="stack-card-desc">заявки приходят из бота и из канала, переписка идёт с корпоративного аккаунта.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Claude и ChatGPT <span class="role-label">ежедневно</span></div>
+                <p class="stack-card-desc">подготовка ответов, сегментация, аналитика воронки. свои промпты приветствуются.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Claude Code <span class="role-label">по желанию</span></div>
+                <p class="stack-card-desc">наши собственные skills и MCP-интеграции с Notion, Telegram, Linear. на освоение уходит около двух недель.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Linear <span class="role-label">задачи</span></div>
+                <p class="stack-card-desc">все задачи команды в одном месте, связано с Notion и Claude Code.</p>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Stripe, банк, крипто <span class="role-label">оплаты</span></div>
+                <p class="stack-card-desc">международные карты, банковские переводы, USDT. разные инвойс-флоу – практический навык.</p>
+            </div>
+        </div>
+
+        <!-- ========== УСЛОВИЯ ========== -->
+        <div class="section-label">условия</div>
+        <ul>
+            <li><strong>удалённо, полный рабочий день</strong></li>
+            <li><strong>€700–1 000 фикс</strong> в месяц в зависимости от опыта, плюс процент с продаж</li>
+            <li>испытательный месяц с понятными KPI</li>
+        </ul>
+
+        <!-- ========== ПРОЦЕСС ========== -->
+        <div class="section-label">как проходит отбор</div>
+        <div class="process">
+            <div class="process-step">
+                <div class="process-step-body">
+                    <strong>видео до 10 минут</strong>
+                    <div class="process-step-meta">имя, город, часовой пояс · опыт в продажах и что продавали · какую задачу недавно решили с помощью ИИ и какие автоматизации собрали сами · чем, судя по главной странице нашего сайта, обучение в AI Mindset отличается от похожих школ</div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-body">
+                    <strong>наш ответ</strong>
+                    <div class="process-step-meta">3 дня · отвечаем лично каждому</div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-body">
+                    <strong>интервью</strong>
+                    <div class="process-step-meta">руководитель маркетинга и продаж, затем один из основателей</div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-body">
+                    <strong>практическое задание</strong>
+                    <div class="process-step-meta">возможно, оплачиваемое</div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-body">
+                    <strong>испытательный месяц</strong>
+                    <div class="process-step-meta">1 месяц · с KPI ниже</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== KPI ========== -->
+        <div class="section-label">KPI испытательного месяца</div>
+        <div class="kpi-grid">
+            <div class="kpi-card"><strong>скорость</strong>первый ответ на заявку до 4 часов в рабочее время</div>
+            <div class="kpi-card"><strong>конверсия</strong>из заявки в оплату около 50%</div>
+            <div class="kpi-card"><strong>CRM</strong>все карточки с актуальным статусом</div>
+            <div class="kpi-card"><strong>follow-up</strong>ни одной заявки без касания дольше 7 дней</div>
+            <div class="kpi-card"><strong>онбординг</strong>приветственные материалы в течение суток после оплаты</div>
+            <div class="kpi-card"><strong>отчёт</strong>еженедельный: цифры воронки и что поправить</div>
+        </div>
+    </section>
+
+    <!-- ===== APPLY ===== -->
+    <section class="apply-section" id="apply">
+        <div class="apply-block">
+            <div class="apply-label">apply</div>
+            <h2 class="apply-title">как откликнуться</h2>
+
+            <div class="apply-actions">
+                <a href="https://t.me/ai_mind_set_team" target="_blank" rel="noopener" class="btn-primary" id="apply-btn" data-umami-event="apply-click" data-umami-event-role="sales">
+                    <span>написать в команду</span>
+                    <span class="arr">→</span>
+                </a>
+                <button type="button" class="btn-secondary" id="copy-template-btn" onclick="copyTemplate(event)" data-umami-event="template-copy">
+                    <span class="icon" aria-hidden="true">⎘</span>
+                    <span id="copy-template-text">скопировать шаблон</span>
+                </button>
+            </div>
+
+            <div class="template-wrap">
+                <div class="template-header">
+                    <span class="template-label">шаблон первого сообщения</span>
+                    <button type="button" class="btn-copy-inline" id="copy-template-btn-inline" onclick="copyTemplate(event)" data-umami-event="template-copy">
+                        <span class="icon" aria-hidden="true">⎘</span>
+                        <span id="copy-template-text-inline">скопировать</span>
+                    </button>
+                </div>
+                <div class="template-box" id="template"><span class="placeholder">привет! откликаюсь на вакансию менеджера по продажам в AI Mindset.</span>
+
+<span class="block-label">про себя</span>– <span class="placeholder">[имя, город, часовой пояс]</span>
+– <span class="placeholder">[опыт в продажах: какие продукты продавали, средний чек]</span>
+– <span class="placeholder">[почему интересно AIM конкретно]</span>
+
+<span class="block-label">про кейсы</span>– <span class="placeholder">[лучший кейс: поток заявок, конверсия, цикл сделки]</span>
+– <span class="placeholder">[сложное «подумаю»: как вернули и закрыли]</span>
+– <span class="placeholder">[что в вашей CRM сейчас работает лучше всего]</span>
+
+<span class="block-label">про AI в работе</span>– <span class="placeholder">[какую задачу недавно решили с помощью ИИ]</span>
+– <span class="placeholder">[какие автоматизации собрали сами]</span>
+– <span class="placeholder">[чем AI Mindset отличается от похожих школ, судя по главной странице сайта]</span>
+
+<span class="block-label">формат</span>– готовы записать видео до 10 минут по этим вопросам?
+– удобное время на созвон?
+
+спасибо.</div>
+            </div>
+
+            <p class="apply-note">
+                отбор идёт через короткое видео. один человек читает каждый отклик и отвечает лично, ответ в течение 3 дней.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== ДРУГИЕ ПУТИ ===== -->
+    <section class="resources" style="margin-top: 40px;">
+        <div class="section-label">другие пути в команду</div>
+        <div class="resources-grid">
+            <a href="https://ai-mindset-org.github.io/aim-apply/" class="resource">
+                <span class="resource-label">все роли</span>
+                <span class="resource-url">маркетолог</span>
+                <span class="resource-desc">контент, growth, партнёрки · full-time · €2,000–3,000/мес</span>
+            </a>
+            <a href="./#general" class="resource">
+                <span class="resource-label">третий путь</span>
+                <span class="resource-url">зайти через клод-код</span>
+                <span class="resource-desc">показать процесс работы · 25 мин в терминале</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== RESOURCES ===== -->
+    <section class="resources">
+        <div class="section-label">публичные ресурсы · посмотри, как мы работаем</div>
+        <div class="resources-grid">
+            <a href="https://aimindset.org" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">сайт</span>
+                <span class="resource-url">aimindset.org</span>
+                <span class="resource-desc">главный лендинг – что мы делаем и для кого</span>
+            </a>
+            <a href="https://t.me/ai_mind_set" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">telegram канал</span>
+                <span class="resource-url">@ai_mind_set</span>
+                <span class="resource-desc">~8K подписчиков · тон, темы, контент</span>
+            </a>
+            <a href="https://www.youtube.com/@A-I-Mindset" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">youtube</span>
+                <span class="resource-url">@A-I-Mindset</span>
+                <span class="resource-desc">лекции, discussions, demo days</span>
+            </a>
+            <a href="https://learn.aimindset.org" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">LMS</span>
+                <span class="resource-url">learn.aimindset.org</span>
+                <span class="resource-desc">курсы и база знаний</span>
+            </a>
+            <a href="https://ai-native.aimindset.org" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">ai-native sprint</span>
+                <span class="resource-url">ai-native.aimindset.org</span>
+                <span class="resource-desc">4-недельный корпоративный спринт</span>
+            </a>
+            <a href="https://aimindset.org/ai-mindset-community" target="_blank" rel="noopener" class="resource">
+                <span class="resource-label">community</span>
+                <span class="resource-url">aimindset.org/community</span>
+                <span class="resource-desc">подписочное сообщество AI-practitioners</span>
+            </a>
+        </div>
+        <p style="margin-top: 18px; font-size: 12px; color: var(--muted); text-align: center;">
+            лучший способ понять, подходит ли тебе наш вайб – полистать канал за последние 2 недели.
+        </p>
+    </section>
+
+    <footer class="foot">
+        built by agents, for agents
+        <span class="foot-divider">·</span>
+        <a href="https://github.com/ai-mindset-org/aim-apply">github</a>
+        <span class="foot-divider">·</span>
+        <span>обновлено 2026-05-08</span>
+    </footer>
+
+    <script>
+        const APPLY_TEMPLATE = `привет! откликаюсь на вакансию менеджера по продажам в AI Mindset.
+
+про себя
+– [имя, город, часовой пояс]
+– [опыт в продажах: какие продукты продавали, средний чек]
+– [почему интересно AIM конкретно]
+
+про кейсы
+– [лучший кейс: поток заявок, конверсия, цикл сделки]
+– [сложное «подумаю»: как вернули и закрыли]
+– [что в вашей CRM сейчас работает лучше всего]
+
+про AI в работе
+– [какую задачу недавно решили с помощью ИИ]
+– [какие автоматизации собрали сами]
+– [чем AI Mindset отличается от похожих школ, судя по главной странице сайта]
+
+формат
+– готовы записать видео до 10 минут по этим вопросам?
+– удобное время на созвон?
+
+спасибо.`;
+
+        // generic copy helper – handles clipboard API + textarea fallback
+        function copyText(text, onDone) {
+            const fallback = () => {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); onDone(); }
+                catch (err) { alert('не удалось скопировать:\n\n' + text); }
+                document.body.removeChild(ta);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(onDone).catch(fallback);
+            } else {
+                fallback();
+            }
+        }
+
+        function copyTemplate() {
+            // Flash both copy buttons (top-row secondary and inline-above-template) together
+            const targets = [
+                { btn: 'copy-template-btn',        label: 'copy-template-text' },
+                { btn: 'copy-template-btn-inline', label: 'copy-template-text-inline' },
+            ];
+            const state = targets
+                .map(({ btn, label }) => {
+                    const b = document.getElementById(btn);
+                    const t = document.getElementById(label);
+                    return b && t ? { b, t, original: t.textContent } : null;
+                })
+                .filter(Boolean);
+
+            copyText(APPLY_TEMPLATE, () => {
+                state.forEach(({ b, t }) => {
+                    b.classList.add('copied');
+                    t.textContent = '✓ скопировано';
+                });
+                setTimeout(() => {
+                    state.forEach(({ b, t, original }) => {
+                        b.classList.remove('copied');
+                        t.textContent = original;
+                    });
+                }, 2500);
+            });
+        }
+    </script>
+</body>
+</html>
