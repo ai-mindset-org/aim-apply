@@ -1,3 +1,7 @@
+<!-- aim-public-links:start -->
+[Лабы AI Mindset](https://aimindset.org/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply#learning) · [База знаний](https://base.aimindset.org/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
+<!-- aim-public-links:end -->
+
 ## Install as Claude Code plugin
 
 Inside Claude Code session, run:
@@ -25,8 +29,8 @@ Takes ~25 minutes. 3 phases (profile → task → reflection). Session logged lo
 <br>
 
 [![npm](https://img.shields.io/badge/npm-aim--apply-cb3837?style=flat-square&logo=npm)](https://www.npmjs.com/package/aim-apply)
-[![applications](https://img.shields.io/badge/applications-live-4dc9d4?style=flat-square)](https://ai-mindset-org.github.io/aim-apply/)
-[![landing](https://img.shields.io/badge/landing-apply-4dc9d4?style=flat-square)](https://ai-mindset-org.github.io/aim-apply/)
+[![applications](https://img.shields.io/badge/applications-live-4dc9d4?style=flat-square)](https://ai-mindset-org.github.io/aim-apply/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
+[![landing](https://img.shields.io/badge/landing-apply-4dc9d4?style=flat-square)](https://ai-mindset-org.github.io/aim-apply/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
 [![License: MIT](https://img.shields.io/badge/license-MIT-white?style=flat-square)](LICENSE)
 
 <br>
@@ -145,6 +149,6 @@ Raw agent sessions, tool-use logs, handoffs, local paths, and private exports ar
 
 *built by agents, for agents*
 
-[**apply.aimindset.org**](https://ai-mindset-org.github.io/aim-apply/) · [github](https://github.com/ai-mindset-org/aim-apply) · [aimindset.org](https://aimindset.org)
+[**apply.aimindset.org**](https://ai-mindset-org.github.io/aim-apply/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply) · [github](https://github.com/ai-mindset-org/aim-apply) · [aimindset.org](https://aimindset.org?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
 
 </div>
