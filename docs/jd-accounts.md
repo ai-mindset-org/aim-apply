@@ -167,7 +167,7 @@ AM-кейсы с цифрами, AI workflow на живом примере, CRM
 
 **напиши в Telegram → [@ai_mind_set_team](https://t.me/ai_mind_set_team)**
 
-интерактивная версия с кнопкой копирования шаблона: [ai-mindset-org.github.io/aim-apply/jd-accounts.html](https://ai-mindset-org.github.io/aim-apply/jd-accounts.html?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
+интерактивная версия с кнопкой копирования шаблона: [ai-mindset-org.github.io/aim-apply/jd-accounts.html](https://ai-mindset-org.github.io/aim-apply/jd-accounts.html)
 
 ### шаблон сообщения
 
@@ -202,12 +202,12 @@ AM-кейсы с цифрами, AI workflow на живом примере, CRM
 
 ## про AI Mindset — публичные ресурсы
 
-- **сайт** — [aimindset.org](https://aimindset.org?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
+- **сайт** — [aimindset.org](https://aimindset.org)
 - **telegram канал** — [@ai_mind_set](https://t.me/ai_mind_set) · ~8K подписчиков
 - **youtube** — [@A-I-Mindset](https://www.youtube.com/@A-I-Mindset)
-- **LMS** — [learn.aimindset.org](https://learn.aimindset.org?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
-- **AI-Native Sprint** — [ai-native.aimindset.org](https://ai-native.aimindset.org?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
-- **Community** — [aimindset.org/ai-mindset-community](https://aimindset.org/ai-mindset-community?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
+- **LMS** — [learn.aimindset.org](https://learn.aimindset.org)
+- **AI-Native Sprint** — [ai-native.aimindset.org](https://ai-native.aimindset.org)
+- **Community** — [aimindset.org/ai-mindset-community](https://aimindset.org/ai-mindset-community)
 
 лучший proof — полистать канал за последние 2 недели.
 
