@@ -186,12 +186,12 @@
 
 ## про AI Mindset — публичные ресурсы
 
-- **сайт** — [aimindset.org](https://aimindset.org)
+- **сайт** — [aimindset.org](https://aimindset.org?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
 - **telegram канал** — [@ai_mind_set](https://t.me/ai_mind_set) · ~8K подписчиков
 - **youtube** — [@A-I-Mindset](https://www.youtube.com/@A-I-Mindset)
-- **LMS** — [learn.aimindset.org](https://learn.aimindset.org)
-- **AI-Native Sprint** — [ai-native.aimindset.org](https://ai-native.aimindset.org)
-- **Community** — [aimindset.org/ai-mindset-community](https://aimindset.org/ai-mindset-community)
+- **LMS** — [learn.aimindset.org](https://learn.aimindset.org?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
+- **AI-Native Sprint** — [ai-native.aimindset.org](https://ai-native.aimindset.org?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
+- **Community** — [aimindset.org/ai-mindset-community](https://aimindset.org/ai-mindset-community?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-aim-apply)
 
 лучший proof — полистай канал за последние 2 недели.
 
